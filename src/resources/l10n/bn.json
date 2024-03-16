@@ -206,7 +206,7 @@
     "deviceStatusOnline": "অনলাইন",
     "deviceStatusOffline": "অফলাইন",
     "deviceStatusUnknown": "অজানা",
-    "deviceRegisterFirst": "Register your first device",
+    "deviceRegisterFirst": "Devices",
     "deviceIdentifierHelp": "IMEI, serial number or other id. It has to match the identifier device reports to the server.",
     "deviceShare": "Share Device",
     "groupDialog": "গ্রুপ",

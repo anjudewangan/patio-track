@@ -61,7 +61,7 @@ import uz from '../../resources/l10n/uz.json'; import 'dayjs/locale/uz';
 import vi from '../../resources/l10n/vi.json'; import 'dayjs/locale/vi';
 import zh from '../../resources/l10n/zh.json'; import 'dayjs/locale/zh';
 import zhTW from '../../resources/l10n/zh_TW.json'; import 'dayjs/locale/zh-tw';
-// import ma from '../../resources/l10n/ma.json'; import 'dayjs/locale/ma';
+import mr from '../../resources/l10n/mr.json'; import 'dayjs/locale/mr';
 
 const languages = {
   // af: { data: af, country: 'ZA', name: 'Afrikaans' },
@@ -73,7 +73,7 @@ const languages = {
   bn: { data: bn, country: 'IN', name: 'বাংলা' },
   ml: { data: ml, country: 'IN', name: 'മലയാളം' },
   ta: { data: ta, country: 'IN', name: 'தமிழ்' },
-  // ma: { data: ma, country: 'IN', name: 'मराठी' },
+  mr: { data: mr, country: 'IN', name: 'मराठी' },
   // ca: { data: ca, country: 'ES', name: 'Català' },
   // cs: { data: cs, country: 'CZ', name: 'Čeština' },
   // de: { data: de, country: 'DE', name: 'Deutsch' },

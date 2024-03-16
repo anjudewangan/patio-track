@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
     maxHeight: '120px',
     width: 'auto',
     height: 'auto',
+    background: '#D60024',
   },
 }));
 
