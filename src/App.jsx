@@ -9,6 +9,7 @@ import CachingController from './CachingController';
 import { useEffectAsync } from './reactHelper';
 import { sessionActions } from './store';
 import UpdateController from './UpdateController';
+import loaderGif from "../public/loader.gif";
 
 const useStyles = makeStyles(() => ({
   page: {
@@ -45,7 +46,24 @@ const App = () => {
     return null;
   }, [initialized]);
 
-  return !initialized ? (<LinearProgress />) : (
+  return !initialized ? (
+  <>
+  {/* <LinearProgress /> */}
+  <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+        >
+        <img
+          src={loaderGif}
+          alt="Loader"
+          style={{ width: "100%", height: "80%" }}
+          />
+      </div>
+  </>
+  ) : (
     <>
       <SocketController />
       <CachingController />

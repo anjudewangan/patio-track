@@ -6,6 +6,9 @@ import LogoImage from './LogoImage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    [theme.breakpoints.down('lg')]: {
+      display: "block",
+    },
     display: 'flex',
     height: '100%',
   },
@@ -15,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     background: '#D60024',
     // background: theme.palette.primary.main,
-    paddingBottom: theme.spacing(5),
+    [theme.breakpoints.up('lg')]: {
+      paddingBottom: theme.spacing(5),
+    },
+    
     width: theme.dimensions.sidebarWidth,
     [theme.breakpoints.down('lg')]: {
       width: theme.dimensions.sidebarWidthTablet,
@@ -23,6 +29,19 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       width: '0px',
     },
+  },
+  topbar: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: '#D60024',
+    // background: theme.palette.primary.main,
+    // paddingBottom: theme.spacing(5),
+    [theme.breakpoints.down('lg')]: {
+      width: '100%',
+    height: "30%",
+    display: "flex"
+    },
+    
   },
   paper: {
     display: 'flex',
@@ -39,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: theme.spacing(52),
     padding: theme.spacing(5),
     width: '100%',
-    '& .css-1q3sf9c:-webkit-autofill': {
+    '& .css-1wn39cz-MuiInputBase-input-MuiOutlinedInput-input:-webkit-autofill': {
       boxShadow: 'rgb(33, 33, 33) 0px 0px 0px 100px inset',
     },
   },
@@ -53,6 +72,9 @@ const LoginLayout = ({ children }) => {
     <main className={classes.root}>
       <div className={classes.sidebar}>
         {!useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.secondary.contrastText} />}
+      </div>
+      <div className={classes.topbar}>
+        {useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.secondary.contrastText} />}
       </div>
       <Paper className={classes.paper}>
         <form className={classes.form}>

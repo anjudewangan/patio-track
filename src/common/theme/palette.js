@@ -19,7 +19,7 @@ export default (server, darkMode) => ({
   geometry: {
     main: '#3bb2d0',
   },
-  // markers: {
-  //   main: '#D60024',
-  // },
+  markers: {
+    main: '#D60024',
+  },
 });

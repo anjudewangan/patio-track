@@ -4,14 +4,28 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import logoImage from '../../public/login-logo.png'; 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   image: {
     alignSelf: 'center',
     maxWidth: '240px',
     maxHeight: '120px',
     width: 'auto',
     height: 'auto',
-    background: '#D60024',
+    // [theme.breakpoints.down('md')]: {
+    //   position: "absolute",
+    //   top: '10%',
+    //   transform: 'translateX(35%)'
+    // },
+    // [theme.breakpoints.up('md')]: {
+    //   position: "absolute",
+    //   top: '10%',
+    // },
+    // [theme.breakpoints.up('lg')]: {
+    //   position: "inherit",
+    //   top: '10%',
+    //   transform: 'translateX(0%)'
+    // },
+    // background: '#D60024',
   },
 }));
 

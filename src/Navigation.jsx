@@ -55,6 +55,8 @@ import DeviceConnectionsPage from './settings/DeviceConnectionsPage';
 import GroupConnectionsPage from './settings/GroupConnectionsPage';
 import UserConnectionsPage from './settings/UserConnectionsPage';
 import LogsPage from './reports/LogsPage';
+import loaderGif from "../public/loader.gif";
+import PrivacyPolicy from './login/PrivacyPolicy';
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -91,11 +93,28 @@ const Navigation = () => {
   }, [query]);
 
   if (!redirectsHandled) {
-    return (<LinearProgress />);
+    return (<>
+      {/* <LinearProgress /> */}
+      <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+            >
+            <img
+              src={loaderGif}
+              alt="Loader"
+              style={{ width: "100%", height: "80%" }}
+              />
+          </div>
+      </>);
   }
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/change-server" element={<ChangeServerPage />} />
