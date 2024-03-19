@@ -22,7 +22,7 @@ import {
 import { makeStyles, useTheme } from "@mui/styles";
 import MapIcon from "@mui/icons-material/Map";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddIcon from "@mui/icons-material/Add";
 import TuneIcon from "@mui/icons-material/Tune";
 import SearchIcon from "@mui/icons-material/Search";
@@ -86,17 +86,34 @@ const MainToolbar = ({
     <Toolbar ref={toolbarRef} className={classes.toolbar}>
       <img src={logo} alt="Logo" className="logo-img" />
       <div>
-        <IconButton edge="start" onClick={() => setDevicesOpen(!devicesOpen)}>
-          {devicesOpen ? <VisibilityIcon /> : <ViewListIcon />}
+        <IconButton
+          edge="start"
+          onClick={() => navigate("/settings/device")}
+          disabled={deviceReadonly}
+          style={{ padding: "15px" }}
+        >
+          <Tooltip
+            open={!deviceReadonly && Object.keys(devices).length === 0}
+            title={t("deviceRegisterFirst")}
+            arrow
+          >
+            <AddIcon />
+          </Tooltip>
         </IconButton>
-        <IconButton size="small" onClick={toggleSearch}>
+        <IconButton
+          edge="start"
+          onClick={toggleSearch}
+          style={{ padding: "15px" }}
+        >
           <SearchIcon />
         </IconButton>
-        <IconButton edge="end" onClick={() => navigate('/settings/device')} disabled={deviceReadonly}>
-        <Tooltip open={!deviceReadonly && Object.keys(devices).length === 0} title={t('deviceRegisterFirst')} arrow>
-          <AddIcon />
-        </Tooltip>
-      </IconButton>
+        <IconButton
+          edge="start"
+          style={{ padding: "15px" }}
+          onClick={() => setDevicesOpen(!devicesOpen)}
+        >
+          {devicesOpen ? <VisibilityIcon /> : <ViewListIcon />}
+        </IconButton>
       </div>
       <Popover
         open={searchOpen}
@@ -126,9 +143,7 @@ const MainToolbar = ({
                 <Badge
                   color="info"
                   variant="dot"
-                  invisible={
-                    !filter.statuses.length && !filter.groups.length
-                  }
+                  invisible={!filter.statuses.length && !filter.groups.length}
                 >
                   <TuneIcon fontSize="small" />
                 </Badge>

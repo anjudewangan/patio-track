@@ -25,7 +25,7 @@ import { sessionActions } from "../../store";
 import { useTranslation } from "./LocalizationProvider";
 import { useRestriction } from "../util/permissions";
 import { nativePostMessage } from "./NativeInterface";
-import logo from "../../../public/up-logo.png";
+import logo from "../../../public/election-commission.png";
 
 const BottomMenu = () => {
   const navigate = useNavigate();
@@ -154,8 +154,8 @@ const BottomMenu = () => {
           style={{
             position: "absolute",
             bottom: "30px",
-            width: "65px",
-            height: "65px",
+            width: "55px",
+            height: "55px",
           }}
         />
         {/* {readonly ? null : (

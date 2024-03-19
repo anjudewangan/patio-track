@@ -298,7 +298,7 @@ const ReplayPage = () => {
                 <Checkbox
                   checked={showAlarmPoint}
                   onChange={() => setShowAlarmPoint(!showAlarmPoint)}
-                  style={{color: '#ED4014'}}
+                  style={{color: '#FFC107'}}
                 />
               }
               label="Alarm Point"

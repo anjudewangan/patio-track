@@ -272,7 +272,14 @@ const LoginPage = () => {
             onKeyUp={handleSpecialKey}
           />
         )}
-        <div className={classes.extraContainer}>
+        <div
+          className={classes.extraContainer}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div style={{ textAlign: "center" }}>
             <FormControlLabel
               control={
@@ -283,19 +290,20 @@ const LoginPage = () => {
                   onChange={handleAgreeCheckboxChange}
                 />
               }
-              label="I agree to"
+              label="By checking this box, I agree to"
             />
-            <span>
+            <div style={{ textAlign: "center" }}>
               {" "}
               <Link
                 href="privacy-policy"
                 target="_blank"
                 rel="noopener"
                 variant="body2"
+                style={{ fontSize: "1rem", color: "white" }}
               >
                 Patio Track Terms and Privacy Policy
               </Link>
-            </span>
+            </div>
           </div>
         </div>
         <Button
@@ -324,8 +332,9 @@ const LoginPage = () => {
             onClick={() => navigate("/register")}
             disabled={!registrationEnabled}
             color="secondary"
+            variant="outlined"
             fullWidth
-            style={{ border: "1px solid rgb(118, 118, 118)" }}
+            // style={{ border: "1px solid rgb(118, 118, 118)" }}
           >
             {t("loginRegister")}
           </Button>

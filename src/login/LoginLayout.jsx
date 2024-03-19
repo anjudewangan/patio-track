@@ -54,8 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   form: {
-    // maxWidth: theme.spacing(52),
-    maxWidth: "435px",
+    maxWidth: theme.spacing(52),
     padding: theme.spacing(5),
     width: "100%",
     "& .css-1wn39cz-MuiInputBase-input-MuiOutlinedInput-input:-webkit-autofill":

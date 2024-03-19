@@ -1,14 +1,71 @@
 import React from "react";
+import { useMediaQuery } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
+import { useTheme } from "@mui/material/styles";
 import "../../public/styles.css";
 
-function PrivacyPolicy() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    [theme.breakpoints.down("lg")]: {
+      display: "block",
+      height: "100%",
+    },
+    display: "flex",
+  },
+  sidebar: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "start",
+    paddingTop: "15%",
+    background: "#D60024",
+    [theme.breakpoints.up("lg")]: {
+      paddingBottom: theme.spacing(5),
+    },
+    [theme.breakpoints.down("md")]: {
+      paddingTop: "0",
+    },
+
+    width: theme.dimensions.sidebarWidth,
+    [theme.breakpoints.down("lg")]: {
+      width: theme.dimensions.sidebarWidthTablet,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "0px",
+    },
+  },
+  topbar: {
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#D60024",
+    [theme.breakpoints.down("lg")]: {
+      width: "100%",
+      height: "30%",
+      display: "flex",
+    },
+  },
+}));
+
+const PrivacyPolicy = () => {
+  const classes = useStyles();
+  const theme = useTheme();
+
   return (
-    <div>
+    <main className={classes.root}>
+      <div className={classes.sidebar}>
+        {!useMediaQuery(theme.breakpoints.down("lg")) && (
+          <h1 style={{ textAlign: "center" }}>User Terms <br /> and <br /> Privacy Policy</h1>
+        )}
+      </div>
+      <div className={classes.topbar}>
+        {useMediaQuery(theme.breakpoints.down("lg")) && (
+          <h1 style={{ textAlign: "center" }}>User Terms <br /> and <br /> Privacy Policy</h1>
+        )}
+      </div>
       <div className="section">
         <h2>User Terms</h2>
         <p>
-          Welcome to Patio Track! By accessing or using our services, you
-          agree to be bound by these User Terms.
+          Welcome to Patio Track! By accessing or using our services, you agree
+          to be bound by these User Terms.
         </p>
         <ul>
           <li>
@@ -154,8 +211,8 @@ function PrivacyPolicy() {
           </li>
         </ul>
       </div>
-    </div>
+    </main>
   );
-}
+};
 
 export default PrivacyPolicy;
