@@ -214,7 +214,7 @@ const LoginPage = () => {
           <img
             src={loaderGif}
             alt="Loader"
-            style={{ width: "100%", height: "80%" }}
+            style={{ width: "100%", height: "100vh" }}
           />
         </div>
       </>
@@ -272,6 +272,32 @@ const LoginPage = () => {
             onKeyUp={handleSpecialKey}
           />
         )}
+        <div className={classes.extraContainer}>
+          <div style={{ textAlign: "center" }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={agreeChecked}
+                  name="agree"
+                  color="primary"
+                  onChange={handleAgreeCheckboxChange}
+                />
+              }
+              label="I agree to"
+            />
+            <span>
+              {" "}
+              <Link
+                href="privacy-policy"
+                target="_blank"
+                rel="noopener"
+                variant="body2"
+              >
+                Patio Track Terms and Privacy Policy
+              </Link>
+            </span>
+          </div>
+        </div>
         <Button
           onClick={handlePasswordLogin}
           onKeyUp={handleSpecialKey}
@@ -298,6 +324,8 @@ const LoginPage = () => {
             onClick={() => navigate("/register")}
             disabled={!registrationEnabled}
             color="secondary"
+            fullWidth
+            style={{ border: "1px solid rgb(118, 118, 118)" }}
           >
             {t("loginRegister")}
           </Button>
@@ -331,32 +359,6 @@ const LoginPage = () => {
             {t("loginReset")}
           </Link>
         )}
-        <div className={classes.extraContainer}>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={agreeChecked}
-                  name="agree"
-                  color="primary"
-                  onChange={handleAgreeCheckboxChange}
-                />
-              }
-              label="Agree"
-            />
-            <span style={{ margin: "0 8px" }}>
-              {" "}
-              <Link
-                href="privacy-policy"
-                target="_blank"
-                rel="noopener"
-                variant="body2"
-              >
-                Use and Privacy Policy
-              </Link>
-            </span>
-          </div>
-        </div>
       </div>
       <Snackbar
         open={!!announcement && !announcementShown}

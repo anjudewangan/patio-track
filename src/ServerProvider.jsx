@@ -77,21 +77,15 @@ const ServerProvider = ({ children }) => {
   if (!initialized) {
     return (
       <>
-      {/* <LinearProgress/> */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-        }}
-        >
-        <img
-          src={loaderGif}
-          alt="Loader"
-          style={{ width: "100%", height: "80%" }}
+        {/* <LinearProgress/> */}
+        <div>
+          <img
+            src={loaderGif}
+            alt="Loader"
+            style={{ width: "100%", height: "100vh" }}
           />
-      </div>
-          </>
+        </div>
+      </>
     );
   }
   return children;

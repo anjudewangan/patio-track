@@ -25,6 +25,7 @@ import { sessionActions } from "../../store";
 import { useTranslation } from "./LocalizationProvider";
 import { useRestriction } from "../util/permissions";
 import { nativePostMessage } from "./NativeInterface";
+import logo from "../../../public/up-logo.png";
 
 const BottomMenu = () => {
   const navigate = useNavigate();
@@ -146,13 +147,24 @@ const BottomMenu = () => {
             value="reports"
           />
         )}
-        {readonly ? null : (
+        <img
+          src={logo}
+          alt="Logo"
+          className="logo-img"
+          style={{
+            position: "absolute",
+            bottom: "30px",
+            width: "65px",
+            height: "65px",
+          }}
+        />
+        {/* {readonly ? null : (
           <BottomNavigationAction
             label={t("deviceRegisterFirst")}
             icon={<AddIcon />}
             value="add device"
           />
-        )}
+        )} */}
         <BottomNavigationAction
           label={t("settingsTitle")}
           icon={<SettingsIcon />}

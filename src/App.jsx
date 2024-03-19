@@ -59,7 +59,7 @@ const App = () => {
         <img
           src={loaderGif}
           alt="Loader"
-          style={{ width: "100%", height: "80%" }}
+          style={{ width: "100%", height: "100vh" }}
           />
       </div>
   </>

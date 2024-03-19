@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%;
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
 }
 
 body {
@@ -17,4 +17,25 @@ body {
 
 .logo-img {
   height: 50px;
+}
+
+.section p {
+  margin-bottom: 15px;
+  text-align: justify
+}
+
+.section {
+  padding: 40px 50px;
+}
+
+.section h2 {
+  margin-bottom: 10px;
+}
+
+.section p:last-child {
+  margin-bottom: 0;
+}
+
+.section ul li{
+  list-style-type: none;
 }

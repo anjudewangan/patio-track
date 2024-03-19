@@ -92,6 +92,11 @@ const MainToolbar = ({
         <IconButton size="small" onClick={toggleSearch}>
           <SearchIcon />
         </IconButton>
+        <IconButton edge="end" onClick={() => navigate('/settings/device')} disabled={deviceReadonly}>
+        <Tooltip open={!deviceReadonly && Object.keys(devices).length === 0} title={t('deviceRegisterFirst')} arrow>
+          <AddIcon />
+        </Tooltip>
+      </IconButton>
       </div>
       <Popover
         open={searchOpen}

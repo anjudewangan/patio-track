@@ -1,66 +1,67 @@
-import React from 'react';
-import { useMediaQuery, Paper } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { useTheme } from '@mui/material/styles';
-import LogoImage from './LogoImage';
+import React from "react";
+import { useMediaQuery, Paper } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
+import { useTheme } from "@mui/material/styles";
+import LogoImage from "./LogoImage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down("lg")]: {
       display: "block",
     },
-    display: 'flex',
-    height: '100%',
+    display: "flex",
+    height: "100%",
   },
   sidebar: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: '#D60024',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#D60024",
     // background: theme.palette.primary.main,
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up("lg")]: {
       paddingBottom: theme.spacing(5),
     },
-    
+
     width: theme.dimensions.sidebarWidth,
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down("lg")]: {
       width: theme.dimensions.sidebarWidthTablet,
     },
-    [theme.breakpoints.down('sm')]: {
-      width: '0px',
+    [theme.breakpoints.down("sm")]: {
+      width: "0px",
     },
   },
   topbar: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: '#D60024',
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#D60024",
     // background: theme.palette.primary.main,
     // paddingBottom: theme.spacing(5),
-    [theme.breakpoints.down('lg')]: {
-      width: '100%',
-    height: "30%",
-    display: "flex"
+    [theme.breakpoints.down("lg")]: {
+      width: "100%",
+      height: "30%",
+      display: "flex",
     },
-    
   },
   paper: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     flex: 1,
-    boxShadow: '-2px 0px 16px rgba(0, 0, 0, 0.25)',
-    [theme.breakpoints.up('lg')]: {
+    boxShadow: "-2px 0px 16px rgba(0, 0, 0, 0.25)",
+    [theme.breakpoints.up("lg")]: {
       padding: theme.spacing(0, 25, 0, 0),
     },
   },
   form: {
-    maxWidth: theme.spacing(52),
+    // maxWidth: theme.spacing(52),
+    maxWidth: "435px",
     padding: theme.spacing(5),
-    width: '100%',
-    '& .css-1wn39cz-MuiInputBase-input-MuiOutlinedInput-input:-webkit-autofill': {
-      boxShadow: 'rgb(33, 33, 33) 0px 0px 0px 100px inset',
-    },
+    width: "100%",
+    "& .css-1wn39cz-MuiInputBase-input-MuiOutlinedInput-input:-webkit-autofill":
+      {
+        boxShadow: "rgb(33, 33, 33) 0px 0px 0px 100px inset",
+      },
   },
 }));
 
@@ -71,15 +72,17 @@ const LoginLayout = ({ children }) => {
   return (
     <main className={classes.root}>
       <div className={classes.sidebar}>
-        {!useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.secondary.contrastText} />}
+        {!useMediaQuery(theme.breakpoints.down("lg")) && (
+          <LogoImage color={theme.palette.secondary.contrastText} />
+        )}
       </div>
       <div className={classes.topbar}>
-        {useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.secondary.contrastText} />}
+        {useMediaQuery(theme.breakpoints.down("lg")) && (
+          <LogoImage color={theme.palette.secondary.contrastText} />
+        )}
       </div>
       <Paper className={classes.paper}>
-        <form className={classes.form}>
-          {children}
-        </form>
+        <form className={classes.form}>{children}</form>
       </Paper>
     </main>
   );

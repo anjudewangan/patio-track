@@ -23,9 +23,9 @@ export default defineConfig(() => ({
         navigateFallbackDenylist: [/^\/api/],
       },
       manifest: {
-        short_name: '${title}',
-        name: '${description}',
-        theme_color: '${colorPrimary}',
+        short_name: 'Patio Track',
+        name: 'Patio Track GPS Tracking App',
+        theme_color: '#D60024',
         icons: [
           {
             src: 'pwa-64x64.png',
