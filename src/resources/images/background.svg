@@ -1,10 +1,9 @@
-<svg width="48px" height="48px" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="0.1" stdDeviation="0.3" flood-color="grey"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 10 10">
+  <defs fill="#000000">
+    <filter id="shadow" fill="#000000">
+      <feDropShadow dx="0" dy="0.1" stdDeviation="0.3" flood-color="grey" fill="#000000"/>
     </filter>
   </defs>
 
-  <circle cx="5" cy="50%" r="4"
-      style="fill:white; filter:url(#shadow);"/>
+  <circle cx="5" cy="50%" r="4" style="fill:#d60024; filter:url(#shadow);"/>
 </svg>

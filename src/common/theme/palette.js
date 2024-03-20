@@ -17,6 +17,6 @@ export default (server, darkMode) => ({
     main: grey[500],
   },
   geometry: {
-    main: '#D60024',
+    main: '#000',
   },
 });

@@ -28,11 +28,21 @@ const MapRoutePoints = ({ positions, onClick }) => {
       type: 'symbol',
       source: id,
       layout: {
-        'icon-image': 'arrow',
+        'icon-image': ['match', ['get', 'index'], 0, 'startPoint', positions.length - 1, 'endPoint', 'arrow'],
         'icon-allow-overlap': true,
-        'icon-rotate': ['get', 'rotation'],
+        // 'icon-rotate': ['get', 'rotation'],
         'icon-rotation-alignment': 'map',
       },
+      // map.addLayer({
+      //   id,
+      //   type: 'symbol',
+      //   source: id,
+      //   layout: {
+      //     'icon-image': 'arrow',
+      //     'icon-allow-overlap': true,
+      //     'icon-rotate': ['get', 'rotation'],
+      //     'icon-rotation-alignment': 'map',
+      //   },
     });
 
     map.on('mouseenter', id, onMouseEnter);

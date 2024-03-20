@@ -154,8 +154,8 @@ const BottomMenu = () => {
           style={{
             position: "absolute",
             bottom: "30px",
-            width: "55px",
-            height: "55px",
+            width: "45px",
+            height: "45px",
           }}
         />
         {/* {readonly ? null : (

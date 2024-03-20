@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: "flex",
     gap: theme.spacing(1),
-    justifyContent: "space-between", // Align items with space between
+    justifyContent: "space-between", 
   },
   filterPanel: {
     display: "flex",

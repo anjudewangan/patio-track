@@ -17,7 +17,7 @@ const canvasTintImage = (image, color) => {
   const context = canvas.getContext('2d');
 
   context.save();
-  context.fillStyle = color;
+  context.fillStyle = 'white';
   context.globalAlpha = 1;
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.globalCompositeOperation = 'destination-atop';

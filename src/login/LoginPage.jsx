@@ -72,7 +72,7 @@ const LoginPage = () => {
   const theme = useTheme();
   const t = useTranslation();
 
-  const [agreeChecked, setAgreeChecked] = useState(true);
+  const [agreeChecked, setAgreeChecked] = useState(false);
 
   const handleAgreeCheckboxChange = (event) => {
     setAgreeChecked(event.target.checked);
@@ -236,6 +236,25 @@ const LoginPage = () => {
         {/* {useMediaQuery(theme.breakpoints.down("lg")) && (
           <LogoImage color={theme.palette.primary.main} />
         )} */}
+        {languageEnabled && (
+          <FormControl fullWidth>
+            <InputLabel>{t("loginLanguage")}</InputLabel>
+            <Select
+              label={t("loginLanguage")}
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            >
+              {languageList.map((it) => (
+                <MenuItem key={it.code} value={it.code}>
+                  <Box component="span" sx={{ mr: 1 }}>
+                    <ReactCountryFlag countryCode={it.country} svg />
+                  </Box>
+                  {it.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
         <TextField
           required
           error={failed}
@@ -272,39 +291,29 @@ const LoginPage = () => {
             onKeyUp={handleSpecialKey}
           />
         )}
-        <div
-          className={classes.extraContainer}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ textAlign: "center" }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={agreeChecked}
-                  name="agree"
-                  color="primary"
-                  onChange={handleAgreeCheckboxChange}
+        <div style={{ textAlign: "center" }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={agreeChecked}
+                name="agree"
+                color="primary"
+                size="small"
+                onChange={handleAgreeCheckboxChange}
                 />
               }
-              label="By checking this box, I agree to"
-            />
-            <div style={{ textAlign: "center" }}>
-              {" "}
-              <Link
-                href="privacy-policy"
-                target="_blank"
-                rel="noopener"
-                variant="body2"
-                style={{ fontSize: "1rem", color: "white" }}
-              >
-                Patio Track Terms and Privacy Policy
-              </Link>
-            </div>
-          </div>
+              label="I agree to"
+              style={{marginRight: '0'}}
+          />{' '}
+          <Link
+            href="privacy-policy"
+            target="_blank"
+            rel="noopener"
+            variant="body2"
+          >
+            User Terms and Privacy Policy
+          </Link>
+          {/* </div> */}
         </div>
         <Button
           onClick={handlePasswordLogin}
@@ -338,25 +347,6 @@ const LoginPage = () => {
           >
             {t("loginRegister")}
           </Button>
-          {languageEnabled && (
-            <FormControl fullWidth>
-              <InputLabel>{t("loginLanguage")}</InputLabel>
-              <Select
-                label={t("loginLanguage")}
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-              >
-                {languageList.map((it) => (
-                  <MenuItem key={it.code} value={it.code}>
-                    <Box component="span" sx={{ mr: 1 }}>
-                      <ReactCountryFlag countryCode={it.country} svg />
-                    </Box>
-                    {it.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          )}
         </div>
         {emailEnabled && (
           <Link
