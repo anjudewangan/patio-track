@@ -295,16 +295,16 @@ const LoginPage = () => {
           <FormControlLabel
             control={
               <Checkbox
-                checked={agreeChecked}
+                // checked={agreeChecked}
                 name="agree"
                 color="primary"
                 size="small"
                 onChange={handleAgreeCheckboxChange}
-                />
-              }
-              label="I agree to"
-              style={{marginRight: '0'}}
-          />{' '}
+              />
+            }
+            label="I agree to"
+            style={{ marginRight: "0" }}
+          />{" "}
           <Link
             href="privacy-policy"
             target="_blank"
@@ -313,7 +313,6 @@ const LoginPage = () => {
           >
             User Terms and Privacy Policy
           </Link>
-          {/* </div> */}
         </div>
         <Button
           onClick={handlePasswordLogin}
