@@ -236,25 +236,6 @@ const LoginPage = () => {
         {/* {useMediaQuery(theme.breakpoints.down("lg")) && (
           <LogoImage color={theme.palette.primary.main} />
         )} */}
-        {languageEnabled && (
-          <FormControl fullWidth>
-            <InputLabel>{t("loginLanguage")}</InputLabel>
-            <Select
-              label={t("loginLanguage")}
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              {languageList.map((it) => (
-                <MenuItem key={it.code} value={it.code}>
-                  <Box component="span" sx={{ mr: 1 }}>
-                    <ReactCountryFlag countryCode={it.country} svg />
-                  </Box>
-                  {it.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )}
         <TextField
           required
           error={failed}
@@ -303,13 +284,14 @@ const LoginPage = () => {
               />
             }
             label="I agree to"
-            style={{ marginRight: "0" }}
-          />{" "}
+            sx={{ mr: 1 }}
+          />
           <Link
             href="privacy-policy"
             target="_blank"
             rel="noopener"
             variant="body2"
+            underline="none"
           >
             User Terms and Privacy Policy
           </Link>
@@ -319,6 +301,7 @@ const LoginPage = () => {
           onKeyUp={handleSpecialKey}
           variant="contained"
           color="secondary"
+          sx={{ mb: 2 }}
           disabled={
             !email || !password || (codeEnabled && !code) || !agreeChecked
           }
@@ -334,20 +317,15 @@ const LoginPage = () => {
             {t("loginOpenId")}
           </Button>
         )}
-        <div className={classes.extraContainer}>
-          <Button
-            className={classes.registerButton}
-            onClick={() => navigate("/register")}
-            disabled={!registrationEnabled}
-            color="secondary"
-            variant="outlined"
-            fullWidth
-            // style={{ border: "1px solid rgb(118, 118, 118)" }}
-          >
-            {t("loginRegister")}
-          </Button>
-        </div>
-        {emailEnabled && (
+        <div
+          className={classes.extraContainer}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {/* {emailEnabled && ( */}
           <Link
             onClick={() => navigate("/reset-password")}
             className={classes.resetPassword}
@@ -356,7 +334,40 @@ const LoginPage = () => {
           >
             {t("loginReset")}
           </Link>
-        )}
+          {/* )} */}
+          {languageEnabled && (
+            <FormControl>
+              <InputLabel>{t("loginLanguage")}</InputLabel>
+              <Select
+                label={t("loginLanguage")}
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                {languageList.map((it) => (
+                  <MenuItem key={it.code} value={it.code}>
+                    <Box component="span" sx={{ mr: 1 }}>
+                      <ReactCountryFlag countryCode={it.country} svg />
+                    </Box>
+                    {it.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+        </div>
+        <div className={classes.extraContainer}>
+          <Button
+            className={classes.registerButton}
+            onClick={() => navigate("/register")}
+            disabled={!registrationEnabled}
+            color="secondary"
+            variant="outlined"
+            fullWidth
+            sx={{ mt: 2 }}
+          >
+            {t("loginRegister")}
+          </Button>
+        </div>
       </div>
       <Snackbar
         open={!!announcement && !announcementShown}

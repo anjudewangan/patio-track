@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("lg")]: {
       padding: theme.spacing(0, 25, 0, 0),
     },
+    [theme.breakpoints.down("lg")]: {
+      height: "70%",
+    },
   },
   form: {
     maxWidth: theme.spacing(52),
