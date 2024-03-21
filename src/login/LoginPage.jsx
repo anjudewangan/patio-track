@@ -284,7 +284,7 @@ const LoginPage = () => {
               />
             }
             label="I agree to"
-            sx={{ mr: 1 }}
+            sx={{ mr: 1, fontSize: "0.875rem !important" }}
           />
           <Link
             href="privacy-policy"
@@ -331,6 +331,7 @@ const LoginPage = () => {
             className={classes.resetPassword}
             underline="none"
             variant="caption"
+            sx={{ fontSize: "1rem" }}
           >
             {t("loginReset")}
           </Link>
