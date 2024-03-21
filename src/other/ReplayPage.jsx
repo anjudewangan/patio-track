@@ -12,6 +12,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TuneIcon from "@mui/icons-material/Tune";
 import DownloadIcon from "@mui/icons-material/Download";
+import MenuIcon from "@mui/icons-material/Menu";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import FastForwardIcon from "@mui/icons-material/FastForward";
@@ -105,6 +106,14 @@ const ReplayPage = () => {
   const [showParkedPoint, setShowParkedPoint] = useState(true);
   const [showStoppedPoint, setShowStoppedPoint] = useState(true);
   const [showDetailPoint, setShowDetailPoint] = useState(true);
+
+  const [bar, setBar] = useState({ isHidden: false });
+
+  function toggleHidden() {
+    setBar({ isHidden: !bar.isHidden });
+  }
+
+  const style = { visibility: bar.isHidden ? "hidden" : "visible" };
 
   const deviceName = useSelector((state) => {
     if (selectedDeviceId) {
@@ -208,8 +217,11 @@ const ReplayPage = () => {
                 <IconButton onClick={handleDownload}>
                   <DownloadIcon />
                 </IconButton>
-                <IconButton edge="end" onClick={() => setExpanded(true)}>
+                <IconButton onClick={() => setExpanded(true)}>
                   <TuneIcon />
+                </IconButton>
+                <IconButton onClick={toggleHidden}>
+                  <MenuIcon />
                 </IconButton>
               </>
             )}
@@ -256,13 +268,15 @@ const ReplayPage = () => {
             <ReportFilter handleSubmit={handleSubmit} fullScreen showOnly />
           )}
           {/* New div containing track line checkbox */}
+        </Paper>
+        <Paper className={classes.content} square style={style}>
           <div>
             <FormControlLabel
               control={
                 <Checkbox
                   checked={showTrackLine}
                   onChange={() => setShowTrackLine(!showTrackLine)}
-                  style={{color: '#59EA4F'}}
+                  style={{ color: "#59EA4F" }}
                 />
               }
               label="Track Line"
@@ -274,7 +288,7 @@ const ReplayPage = () => {
                 <Checkbox
                   checked={showStartPoint}
                   onChange={() => setShowStartPoint(!showStartPoint)}
-                  style={{color: '#19BE6B'}}
+                  style={{ color: "#19BE6B" }}
                 />
               }
               label="Start Point"
@@ -286,7 +300,7 @@ const ReplayPage = () => {
                 <Checkbox
                   checked={showEndPoint}
                   onChange={() => setShowEndPoint(!showEndPoint)}
-                  style={{color: '#FF9900'}}
+                  style={{ color: "#FF9900" }}
                 />
               }
               label="End Point"
@@ -298,7 +312,7 @@ const ReplayPage = () => {
                 <Checkbox
                   checked={showAlarmPoint}
                   onChange={() => setShowAlarmPoint(!showAlarmPoint)}
-                  style={{color: '#FFC107'}}
+                  style={{ color: "#FFC107" }}
                 />
               }
               label="Alarm Point"
@@ -310,7 +324,7 @@ const ReplayPage = () => {
                 <Checkbox
                   checked={showParkedPoint}
                   onChange={() => setShowParkedPoint(!showParkedPoint)}
-                  style={{color: '#A949DE'}}
+                  style={{ color: "#A949DE" }}
                 />
               }
               label="Parked Point"
@@ -322,7 +336,7 @@ const ReplayPage = () => {
                 <Checkbox
                   checked={showStoppedPoint}
                   onChange={() => setShowStoppedPoint(!showStoppedPoint)}
-                  style={{color: '#2D8CF0'}}
+                  style={{ color: "#2D8CF0" }}
                 />
               }
               label="Stopped Point"
@@ -334,7 +348,7 @@ const ReplayPage = () => {
                 <Checkbox
                   checked={showDetailPoint}
                   onChange={() => setShowDetailPoint(!showDetailPoint)}
-                  style={{color: '#2DB7F5'}}
+                  style={{ color: "#2DB7F5" }}
                 />
               }
               label="Detail Tag"
