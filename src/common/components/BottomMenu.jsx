@@ -147,7 +147,7 @@ const BottomMenu = () => {
             value="reports"
           />
         )}
-        <img
+        {/* <img
           src={logo}
           alt="Logo"
           className="logo-img"
@@ -157,7 +157,7 @@ const BottomMenu = () => {
             width: "45px",
             height: "45px",
           }}
-        />
+        /> */}
         {/* {readonly ? null : (
           <BottomNavigationAction
             label={t("deviceRegisterFirst")}

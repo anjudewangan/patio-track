@@ -25,6 +25,7 @@ import { useTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { sessionActions } from "../store";
+import { InputAdornment } from "@mui/material";
 import {
   useLocalization,
   useTranslation,
@@ -272,7 +273,10 @@ const LoginPage = () => {
             onKeyUp={handleSpecialKey}
           />
         )}
-        <div style={{ textAlign: "center" }}>
+        <div
+          style={{
+            textAlign: "center"}}
+        >
           <FormControlLabel
             control={
               <Checkbox
@@ -284,7 +288,7 @@ const LoginPage = () => {
               />
             }
             label="I agree to"
-            sx={{ mr: 1, fontSize: "0.875rem !important" }}
+            sx={{ mr: 1, fontSize: 'small' }}
           />
           <Link
             href="privacy-policy"
@@ -292,6 +296,7 @@ const LoginPage = () => {
             rel="noopener"
             variant="body2"
             underline="none"
+            sx={{ fontSize: "1rem" }}
           >
             User Terms and Privacy Policy
           </Link>
@@ -301,7 +306,7 @@ const LoginPage = () => {
           onKeyUp={handleSpecialKey}
           variant="contained"
           color="secondary"
-          sx={{ mb: 2 }}
+          sx={{ mb: 3 }}
           disabled={
             !email || !password || (codeEnabled && !code) || !agreeChecked
           }
@@ -317,16 +322,9 @@ const LoginPage = () => {
             {t("loginOpenId")}
           </Button>
         )}
-        <div
-          className={classes.extraContainer}
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+        <div className={classes.extraContainer}>
           {/* {emailEnabled && ( */}
-          <Link
+          {/* <Link
             onClick={() => navigate("/reset-password")}
             className={classes.resetPassword}
             underline="none"
@@ -334,10 +332,35 @@ const LoginPage = () => {
             sx={{ fontSize: "1rem" }}
           >
             {t("loginReset")}
-          </Link>
+          </Link> */}
           {/* )} */}
+          <TextField
+            value={"Reset"}
+            onClick={() => navigate("/reset-password")}
+            // className={classes.resetPassword}
+            label={"Forgot Password ?"}
+            variant="outlined"
+            size="small"
+            fullWidth
+            sx={{ fontSize: "1rem", textAlign: "center", cursor: "pointer" }}
+            InputProps={{
+              readOnly: true,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    edge="end"
+                    size="small"
+                    onClick={() => navigate("/reset-password")}
+                  >
+                    <LockOpenIcon fontSize="small" />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+
           {languageEnabled && (
-            <FormControl>
+            <FormControl fullWidth>
               <InputLabel>{t("loginLanguage")}</InputLabel>
               <Select
                 label={t("loginLanguage")}

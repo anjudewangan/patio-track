@@ -112,7 +112,7 @@ const MainToolbar = ({
           style={{ padding: "15px" }}
           onClick={() => setDevicesOpen(!devicesOpen)}
         >
-          {devicesOpen ? <VisibilityIcon /> : <ViewListIcon />}
+          {devicesOpen ? <ViewListIcon /> : <VisibilityIcon />}
         </IconButton>
       </div>
       <Popover
