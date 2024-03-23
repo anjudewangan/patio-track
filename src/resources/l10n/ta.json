@@ -177,7 +177,7 @@
     "userDeleteAccount": "Delete Account",
     "loginTitle": "உள் நுழை",
     "loginLanguage": "மொழி",
-    "loginReset": "Reset Password",
+    "loginReset": "மீட்டமை",
     "loginRegister": "பதிவு செய்ய",
     "loginLogin": "உள்நுழைய",
     "loginOpenId": "Login with OpenID",
@@ -214,6 +214,7 @@
     "groupNoGroup": "குழு இல்லை",
     "settingsTitle": "அமைப்பு",
     "settingsUser": "கணக்கு",
+    "settingsUserProfile": "பயனர் சுயவிவரம்",
     "settingsGroups": "குழுக்கள்",
     "settingsServer": "சர்வர்",
     "settingsUsers": "உறுப்பினர்கள்",
@@ -591,5 +592,7 @@
     "categoryVan": "வேன் வாகனம் ",
     "categoryScooter": "Scooter",
     "maintenanceStart": "துவக்கு ",
-    "maintenancePeriod": "காலம்"
+    "maintenancePeriod": "காலம்",
+    "agreeUser": "நான் ஒப்புக்கொள்கிறேன்",
+    "termsPrivacyPolicy": "பயனர் விதிமுறைகள் மற்றும் தனியுரிமை கொள்கை"
 }

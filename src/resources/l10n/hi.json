@@ -177,7 +177,7 @@
     "userDeleteAccount": "Delete Account",
     "loginTitle": "लॉगिन / प्रवेश करें",
     "loginLanguage": "भाषा",
-    "loginReset": "Reset Password",
+    "loginReset": "पासवर्ड पुनःसेट करें",
     "loginRegister": "रजिस्टर / पंजीकृत करें",
     "loginLogin": "लॉगिन / प्रवेश करें",
     "loginOpenId": "Login with OpenID",
@@ -214,6 +214,7 @@
     "groupNoGroup": "कोई समूह नहीं",
     "settingsTitle": "सेटिंग्स",
     "settingsUser": "अकाउंट / लेखा",
+    "settingsUserProfile": "उपयोगकर्ता रूपरेखा",
     "settingsGroups": "ग्रुप्स / एक से अधिक समूह",
     "settingsServer": "सर्वर",
     "settingsUsers": "एक से अधिक उपयोगकर्ता",
@@ -591,5 +592,7 @@
     "categoryVan": "वैन",
     "categoryScooter": "Scooter",
     "maintenanceStart": "प्रारंभ",
-    "maintenancePeriod": "अवधि"
+    "maintenancePeriod": "अवधि",
+    "agreeUser": "मैं इसके लिए सहमत हूं",
+    "termsPrivacyPolicy": "उपयोगकर्ता की शर्तें और गोपनीयता नीति"
 }

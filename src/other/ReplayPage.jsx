@@ -267,7 +267,6 @@ const ReplayPage = () => {
           ) : (
             <ReportFilter handleSubmit={handleSubmit} fullScreen showOnly />
           )}
-          {/* New div containing track line checkbox */}
         </Paper>
         <Paper className={classes.content} square style={style}>
           <div>

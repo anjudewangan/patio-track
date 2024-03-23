@@ -177,7 +177,7 @@
     "userDeleteAccount": "Delete Account",
     "loginTitle": "লগইন",
     "loginLanguage": "ভাষা",
-    "loginReset": "Reset Password",
+    "loginReset": "রিসেট",
     "loginRegister": "নিবন্ধন",
     "loginLogin": "লগইন",
     "loginOpenId": "Login with OpenID",
@@ -214,6 +214,7 @@
     "groupNoGroup": "No Group",
     "settingsTitle": "সেটিংস",
     "settingsUser": "অ্যাকাউন্ট",
+    "settingsUserProfile": "ব্যবহারকারী প্রোফাইল",
     "settingsGroups": "Groups",
     "settingsServer": "সার্ভার",
     "settingsUsers": "Users",
@@ -591,5 +592,7 @@
     "categoryVan": "ভ্যান",
     "categoryScooter": "Scooter",
     "maintenanceStart": "Start",
-    "maintenancePeriod": "Period"
+    "maintenancePeriod": "Period",
+    "agreeUser": "আমি এটার সাথে একমত আছি",
+    "termsPrivacyPolicy": "ব্যবহারকারীর শর্তাদি এবং গোপনীয়তা নীতি"
 }

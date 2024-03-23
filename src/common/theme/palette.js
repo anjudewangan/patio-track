@@ -19,4 +19,10 @@ export default (server, darkMode) => ({
   geometry: {
     main: '#59EA4F',
   },
+  resetColor: {
+    main: validatedColor(server?.attributes?.colorPrimary) || (darkMode ? "#fff" : "#D60024"),
+  },
+  logoImage: {
+    main: validatedColor(server?.attributes?.colorPrimary) || (darkMode ? "logo.png" : "logo-light.png"),
+  },
 });

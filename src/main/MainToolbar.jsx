@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: "flex",
     gap: theme.spacing(1),
-    justifyContent: "space-between", 
+    justifyContent: "space-between",
   },
   filterPanel: {
     display: "flex",
@@ -105,7 +105,15 @@ const MainToolbar = ({
           onClick={toggleSearch}
           style={{ padding: "15px" }}
         >
-          <SearchIcon />
+          <Badge
+            edge="start"
+            onClick={toggleSearch}
+            color="info"
+            variant="dot"
+            invisible={!filter.statuses.length && !filter.groups.length}
+          >
+            <SearchIcon />
+          </Badge>
         </IconButton>
         <IconButton
           edge="start"
@@ -141,8 +149,8 @@ const MainToolbar = ({
                 onClick={() => setFilterAnchorEl(inputRef.current)}
               >
                 <Badge
-                  color="info"
-                  variant="dot"
+                  // color="info"
+                  // variant="dot"
                   invisible={!filter.statuses.length && !filter.groups.length}
                 >
                   <TuneIcon fontSize="small" />

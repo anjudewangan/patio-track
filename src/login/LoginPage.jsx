@@ -58,11 +58,19 @@ const useStyles = makeStyles((theme) => ({
   },
   registerButton: {
     minWidth: "unset",
+    [theme.breakpoints.down("lg")]: {
+      fontSize: "0.7rem",
+    },
+    color: theme.palette.resetColor.main
   },
   resetPassword: {
     cursor: "pointer",
     textAlign: "center",
-    marginTop: theme.spacing(2),
+    // marginTop: theme.spacing(2),
+    [theme.breakpoints.down("lg")]: {
+      fontSize: "0.7rem",
+    },
+    color: theme.palette.resetColor.main
   },
 }));
 
@@ -183,7 +191,13 @@ const LoginPage = () => {
   });
 
   const handleSpecialKey = (e) => {
-    if (e.keyCode === 13 && email && password && (!codeEnabled || code)) {
+    if (
+      e.keyCode === 13 &&
+      e.preventDefault() &&
+      email &&
+      password &&
+      (!codeEnabled || code)
+    ) {
       handlePasswordLogin(e);
     }
   };
@@ -224,6 +238,28 @@ const LoginPage = () => {
 
   return (
     <LoginLayout>
+      <div className={classes.container}>
+        {languageEnabled && (
+          <FormControl fullWidth>
+            <InputLabel>{t("loginLanguage")}</InputLabel>
+            <Select
+              label={t("loginLanguage")}
+              value={language}
+              sx={{ mb: 2 }}
+              onChange={(e) => setLanguage(e.target.value)}
+            >
+              {languageList.map((it) => (
+                <MenuItem key={it.code} value={it.code}>
+                  <Box component="span" sx={{ mr: 1 }}>
+                    <ReactCountryFlag countryCode={it.country} svg />
+                  </Box>
+                  {it.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
+      </div>
       <div className={classes.options}>
         {nativeEnvironment && changeEnabled && (
           <Tooltip title={t("settingsServer")}>
@@ -275,7 +311,8 @@ const LoginPage = () => {
         )}
         <div
           style={{
-            textAlign: "center"}}
+            textAlign: "center",
+          }}
         >
           <FormControlLabel
             control={
@@ -287,8 +324,8 @@ const LoginPage = () => {
                 onChange={handleAgreeCheckboxChange}
               />
             }
-            label="I agree to"
-            sx={{ mr: 1, fontSize: 'small' }}
+            label={t("agreeUser")}
+            sx={{ mr: 1, fontSize: "1rem" }}
           />
           <Link
             href="privacy-policy"
@@ -298,7 +335,7 @@ const LoginPage = () => {
             underline="none"
             sx={{ fontSize: "1rem" }}
           >
-            User Terms and Privacy Policy
+               {t("termsPrivacyPolicy")}
           </Link>
         </div>
         <Button
@@ -334,14 +371,13 @@ const LoginPage = () => {
             {t("loginReset")}
           </Link> */}
           {/* )} */}
-          <TextField
+          {/* <TextField
             value={"Reset"}
             onClick={() => navigate("/reset-password")}
             // className={classes.resetPassword}
             label={"Forgot Password ?"}
             variant="outlined"
             size="small"
-            fullWidth
             sx={{ fontSize: "1rem", textAlign: "center", cursor: "pointer" }}
             InputProps={{
               readOnly: true,
@@ -357,29 +393,30 @@ const LoginPage = () => {
                 </InputAdornment>
               ),
             }}
-          />
-
-          {languageEnabled && (
-            <FormControl fullWidth>
-              <InputLabel>{t("loginLanguage")}</InputLabel>
-              <Select
-                label={t("loginLanguage")}
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-              >
-                {languageList.map((it) => (
-                  <MenuItem key={it.code} value={it.code}>
-                    <Box component="span" sx={{ mr: 1 }}>
-                      <ReactCountryFlag countryCode={it.country} svg />
-                    </Box>
-                    {it.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          )}
+          /> */}
+          <Button
+            className={classes.resetPassword}
+            onClick={() => navigate("/reset-password")}
+            // color="secondary"
+            variant="outlined"
+            fullWidth
+            // style={{ color: "white" }}
+          >
+            {t("loginReset")}
+          </Button>
+          <Button
+            className={classes.registerButton}
+            onClick={() => navigate("/register")}
+            disabled={!registrationEnabled}
+            // color="secondary"
+            variant="outlined"
+            fullWidth
+            // style={{ color: "white" }}
+          >
+            {t("loginRegister")}
+          </Button>
         </div>
-        <div className={classes.extraContainer}>
+        {/* <div className={classes.extraContainer}>
           <Button
             className={classes.registerButton}
             onClick={() => navigate("/register")}
@@ -391,7 +428,7 @@ const LoginPage = () => {
           >
             {t("loginRegister")}
           </Button>
-        </div>
+        </div> */}
       </div>
       <Snackbar
         open={!!announcement && !announcementShown}

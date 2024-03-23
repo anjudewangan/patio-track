@@ -177,7 +177,7 @@
     "userDeleteAccount": "Delete Account",
     "loginTitle": "ലോഗിൻ ചെയ്യുക ",
     "loginLanguage": "ഭാഷ",
-    "loginReset": "Reset Password",
+    "loginReset": "പുനഃസജ്ജമാക്കുക",
     "loginRegister": "രെജിസ്റ്റർ ",
     "loginLogin": "അകത്തു പ്രവേശിക്കുക",
     "loginOpenId": "Login with OpenID",
@@ -214,6 +214,7 @@
     "groupNoGroup": "No Group",
     "settingsTitle": "Settings",
     "settingsUser": "Account",
+    "settingsUserProfile": "ഉപയോക്തൃ പ്രൊഫൈൽ",
     "settingsGroups": "Groups",
     "settingsServer": "Server",
     "settingsUsers": "Users",
@@ -591,5 +592,7 @@
     "categoryVan": "Van",
     "categoryScooter": "Scooter",
     "maintenanceStart": "Start",
-    "maintenancePeriod": "Period"
+    "maintenancePeriod": "Period",
+    "agreeUser": "എനിക്ക് സമ്മതിക്കുന്നു",
+    "termsPrivacyPolicy": "ഉപയോക്തൃ നിബന്ധനകൾ മറ്റും സ്വകാര്യത നയം"
 }

@@ -177,7 +177,7 @@
     "userDeleteAccount": "खाते हटवा",
     "loginTitle": "लॉगीन",
     "loginLanguage": "भाषा",
-    "loginReset": "पासवर्ड रीसेट",
+    "loginReset": "पासवर्ड पुनःसेट करा",
     "loginRegister": "रजिस्टर",
     "loginLogin": "लॉगिन",
     "loginOpenId": "ओपन आयडीसह लॉगिन",
@@ -214,6 +214,7 @@
     "groupNoGroup": "कोणताही गट",
     "settingsTitle": "सेटिंग्ज",
     "settingsUser": "खाते",
+    "settingsUserProfile": "वापरकर्ता प्रोफाइल",
     "settingsGroups": "गट",
     "settingsServer": "सर्व्हर",
     "settingsUsers": "वापरकर्ते",
@@ -593,5 +594,6 @@
     "categoryScooter": "स्कूटर",
     "maintenanceStart": "प्रारंभ",
     "maintenancePeriod": "कालावधी",
-    "anju34": "anju34"
+    "agreeUser": "मी त्याच्याशी सहमत आहे",
+    "termsPrivacyPolicy": "वापरकर्त्यांच्या अटी आणि गोपनीयता धोरणांसंदर्भातील त्याचे"
 }

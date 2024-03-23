@@ -217,6 +217,7 @@
   "groupNoGroup": "No Group",
   "settingsTitle": "Settings",
   "settingsUser": "Account",
+  "settingsUserProfile": "User Profile",
   "settingsGroups": "Groups",
   "settingsServer": "Server",
   "settingsUsers": "Users",
@@ -595,5 +596,7 @@
   "categoryVan": "Van",
   "categoryScooter": "Scooter",
   "maintenanceStart": "Start",
-  "maintenancePeriod": "Period"
+  "maintenancePeriod": "Period",
+  "agreeUser": "I agree to",
+  "termsPrivacyPolicy": "User Terms and Privacy Policy"
 }

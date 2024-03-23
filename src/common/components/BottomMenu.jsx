@@ -190,7 +190,7 @@ const BottomMenu = () => {
         onClose={() => setAnchorEl(null)}
       >
         <MenuItem onClick={handleAccount}>
-          <Typography color="textPrimary">{t("settingsUser")}</Typography>
+          <Typography color="textPrimary">{t("settingsUserProfile")} : {user.name}</Typography>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <Typography color="error">{t("loginLogout")}</Typography>
