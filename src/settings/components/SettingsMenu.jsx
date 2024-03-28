@@ -27,6 +27,7 @@ import {
   useRestriction,
 } from "../../common/util/permissions";
 import useFeatures from "../../common/util/useFeatures";
+import BottomMenu from "../../common/components/BottomMenu";
 
 const MenuItem = ({ title, link, icon, selected }) => (
   <ListItemButton key={link} component={Link} to={link} selected={selected}>
@@ -164,6 +165,10 @@ const SettingsMenu = () => {
           </List>
         </>
       )}
+      <>
+        <Divider />
+        <BottomMenu />
+      </>
     </>
   );
 };

@@ -44,7 +44,7 @@ const LogoImage = ({ color }) => {
     }
     return <img className={classes.image} src={logo} alt="" />;
   }
-  return <img className={classes.image} src={logoImage} style={{ color }} alt="" />; // Use logoImage directly
+  return <img className={classes.image} src={logoImage} style={{ color }} alt="" />;
 };
 
 export default LogoImage;

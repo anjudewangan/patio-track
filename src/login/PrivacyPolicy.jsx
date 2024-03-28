@@ -13,16 +13,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   sidebar: {
+    position: "sticky",
+    top: 0,
     display: "flex",
     justifyContent: "center",
-    alignItems: "start",
-    paddingTop: "15%",
+    alignItems: "center",
     background: "#D60024",
-    [theme.breakpoints.up("lg")]: {
-      paddingBottom: theme.spacing(5),
-    },
+    height: "100vh",
+    // [theme.breakpoints.up("lg")]: {
+    //   paddingBottom: theme.spacing(5),
+    // },
     [theme.breakpoints.down("md")]: {
       paddingTop: "0",
+      height: "0",
     },
 
     width: theme.dimensions.sidebarWidth,
@@ -32,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: "0px",
     },
+    color: theme.palette.headingColor.main,
   },
   topbar: {
     justifyContent: "center",
@@ -53,12 +57,16 @@ const PrivacyPolicy = () => {
     <main className={classes.root}>
       <div className={classes.sidebar}>
         {!useMediaQuery(theme.breakpoints.down("lg")) && (
-          <h1 style={{ textAlign: "center" }}>User Terms <br /> and <br /> Privacy Policy</h1>
+          <h1 style={{ textAlign: "center" }}>
+            User Terms <br /> and <br /> Privacy Policy
+          </h1>
         )}
       </div>
       <div className={classes.topbar}>
         {useMediaQuery(theme.breakpoints.down("lg")) && (
-          <h1 style={{ textAlign: "center" }}>User Terms <br /> and <br /> Privacy Policy</h1>
+          <h1 style={{ textAlign: "center" }}>
+            User Terms <br /> and <br /> Privacy Policy
+          </h1>
         )}
       </div>
       <div className="section">
@@ -134,9 +142,9 @@ const PrivacyPolicy = () => {
 
         <h2 style={{ marginTop: "50px" }}>Privacy Policy</h2>
         <p>
-          We collect personal information such as your name, email address, and
-          location data when you use our app. We may also collect device
-          information, log data, and usage statistics.
+          Your privacy matters to us. We collect only necessary information to
+          provide and improve our services, ensuring your data is safeguarded at
+          all times.
         </p>
         <ul>
           <li>

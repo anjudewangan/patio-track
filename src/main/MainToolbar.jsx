@@ -108,7 +108,7 @@ const MainToolbar = ({
           <Badge
             edge="start"
             onClick={toggleSearch}
-            color="info"
+            color="primary"
             variant="dot"
             invisible={!filter.statuses.length && !filter.groups.length}
           >

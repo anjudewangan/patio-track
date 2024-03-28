@@ -99,6 +99,7 @@ const ReplayPage = () => {
   const [to, setTo] = useState();
   const [expanded, setExpanded] = useState(true);
   const [playing, setPlaying] = useState(false);
+  const [showRoutePointers, setShowRoutePointers] = useState(true);
   const [showTrackLine, setShowTrackLine] = useState(true);
   const [showStartPoint, setShowStartPoint] = useState(true);
   const [showEndPoint, setShowEndPoint] = useState(true);
@@ -107,7 +108,7 @@ const ReplayPage = () => {
   const [showStoppedPoint, setShowStoppedPoint] = useState(true);
   const [showDetailPoint, setShowDetailPoint] = useState(true);
 
-  const [bar, setBar] = useState({ isHidden: false });
+  const [bar, setBar] = useState({ isHidden: true });
 
   function toggleHidden() {
     setBar({ isHidden: !bar.isHidden });
@@ -269,89 +270,103 @@ const ReplayPage = () => {
           )}
         </Paper>
         <Paper className={classes.content} square style={style}>
-          <div>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showTrackLine}
-                  onChange={() => setShowTrackLine(!showTrackLine)}
-                  style={{ color: "#59EA4F" }}
-                />
-              }
-              label="Track Line"
-            />
-          </div>
-          <div>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showStartPoint}
-                  onChange={() => setShowStartPoint(!showStartPoint)}
-                  style={{ color: "#19BE6B" }}
-                />
-              }
-              label="Start Point"
-            />
-          </div>
-          <div>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showEndPoint}
-                  onChange={() => setShowEndPoint(!showEndPoint)}
-                  style={{ color: "#FF9900" }}
-                />
-              }
-              label="End Point"
-            />
-          </div>
-          <div>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showAlarmPoint}
-                  onChange={() => setShowAlarmPoint(!showAlarmPoint)}
-                  style={{ color: "#FFC107" }}
-                />
-              }
-              label="Alarm Point"
-            />
-          </div>
-          <div>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showParkedPoint}
-                  onChange={() => setShowParkedPoint(!showParkedPoint)}
-                  style={{ color: "#A949DE" }}
-                />
-              }
-              label="Parked Point"
-            />
-          </div>
-          <div>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showStoppedPoint}
-                  onChange={() => setShowStoppedPoint(!showStoppedPoint)}
-                  style={{ color: "#2D8CF0" }}
-                />
-              }
-              label="Stopped Point"
-            />
-          </div>
-          <div>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showDetailPoint}
-                  onChange={() => setShowDetailPoint(!showDetailPoint)}
-                  style={{ color: "#2DB7F5" }}
-                />
-              }
-              label="Detail Tag"
-            />
+        <div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showRoutePointers}
+                    onChange={() => setShowRoutePointers(!showRoutePointers)}
+                    style={{ color: "#D60024" }}
+                  />
+                }
+                label="Route Pointers"
+              />
+            </div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showTrackLine}
+                    onChange={() => setShowTrackLine(!showTrackLine)}
+                    style={{ color: "#59EA4F" }}
+                  />
+                }
+                label="Track Line"
+              />
+            </div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showStartPoint}
+                    onChange={() => setShowStartPoint(!showStartPoint)}
+                    style={{ color: "#19BE6B" }}
+                  />
+                }
+                label="Start Point"
+              />
+            </div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showEndPoint}
+                    onChange={() => setShowEndPoint(!showEndPoint)}
+                    style={{ color: "#FF9900" }}
+                  />
+                }
+                label="End Point"
+              />
+            </div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showAlarmPoint}
+                    onChange={() => setShowAlarmPoint(!showAlarmPoint)}
+                    style={{ color: "#FFC107" }}
+                  />
+                }
+                label="Alarm Point"
+              />
+            </div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showParkedPoint}
+                    onChange={() => setShowParkedPoint(!showParkedPoint)}
+                    style={{ color: "#A949DE" }}
+                  />
+                }
+                label="Parked Point"
+              />
+            </div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showStoppedPoint}
+                    onChange={() => setShowStoppedPoint(!showStoppedPoint)}
+                    style={{ color: "#2D8CF0" }}
+                  />
+                }
+                label="Stopped Point"
+              />
+            </div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showDetailPoint}
+                    onChange={() => setShowDetailPoint(!showDetailPoint)}
+                    style={{ color: "#2DB7F5" }}
+                  />
+                }
+                label="Detail Tag"
+              />
+            </div>
           </div>
         </Paper>
       </div>

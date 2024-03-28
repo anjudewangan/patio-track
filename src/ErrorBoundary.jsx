@@ -1,27 +1,49 @@
-import React from 'react';
-import { Alert } from '@mui/material';
+import React from "react";
+import { Alert } from "@mui/material";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
+      showAlert: false,
     };
   }
 
   static getDerivedStateFromError(error) {
-    return { error };
+    return { error, showAlert: true };
   }
 
-  /* eslint-disable react/no-danger */
+  componentDidMount() {
+    if (this.state.error) {
+      this.timer = setTimeout(() => {
+        this.setState({ showAlert: false });
+      }, 2000);
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   render() {
-    const { error } = this.state;
-    if (error) {
+    const { error, showAlert } = this.state;
+    if (error && showAlert) {
       return (
-        <Alert severity="error">
+        <Alert
+          severity="error"
+          onClose={() => this.setState({ showAlert: false })}
+        >
+          {/* <code
+            dangerouslySetInnerHTML={{
+              __html: error.stack
+                .replaceAll("\n", "<br>")
+                .replaceAll(" ", "&nbsp;"),
+            }}
+          /> */}
           <code
             dangerouslySetInnerHTML={{
-              __html: error.stack.replaceAll('\n', '<br>').replaceAll(' ', '&nbsp;'),
+              __html: error.stack.replaceAll("Coming Soon"),
             }}
           />
         </Alert>
