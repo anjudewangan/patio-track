@@ -120,7 +120,7 @@ const BottomMenu = () => {
   };
 
   return (
-    <Paper square elevation={3}>
+    <Paper square elevation={3} style={{ position: "sticky", bottom: "0" }}>
       <BottomNavigation
         value={currentSelection()}
         onChange={handleSelection}
@@ -190,7 +190,9 @@ const BottomMenu = () => {
         onClose={() => setAnchorEl(null)}
       >
         <MenuItem onClick={handleAccount}>
-          <Typography color="textPrimary">{t("settingsUserProfile")} : {user.name}</Typography>
+          <Typography color="textPrimary">
+            {t("settingsUserProfile")} : {user.name}
+          </Typography>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <Typography color="error">{t("loginLogout")}</Typography>

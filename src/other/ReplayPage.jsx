@@ -12,11 +12,13 @@ import makeStyles from "@mui/styles/makeStyles";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TuneIcon from "@mui/icons-material/Tune";
 import DownloadIcon from "@mui/icons-material/Download";
-import MenuIcon from "@mui/icons-material/Menu";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MapView from "../map/core/MapView";
@@ -108,13 +110,13 @@ const ReplayPage = () => {
   const [showStoppedPoint, setShowStoppedPoint] = useState(true);
   const [showDetailPoint, setShowDetailPoint] = useState(true);
 
-  const [bar, setBar] = useState({ isHidden: true });
+  const [bar, setBar] = useState({ isHidden: false });
 
   function toggleHidden() {
     setBar({ isHidden: !bar.isHidden });
   }
 
-  const style = { visibility: bar.isHidden ? "hidden" : "visible" };
+  const style = { display: bar.isHidden ? "none" : "block" };
 
   const deviceName = useSelector((state) => {
     if (selectedDeviceId) {
@@ -221,9 +223,6 @@ const ReplayPage = () => {
                 <IconButton onClick={() => setExpanded(true)}>
                   <TuneIcon />
                 </IconButton>
-                <IconButton onClick={toggleHidden}>
-                  <MenuIcon />
-                </IconButton>
               </>
             )}
           </Toolbar>
@@ -268,104 +267,132 @@ const ReplayPage = () => {
           ) : (
             <ReportFilter handleSubmit={handleSubmit} fullScreen showOnly />
           )}
-        </Paper>
-        <Paper className={classes.content} square style={style}>
-        <div>
-            <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showRoutePointers}
-                    onChange={() => setShowRoutePointers(!showRoutePointers)}
-                    style={{ color: "#D60024" }}
-                  />
-                }
-                label="Route Pointers"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showTrackLine}
-                    onChange={() => setShowTrackLine(!showTrackLine)}
-                    style={{ color: "#59EA4F" }}
-                  />
-                }
-                label="Track Line"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showStartPoint}
-                    onChange={() => setShowStartPoint(!showStartPoint)}
-                    style={{ color: "#19BE6B" }}
-                  />
-                }
-                label="Start Point"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showEndPoint}
-                    onChange={() => setShowEndPoint(!showEndPoint)}
-                    style={{ color: "#FF9900" }}
-                  />
-                }
-                label="End Point"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showAlarmPoint}
-                    onChange={() => setShowAlarmPoint(!showAlarmPoint)}
-                    style={{ color: "#FFC107" }}
-                  />
-                }
-                label="Alarm Point"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showParkedPoint}
-                    onChange={() => setShowParkedPoint(!showParkedPoint)}
-                    style={{ color: "#A949DE" }}
-                  />
-                }
-                label="Parked Point"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showStoppedPoint}
-                    onChange={() => setShowStoppedPoint(!showStoppedPoint)}
-                    style={{ color: "#2D8CF0" }}
-                  />
-                }
-                label="Stopped Point"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showDetailPoint}
-                    onChange={() => setShowDetailPoint(!showDetailPoint)}
-                    style={{ color: "#2DB7F5" }}
-                  />
-                }
-                label="Detail Tag"
-              />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            <IconButton onClick={() => toggleHidden()}>
+              {
+                bar.isHidden ? (<KeyboardDoubleArrowDownIcon/>): (<KeyboardDoubleArrowUpIcon/>)
+              }
+              {/* <KeyboardDoubleArrowUpIcon /> */}
+            </IconButton>
+            {/* <IconButton onClick={() => setExpanded(!expanded)}>
+              {expanded ? (
+                <KeyboardDoubleArrowUpIcon />
+              ) : (
+                <KeyboardDoubleArrowDownIcon />
+              )}
+            </IconButton> */}
+          </div>
+          <div style={style}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                padding: "24px 16px 16px",
+              }}
+            >
+              <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showRoutePointers}
+                      onChange={() => setShowRoutePointers(!showRoutePointers)}
+                      style={{ color: "#D60024" }}
+                    />
+                  }
+                  label="Route Pointers"
+                />
+              </div>
+              <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showTrackLine}
+                      onChange={() => setShowTrackLine(!showTrackLine)}
+                      style={{ color: "#59EA4F" }}
+                    />
+                  }
+                  label="Track Line"
+                />
+              </div>
+              <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showStartPoint}
+                      onChange={() => setShowStartPoint(!showStartPoint)}
+                      style={{ color: "#19BE6B" }}
+                    />
+                  }
+                  label="Start Point"
+                />
+              </div>
+              <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showEndPoint}
+                      onChange={() => setShowEndPoint(!showEndPoint)}
+                      style={{ color: "#FF9900" }}
+                    />
+                  }
+                  label="End Point"
+                />
+              </div>
+              <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showAlarmPoint}
+                      onChange={() => setShowAlarmPoint(!showAlarmPoint)}
+                      style={{ color: "#FFC107" }}
+                    />
+                  }
+                  label="Alarm Point"
+                />
+              </div>
+              <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showParkedPoint}
+                      onChange={() => setShowParkedPoint(!showParkedPoint)}
+                      style={{ color: "#A949DE" }}
+                    />
+                  }
+                  label="Parked Point"
+                />
+              </div>
+              <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showStoppedPoint}
+                      onChange={() => setShowStoppedPoint(!showStoppedPoint)}
+                      style={{ color: "#2D8CF0" }}
+                    />
+                  }
+                  label="Stopped Point"
+                />
+              </div>
+              <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showDetailPoint}
+                      onChange={() => setShowDetailPoint(!showDetailPoint)}
+                      style={{ color: "#2DB7F5" }}
+                    />
+                  }
+                  label="Detail Tag"
+                />
+              </div>
             </div>
           </div>
         </Paper>
