@@ -215,6 +215,13 @@ const ReplayPage = () => {
             <Typography variant="h6" className={classes.title}>
               {t("reportReplay")}
             </Typography>
+            <IconButton onClick={() => toggleHidden()}>
+              {bar.isHidden ? (
+                <KeyboardDoubleArrowDownIcon />
+              ) : (
+                <KeyboardDoubleArrowUpIcon />
+              )}
+            </IconButton>
             {!expanded && (
               <>
                 <IconButton onClick={handleDownload}>
@@ -267,7 +274,7 @@ const ReplayPage = () => {
           ) : (
             <ReportFilter handleSubmit={handleSubmit} fullScreen showOnly />
           )}
-          <div
+          {/* <div
             style={{
               display: "flex",
               justifyContent: "center",
@@ -278,16 +285,8 @@ const ReplayPage = () => {
               {
                 bar.isHidden ? (<KeyboardDoubleArrowDownIcon/>): (<KeyboardDoubleArrowUpIcon/>)
               }
-              {/* <KeyboardDoubleArrowUpIcon /> */}
             </IconButton>
-            {/* <IconButton onClick={() => setExpanded(!expanded)}>
-              {expanded ? (
-                <KeyboardDoubleArrowUpIcon />
-              ) : (
-                <KeyboardDoubleArrowDownIcon />
-              )}
-            </IconButton> */}
-          </div>
+          </div> */}
           <div style={style}>
             <div
               style={{

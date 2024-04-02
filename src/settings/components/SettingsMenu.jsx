@@ -49,7 +49,7 @@ const SettingsMenu = () => {
   );
 
   const features = useFeatures();
-
+  
   return (
     <>
       <List>

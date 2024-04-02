@@ -335,7 +335,7 @@ const LoginPage = () => {
             underline="none"
             sx={{ fontSize: "1rem" }}
           >
-               {t("termsPrivacyPolicy")}
+               {t("termsPrivacyPolicyLogin")}
           </Link>
         </div>
         <Button
