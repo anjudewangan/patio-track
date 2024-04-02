@@ -29,7 +29,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useTranslation } from "../common/components/LocalizationProvider";
 import { useDeviceReadonly } from "../common/util/permissions";
 import DeviceRow from "./DeviceRow";
-import logo from "../../public/logo.png";
+import logo from "/public/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {

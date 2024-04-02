@@ -4,7 +4,7 @@ import ReplayIcon from "@mui/icons-material/Replay";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffectAsync } from "./reactHelper";
 import { sessionActions } from "./store";
-import loaderGif from "../public/loader.gif";
+import loaderGif from "/public/loader.gif";
 
 const ServerProvider = ({ children }) => {
   const dispatch = useDispatch();

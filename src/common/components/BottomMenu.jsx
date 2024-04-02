@@ -25,7 +25,7 @@ import { sessionActions } from "../../store";
 import { useTranslation } from "./LocalizationProvider";
 import { useRestriction } from "../util/permissions";
 import { nativePostMessage } from "./NativeInterface";
-import logo from "../../../public/election-commission.png";
+import logo from "/public/election-commission.png";
 
 const BottomMenu = () => {
   const navigate = useNavigate();

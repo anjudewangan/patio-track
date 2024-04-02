@@ -9,7 +9,7 @@ import CachingController from './CachingController';
 import { useEffectAsync } from './reactHelper';
 import { sessionActions } from './store';
 import UpdateController from './UpdateController';
-import loaderGif from "../public/loader.gif";
+import loaderGif from "/public/loader.gif";
 
 const useStyles = makeStyles(() => ({
   page: {

@@ -39,7 +39,7 @@ import {
 } from "../common/components/NativeInterface";
 import LogoImage from "./LogoImage";
 import { useCatch } from "../reactHelper";
-import loaderGif from "../../public/loader.gif";
+import loaderGif from "/public/loader.gif";
 
 const useStyles = makeStyles((theme) => ({
   options: {
