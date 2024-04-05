@@ -394,6 +394,11 @@ const UserPage = () => {
                   label={t('userFixedEmail')}
                   disabled={!manager}
                 />
+                <FormControlLabel
+                  control={<Checkbox checked={item.bulkActions} onChange={(e) => setItem({ ...item, bulkActions: e.target.checked })} />}
+                  label={t('userBulkActions')}
+                  disabled={!admin}
+                />
               </FormGroup>
             </AccordionDetails>
           </Accordion>

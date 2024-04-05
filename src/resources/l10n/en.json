@@ -175,6 +175,7 @@
   "userLimitCommands": "Limit Commands",
   "userDisableReports": "Disable Reports",
   "userFixedEmail": "No Email Change",
+  "userBulkActions": "Bulk Actions",
   "userToken": "Token",
   "userDeleteAccount": "Delete Account",
   "userTemporary": "Temporary",
