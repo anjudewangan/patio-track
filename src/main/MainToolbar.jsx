@@ -29,7 +29,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useTranslation } from "../common/components/LocalizationProvider";
 import { useDeviceReadonly } from "../common/util/permissions";
 import DeviceRow from "./DeviceRow";
-import logo from "/public/logo.png";
+import logoLight from "/public/logo-light.png";
+import logoDark from "/public/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -81,6 +82,8 @@ const MainToolbar = ({
   const toggleSearch = () => {
     setSearchOpen(!searchOpen);
   };
+
+  const logo = theme.palette.mode === "dark" ? logoDark : logoLight;
 
   return (
     <Toolbar ref={toolbarRef} className={classes.toolbar}>

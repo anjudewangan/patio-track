@@ -27,6 +27,16 @@ export default (t) => useMemo(() => ({
     type: 'number',
     property: true,
   },
+  time: {
+    name: t('positionTime'),
+    type: 'string',
+    property: true,
+  },
+  voltage: {
+    name: t('positionVoltage'),
+    type: 'voltage',
+    property: true,
+  },
   altitude: {
     name: t('positionAltitude'),
     type: 'number',

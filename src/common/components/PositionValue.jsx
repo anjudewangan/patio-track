@@ -60,6 +60,8 @@ const PositionValue = ({ position, property, attribute }) => {
         return value != null ? formatSpeed(speedToKnots(value, 'kmh'), speedUnit, t) : '';
       case 'course':
         return formatCourse(value);
+      case 'time':
+        return formatTime(value);
       case 'altitude':
         return formatAltitude(value, altitudeUnit, t);
       case 'power':

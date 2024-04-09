@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("lg")]: {
       fontSize: "0.7rem",
     },
-    color: theme.palette.resetColor.main
+    color: theme.palette.resetColor.main,
   },
   resetPassword: {
     cursor: "pointer",
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("lg")]: {
       fontSize: "0.7rem",
     },
-    color: theme.palette.resetColor.main
+    color: theme.palette.resetColor.main,
   },
 }));
 
@@ -335,7 +335,7 @@ const LoginPage = () => {
             underline="none"
             sx={{ fontSize: "1rem" }}
           >
-               {t("termsPrivacyPolicyLogin")}
+            {t("termsPrivacyPolicyLogin")}
           </Link>
         </div>
         <Button

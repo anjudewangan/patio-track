@@ -25,7 +25,4 @@ export default (server, darkMode) => ({
   headingColor: {
     main: validatedColor(server?.attributes?.colorPrimary) || (darkMode ? "#fff" : "#fff"),
   },
-  logoImage: {
-    main: validatedColor(server?.attributes?.colorPrimary) || (darkMode ? "logo.png" : "logo-light.png"),
-  },
 });
