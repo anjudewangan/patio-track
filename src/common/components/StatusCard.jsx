@@ -150,7 +150,7 @@ const StatusCard = ({
   const positionAttributes = usePositionAttributes(t);
   const positionItems = useAttributePreference(
     "positionItems",
-    "speed,address,totalDistance,course,time,voltage"
+    "speed,address,totalDistance,course,deviceTime,voltage"
   );
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -240,7 +240,7 @@ const StatusCard = ({
               ) : (
                 <div className={classes.header}>
                   <Typography variant="body2" color="textSecondary">
-                    {device.name}
+                    {device.name} {position? (position.speed === 0 ? 'stopped': 'moving'): ''}
                   </Typography>
                   <IconButton
                     size="small"
