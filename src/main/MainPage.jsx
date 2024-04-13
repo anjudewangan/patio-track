@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Paper } from "@mui/material";
+import { Paper, Tabs, Tab } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -107,6 +107,28 @@ const MainPage = () => {
     setFilteredPositions
   );
 
+  const devices = useSelector((state) => state.devices.items);
+
+  const getCount = (tabValue) => {
+    switch (tabValue) {
+      case "All":
+        return Object.keys(devices).length;
+      case "Online":
+        console.log(devices)
+        return Object.keys(devices).filter(key => devices[key].status === 'online').length
+      case "Offline":
+        return Object.keys(devices).filter(key => devices[key].status === 'offline').length;
+      case "Unknown":
+        return Object.keys(devices).filter(key => devices[key].status === 'unknown').length
+      case "Alarm":
+        return Object.values(positions).filter(
+          (position) =>
+            position.attributes && position.attributes.hasOwnProperty("alarm")
+        ).length;
+      default:
+        return 0;
+    }
+  };
   return (
     <div className={classes.root}>
       {desktop && (
@@ -147,6 +169,33 @@ const MainPage = () => {
             className={classes.contentList}
             style={devicesOpen ? {} : { visibility: "hidden" }}
           >
+            <Tabs
+              value={filter.statuses}
+              onChange={(e, newValue) =>
+                setFilter({ ...filter, statuses: newValue })
+              }
+            >
+              <Tab
+                label={`All (${getCount('All')})`}
+                value=""
+                style={{ textTransform: "capitalize" }}
+              />
+              <Tab
+                label={`Online (${getCount('Online')})`}
+                value="online"
+                style={{ textTransform: "capitalize" }}
+              />
+              <Tab
+                label={`Offline (${getCount('Offline')})`}
+                value="offline"
+                style={{ textTransform: "capitalize" }}
+              />
+              <Tab
+                label={`Unknown (${getCount('Unknown')})`}
+                value="unknown"
+                style={{ textTransform: "capitalize" }}
+              />
+            </Tabs>
             <DeviceList devices={filteredDevices} />
           </Paper>
         </div>

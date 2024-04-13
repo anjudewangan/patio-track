@@ -214,7 +214,7 @@ const MainToolbar = ({
         }}
       >
         <div className={classes.filterPanel}>
-          <FormControl>
+          {/* <FormControl>
             <InputLabel>{t("deviceStatus")}</InputLabel>
             <Select
               label={t("deviceStatus")}
@@ -234,7 +234,7 @@ const MainToolbar = ({
                 "deviceStatusUnknown"
               )} (${deviceStatusCount("unknown")})`}</MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> */}
           <FormControl>
             <InputLabel>{t("settingsGroups")}</InputLabel>
             <Select

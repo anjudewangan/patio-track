@@ -75,11 +75,11 @@ const useStyles = makeStyles((theme) => ({
     filter: "brightness(0) invert(1)",
   },
   table: {
-    '& .MuiTableCell-sizeSmall': {
+    "& .MuiTableCell-sizeSmall": {
       // paddingLeft: 0,
       paddingRight: 0,
     },
-    '& .css-1rnofyd':{
+    "& .css-1rnofyd": {
       verticalAlign: "baseline",
     },
   },
@@ -240,7 +240,7 @@ const StatusCard = ({
               ) : (
                 <div className={classes.header}>
                   <Typography variant="body2" color="textSecondary">
-                    {device.name} {position? (position.speed === 0 ? 'stopped': 'moving'): ''}
+                    {device.name}
                   </Typography>
                   <IconButton
                     size="small"
@@ -255,6 +255,17 @@ const StatusCard = ({
                 <CardContent className={classes.content}>
                   <Table size="small" classes={{ root: classes.table }}>
                     <TableBody>
+                      {/* Moving status */}
+                      <TableRow>
+                        <TableCell className={classes.cell}>
+                          <Typography variant="body2">{'Status'}</Typography>
+                        </TableCell>
+                        <TableCell className={classes.cell}>
+                          <Typography variant="body2" color="textSecondary">
+                            {position.speed === 0 ? 'Stopped': 'Moving'}
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
                       {positionItems
                         .split(",")
                         .filter(
