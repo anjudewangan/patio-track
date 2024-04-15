@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Paper, Tabs, Tab } from "@mui/material";
+import { Paper, Tabs, Tab, IconButton } from "@mui/material";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -106,20 +107,58 @@ const MainPage = () => {
     setFilteredDevices,
     setFilteredPositions
   );
-
   const devices = useSelector((state) => state.devices.items);
+  const [isScrollableLeft, setIsScrollableLeft] = useState(false);
+  const [isScrollableRight, setIsScrollableRight] = useState(false);
+
+  const handleTabsScroll = () => {
+    const tabsContainer = document.querySelector(".MuiTabs-scroller");
+    if (tabsContainer) {
+      setIsScrollableLeft(tabsContainer.scrollLeft > 0);
+      setIsScrollableRight(
+        tabsContainer.scrollLeft <
+          tabsContainer.scrollWidth - tabsContainer.clientWidth
+      );
+    }
+  };
+
+  useEffect(() => {
+    handleTabsScroll();
+  }, [filter.statuses]); // Adjust dependencies as necessary
+
+  const scrollTabsLeft = () => {
+    const tabsContainer = document.querySelector(".MuiTabs-scroller");
+    if (tabsContainer) {
+      tabsContainer.scrollLeft -= 100;
+      handleTabsScroll();
+    }
+  };
+
+  const scrollTabsRight = () => {
+    const tabsContainer = document.querySelector(".MuiTabs-scroller");
+    if (tabsContainer) {
+      tabsContainer.scrollLeft += 100;
+      handleTabsScroll();
+    }
+  };
 
   const getCount = (tabValue) => {
     switch (tabValue) {
       case "All":
         return Object.keys(devices).length;
       case "Online":
-        console.log(devices)
-        return Object.keys(devices).filter(key => devices[key].status === 'online').length
+        console.log(devices);
+        return Object.keys(devices).filter(
+          (key) => devices[key].status === "online"
+        ).length;
       case "Offline":
-        return Object.keys(devices).filter(key => devices[key].status === 'offline').length;
+        return Object.keys(devices).filter(
+          (key) => devices[key].status === "offline"
+        ).length;
       case "Unknown":
-        return Object.keys(devices).filter(key => devices[key].status === 'unknown').length
+        return Object.keys(devices).filter(
+          (key) => devices[key].status === "unknown"
+        ).length;
       case "Alarm":
         return Object.values(positions).filter(
           (position) =>
@@ -169,33 +208,42 @@ const MainPage = () => {
             className={classes.contentList}
             style={devicesOpen ? {} : { visibility: "hidden" }}
           >
-            <Tabs
-              value={filter.statuses}
-              onChange={(e, newValue) =>
-                setFilter({ ...filter, statuses: newValue })
-              }
-            >
-              <Tab
-                label={`All (${getCount('All')})`}
-                value=""
-                style={{ textTransform: "capitalize" }}
-              />
-              <Tab
-                label={`Online (${getCount('Online')})`}
-                value="online"
-                style={{ textTransform: "capitalize" }}
-              />
-              <Tab
-                label={`Offline (${getCount('Offline')})`}
-                value="offline"
-                style={{ textTransform: "capitalize" }}
-              />
-              <Tab
-                label={`Unknown (${getCount('Unknown')})`}
-                value="unknown"
-                style={{ textTransform: "capitalize" }}
-              />
-            </Tabs>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <IconButton onClick={scrollTabsLeft}>
+                <KeyboardArrowLeft />
+              </IconButton>
+              <Tabs
+                value={filter.statuses}
+                onChange={(e, newValue) =>
+                  setFilter({ ...filter, statuses: newValue })
+                }
+                onScroll={handleTabsScroll}
+              >
+                <Tab
+                  label={`All (${getCount("All")})`}
+                  value=""
+                  style={{ textTransform: "capitalize", minWidth: "auto" }}
+                />
+                <Tab
+                  label={`Online (${getCount("Online")})`}
+                  value="online"
+                  style={{ textTransform: "capitalize", minWidth: "auto" }}
+                />
+                <Tab
+                  label={`Offline (${getCount("Offline")})`}
+                  value="offline"
+                  style={{ textTransform: "capitalize", minWidth: "auto" }}
+                />
+                <Tab
+                  label={`Unknown (${getCount("Unknown")})`}
+                  value="unknown"
+                  style={{ textTransform: "capitalize", minWidth: "auto" }}
+                />
+              </Tabs>
+              <IconButton onClick={scrollTabsRight}>
+                <KeyboardArrowRight />
+              </IconButton>
+            </div>
             <DeviceList devices={filteredDevices} />
           </Paper>
         </div>
