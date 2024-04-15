@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "auto",
     gridArea: "1 / 1",
     zIndex: 4,
+    paddingBottom: "10px",
   },
 }));
 
