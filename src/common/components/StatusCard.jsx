@@ -262,7 +262,7 @@ const StatusCard = ({
                         </TableCell>
                         <TableCell className={classes.cell}>
                           <Typography variant="body2" color="textSecondary">
-                            {position.speed > 0 && position.status === 'online' ? 'Moving': 'Idle'}
+                            {position.speed > 0 && device.status === 'online' ? 'Moving' : 'Idle'}
                           </Typography>
                         </TableCell>
                       </TableRow>
