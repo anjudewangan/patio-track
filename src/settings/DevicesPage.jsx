@@ -95,7 +95,7 @@ const DevicesPage = () => {
           )) : (<TableShimmer columns={7} endAction />)}
         </TableBody>
       </Table>
-      <CollectionFab editPath="/settings/device" />
+      <CollectionFab editPath="/settings/device" bulkActionPath="/settings/bulk-actions" />
     </PageLayout>
   );
 };

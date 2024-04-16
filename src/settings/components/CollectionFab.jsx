@@ -1,35 +1,85 @@
-import React from 'react';
-import { Fab } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import AddIcon from '@mui/icons-material/Add';
-import { useNavigate } from 'react-router-dom';
-import { useRestriction } from '../../common/util/permissions';
+import React, { useState } from "react";
+import { Fab, Menu, MenuItem } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
+import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
+import { useRestriction } from "../../common/util/permissions";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
-    position: 'fixed',
+    position: "fixed",
     bottom: theme.spacing(2),
     right: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
-      bottom: `calc(${theme.dimensions.bottomBarHeight}px + ${theme.spacing(2)})`,
+    [theme.breakpoints.down("md")]: {
+      bottom: `calc(${theme.dimensions.bottomBarHeight}px + ${theme.spacing(
+        2
+      )})`,
     },
   },
 }));
 
-const CollectionFab = ({ editPath, disabled }) => {
+const CollectionFab = ({ editPath, bulkActionPath, disabled }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const readonly = useRestriction("readonly");
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const readonly = useRestriction('readonly');
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   if (!readonly && !disabled) {
     return (
-      <Fab size="medium" color="primary" className={classes.fab} onClick={() => navigate(editPath)}>
-        <AddIcon />
-      </Fab>
+      <div>
+        <Fab
+          size="medium"
+          color="primary"
+          className={classes.fab}
+          aria-controls="add-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <AddIcon />
+        </Fab>
+        <Menu
+          id="add-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+        >
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              navigate(editPath);
+            }}
+          >
+            Single Devices
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              navigate(bulkActionPath);
+            }}
+          >
+            Bulk Actions
+          </MenuItem>
+        </Menu>
+      </div>
     );
   }
-  return '';
+  return "";
 };
 
 export default CollectionFab;

@@ -63,6 +63,17 @@ const DeviceRow = ({ data, index, style }) => {
   const devicePrimary = useAttributePreference('devicePrimary', 'name');
   const deviceSecondary = useAttributePreference('deviceSecondary', '');
 
+  const displayStatus = () => {
+    if(item.status === 'online'){
+      if(position.speed > 0){
+        return 'Moving'
+      } else{
+        return 'Idle'
+      }
+    }
+    return ''
+  }
+
   const secondaryText = () => {
     let status;
     if (item.status === 'online' || !item.lastUpdate) {
@@ -73,7 +84,7 @@ const DeviceRow = ({ data, index, style }) => {
     return (
       <>
         {deviceSecondary && item[deviceSecondary] && `${item[deviceSecondary]} • `}
-        <span className={classes[getStatusColor(item.status)]}>{status}</span>
+        <span className={classes[getStatusColor(item.status)]}>{status}</span> <span>{position && displayStatus()}</span>
       </>
     );
   };

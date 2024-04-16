@@ -125,7 +125,7 @@ const MainPage = () => {
 
   useEffect(() => {
     handleTabsScroll();
-  }, [filter.statuses]); // Adjust dependencies as necessary
+  }, [filter.statuses]); 
 
   const scrollTabsLeft = () => {
     const tabsContainer = document.querySelector(".MuiTabs-scroller");
@@ -148,7 +148,6 @@ const MainPage = () => {
       case "All":
         return Object.keys(devices).length;
       case "Online":
-        console.log(devices);
         return Object.keys(devices).filter(
           (key) => devices[key].status === "online"
         ).length;

@@ -57,6 +57,7 @@ import UserConnectionsPage from './settings/UserConnectionsPage';
 import LogsPage from './reports/LogsPage';
 import loaderGif from "../public/loader.gif";
 import PrivacyPolicy from './login/PrivacyPolicy';
+import BulkActionsPage from './settings/BulkActionsPage'
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -165,6 +166,7 @@ const Navigation = () => {
           <Route path="user/:id/connections" element={<UserConnectionsPage />} />
           <Route path="user/:id" element={<UserPage />} />
           <Route path="user" element={<UserPage />} />
+          <Route path="bulk-actions" element={<BulkActionsPage />} />
         </Route>
 
         <Route path="reports">
