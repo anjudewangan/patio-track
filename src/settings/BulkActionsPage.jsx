@@ -59,14 +59,11 @@ const DevicePage = () => {
     }
   });
 
-  const validate = () => item && item.name && item.uniqueId;
+  const validate = () =>
+    item && item.password && item.bulkAction && handleFiles;
 
   const downloadSampleFile = () => {
-    const data = [
-      ["Header 1", "Header 2", "Header 3"],
-      [1, 2, 3],
-      [4, 5, 6],
-    ];
+    const data = [["uniqueId", "name", "group"]];
     const ws = XLSX.utils.aoa_to_sheet(data);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
