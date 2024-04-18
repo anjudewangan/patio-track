@@ -60,6 +60,15 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 4,
     paddingBottom: "45px",
   },
+  tabsRoot: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  tab: {
+    borderRight: `1px solid ${theme.palette.divider}`,
+    "&:last-child": {
+      borderRight: "none",
+    },
+  },
 }));
 
 const MainPage = () => {
@@ -125,7 +134,7 @@ const MainPage = () => {
 
   useEffect(() => {
     handleTabsScroll();
-  }, [filter.statuses]); 
+  }, [filter.statuses]);
 
   const scrollTabsLeft = () => {
     const tabsContainer = document.querySelector(".MuiTabs-scroller");
@@ -218,26 +227,31 @@ const MainPage = () => {
                   setFilter({ ...filter, statuses: newValue })
                 }
                 onScroll={handleTabsScroll}
+                classes={{ root: classes.tabsRoot }}
               >
                 <Tab
                   label={`All (${getCount("All")})`}
                   value=""
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
+                  className={classes.tab}
                 />
                 <Tab
                   label={`Online (${getCount("Online")})`}
                   value="online"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
+                  className={classes.tab}
                 />
                 <Tab
                   label={`Offline (${getCount("Offline")})`}
                   value="offline"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
+                  className={classes.tab}
                 />
                 <Tab
                   label={`Unknown (${getCount("Unknown")})`}
                   value="unknown"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
+                  className={classes.tab}
                 />
               </Tabs>
               <IconButton onClick={scrollTabsRight}>
