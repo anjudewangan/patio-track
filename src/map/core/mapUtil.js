@@ -29,7 +29,6 @@ const canvasTintImage = (image, color) => {
 };
 
 export const prepareIcon = (background, icon, color) => {
-  context.fillStyle = 'white';
   const canvas = document.createElement('canvas');
   canvas.width = background.width * devicePixelRatio;
   canvas.height = background.height * devicePixelRatio;
@@ -63,6 +62,7 @@ export const reverseCoordinates = (it) => {
     coordinates: reverseCoordinates(it.coordinates),
   };
 };
+
 
 export const geofenceToFeature = (theme, item) => {
   let geometry;
