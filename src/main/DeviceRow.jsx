@@ -109,6 +109,7 @@ const DeviceRow = ({ data, index, style }) => {
               borderRadius: "5px",
               backgroundColor:
                 position && position.speed > 0 ? "green" : "orange",
+              color: "white",
             }}
           >
             {position && displayStatus()}
