@@ -29,6 +29,7 @@ const canvasTintImage = (image, color) => {
 };
 
 export const prepareIcon = (background, icon, color) => {
+  context.fillStyle = 'white';
   const canvas = document.createElement('canvas');
   canvas.width = background.width * devicePixelRatio;
   canvas.height = background.height * devicePixelRatio;
