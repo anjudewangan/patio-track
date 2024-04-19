@@ -157,7 +157,7 @@ const MainPage = () => {
         ).length;
       case "Not Activated":
         return Object.keys(devices).filter(
-          (key) => devices[key].status === "notActivated"
+          (key) => devices[key].status === "unknown"
         ).length;
       case "Alarm":
         return Object.values(positions).filter(
@@ -237,7 +237,7 @@ const MainPage = () => {
                 />
                 <Tab
                   label={`Not Activated (${getCount("Not Activated")})`}
-                  value="notActivated"
+                  value="unknown"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />
               </Tabs>
