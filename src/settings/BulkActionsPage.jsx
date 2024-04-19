@@ -63,7 +63,7 @@ const DevicePage = () => {
     item && item.password && item.bulkAction && handleFiles;
 
   const downloadSampleFile = () => {
-    const data = [["uniqueId", "name", "group"]];
+    const data = [["imei", "vehicle no", "group", "phone no"]];
     const ws = XLSX.utils.aoa_to_sheet(data);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");

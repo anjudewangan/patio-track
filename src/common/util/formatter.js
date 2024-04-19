@@ -109,7 +109,7 @@ export const getStatusColor = (status) => {
       return 'success';
     case 'offline':
       return 'error';
-    case 'unknown':
+    case 'notActivated':
     default:
       return 'neutral';
   }

@@ -155,9 +155,9 @@ const MainPage = () => {
         return Object.keys(devices).filter(
           (key) => devices[key].status === "offline"
         ).length;
-      case "Unknown":
+      case "Not Activated":
         return Object.keys(devices).filter(
-          (key) => devices[key].status === "unknown"
+          (key) => devices[key].status === "notActivated"
         ).length;
       case "Alarm":
         return Object.values(positions).filter(
@@ -168,6 +168,7 @@ const MainPage = () => {
         return 0;
     }
   };
+
   return (
     <div className={classes.root}>
       {desktop && (
@@ -235,8 +236,8 @@ const MainPage = () => {
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />
                 <Tab
-                  label={`Unknown (${getCount("Unknown")})`}
-                  value="unknown"
+                  label={`Not Activated (${getCount("Not Activated")})`}
+                  value="notActivated"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />
               </Tabs>
