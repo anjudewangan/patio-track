@@ -102,23 +102,14 @@ const DeviceRow = ({ data, index, style }) => {
           {deviceSecondary &&
             item[deviceSecondary] &&
             `${item[deviceSecondary]} • `}
-          <span
-            className={classes[getStatusColor(item.status)]}
-            // style={{
-            //   border: "1px solid gray",
-            //   padding: "0 5px",
-            //   borderRadius: "5px",
-            // }}
-          >
-            {status}
-          </span>{" "}
+          <span className={classes[getStatusColor(item.status)]}>{status}</span>{" "}
           <span
             style={{
               border: "1px solid gray",
               padding: "0 5px",
               borderRadius: "5px",
-              background: "green",
-              color: "white",
+              backgroundColor:
+                position && position.speed > 0 ? "green" : "orange",
             }}
           >
             {position && displayStatus()}
