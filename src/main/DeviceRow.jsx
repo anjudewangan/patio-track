@@ -108,7 +108,7 @@ const DeviceRow = ({ data, index, style }) => {
               padding: "0 5px",
               borderRadius: "5px",
               backgroundColor:
-                position && position.speed > 0 ? "green" : "orange",
+                position && position.speed > 0 ? "#28a745" : "#ffc107",
               color: "white",
             }}
           >

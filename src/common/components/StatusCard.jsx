@@ -150,7 +150,7 @@ const StatusCard = ({
   const positionAttributes = usePositionAttributes(t);
   const positionItems = useAttributePreference(
     "positionItems",
-    "speed,address,totalDistance,course,deviceTime,voltage"
+    "speed,address,totalDistance,course,status,deviceTime,voltage"
   );
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -255,14 +255,17 @@ const StatusCard = ({
                 <CardContent className={classes.content}>
                   <Table size="small" classes={{ root: classes.table }}>
                     <TableBody>
-                      {/* Moving status */}
                       <TableRow>
                         <TableCell className={classes.cell}>
-                          <Typography variant="body2">{'Status'}</Typography>
+                          <Typography variant="body2">
+                            {t("positionStatus")}
+                          </Typography>
                         </TableCell>
                         <TableCell className={classes.cell}>
                           <Typography variant="body2" color="textSecondary">
-                            {position.speed > 0 && device.status === 'online' ? 'Moving' : 'Idle'}
+                            {position.speed > 0 && device.status === "online"
+                              ? t("deviceStatusMoving")
+                              : t("deviceStatusIdle")}
                           </Typography>
                         </TableCell>
                       </TableRow>

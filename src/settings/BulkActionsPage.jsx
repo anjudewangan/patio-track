@@ -87,7 +87,9 @@ const DevicePage = () => {
         <>
           <Accordion defaultExpanded>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography variant="subtitle1">{t("userBulkActions")}</Typography>
+              <Typography variant="subtitle1">
+                {t("userBulkActions")}
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.details}>
               <TextField
@@ -125,7 +127,7 @@ const DevicePage = () => {
                 </RadioGroup>
               </FormControl>
               <Button onClick={downloadSampleFile} variant="outlined">
-               {t("bulkDownloadSampleFile")}
+                {t("bulkDownloadSampleFile")}
               </Button>
               <DropzoneArea
                 onChange={handleFiles}

@@ -158,7 +158,7 @@ const MainPage = () => {
         return Object.keys(devices).filter(
           (key) => devices[key].status === "offline"
         ).length;
-      case "Not Activated":
+      case "Inactive":
         return Object.keys(devices).filter(
           (key) => devices[key].status === "unknown"
         ).length;
@@ -240,7 +240,7 @@ const MainPage = () => {
                 />
                 <Tab
                   label={`${t("deviceStatusUnknown")} (${getCount(
-                    "Not Activated"
+                    "Inactive"
                   )})`}
                   value="unknown"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
