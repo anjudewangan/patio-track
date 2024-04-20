@@ -75,9 +75,9 @@ const DeviceRow = ({ data, index, style }) => {
   const displayStatus = () => {
     if (item.status === "online") {
       if (position.speed > 0) {
-        return "Moving";
+        return t("deviceStatusMoving");
       } else {
-        return "Idle";
+        return t("deviceStatusIdle");
       }
     }
     return "";

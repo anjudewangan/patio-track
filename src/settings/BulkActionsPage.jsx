@@ -87,7 +87,7 @@ const DevicePage = () => {
         <>
           <Accordion defaultExpanded>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography variant="subtitle1">{t("bulkActions")}</Typography>
+              <Typography variant="subtitle1">{t("userBulkActions")}</Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.details}>
               <TextField
@@ -95,7 +95,7 @@ const DevicePage = () => {
                 onChange={(event) =>
                   setItem({ ...item, password: event.target.value })
                 }
-                label="Password"
+                label={t("userPassword")}
                 type="password"
               />
               <FormControl component="fieldset">
@@ -110,22 +110,22 @@ const DevicePage = () => {
                   <FormControlLabel
                     value="add"
                     control={<Radio />}
-                    label="Add Devices"
+                    label={t("bulkAddDevices")}
                   />
                   <FormControlLabel
                     value="update"
                     control={<Radio />}
-                    label="Update Devices"
+                    label={t("bulkUpdateDevices")}
                   />
                   <FormControlLabel
                     value="delete"
                     control={<Radio />}
-                    label="Delete Devices"
+                    label={t("bulkDeleteDevices")}
                   />
                 </RadioGroup>
               </FormControl>
               <Button onClick={downloadSampleFile} variant="outlined">
-                Download Sample Excel File
+               {t("bulkDownloadSampleFile")}
               </Button>
               <DropzoneArea
                 onChange={handleFiles}
@@ -133,7 +133,7 @@ const DevicePage = () => {
                 maxFileSize={5000000}
                 filesLimit={1}
                 showAlerts={["error"]}
-                dropzoneText="Drag and drop an Excel file here or click to upload"
+                dropzoneText={t("bulkFileUpload")}
               />
             </AccordionDetails>
           </Accordion>

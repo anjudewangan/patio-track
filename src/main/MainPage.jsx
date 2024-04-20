@@ -15,6 +15,7 @@ import useFilter from "./useFilter";
 import MainToolbar from "./MainToolbar";
 import MainMap from "./MainMap";
 import { useAttributePreference } from "../common/util/preferences";
+import { useTranslation } from "../common/components/LocalizationProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     gridArea: "1 / 1",
     zIndex: 4,
     paddingBottom: "45px",
+    width: "400px",
   },
 }));
 
@@ -66,6 +68,7 @@ const MainPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const theme = useTheme();
+  const t = useTranslation();
 
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -221,22 +224,24 @@ const MainPage = () => {
                 onScroll={handleTabsScroll}
               >
                 <Tab
-                  label={`All (${getCount("All")})`}
+                  label={`${t("deviceStatusAll")} (${getCount("All")})`}
                   value=""
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />
                 <Tab
-                  label={`Online (${getCount("Online")})`}
+                  label={`${t("deviceStatusOnline")} (${getCount("Online")})`}
                   value="online"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />
                 <Tab
-                  label={`Offline (${getCount("Offline")})`}
+                  label={`${t("deviceStatusOffline")} (${getCount("Offline")})`}
                   value="offline"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />
                 <Tab
-                  label={`Not Activated (${getCount("Not Activated")})`}
+                  label={`${t("deviceStatusUnknown")} (${getCount(
+                    "Not Activated"
+                  )})`}
                   value="unknown"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />

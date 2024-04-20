@@ -173,7 +173,8 @@
     "userLimitCommands": "Limit Commands",
     "userDisableReports": "Disable Reports",
     "userFixedEmail": "No Email Change",
-    "userBulkActions": "Bulk Actions",
+    "userBulkActions": "বিপুল কর্ম",
+    "singleDevices": "একক ডিভাইস",
     "userToken": "টোকেন",
     "userDeleteAccount": "Delete Account",
     "loginTitle": "লগইন",
@@ -206,7 +207,10 @@
     "deviceStatus": "অবস্থা",
     "deviceStatusOnline": "অনলাইন",
     "deviceStatusOffline": "অফলাইন",
-    "deviceStatusUnknown": "অজানা",
+    "deviceStatusUnknown": "সক্রিয় নয়",
+    "deviceStatusMoving": "গতিশীল",
+    "deviceStatusIdle": "নিষ্ক্রিয়",
+    "deviceStatusAll": "সব",
     "deviceRegisterFirst": "Devices",
     "deviceIdentifierHelp": "IMEI, serial number or other id. It has to match the identifier device reports to the server.",
     "deviceShare": "Share Device",
@@ -637,5 +641,9 @@
   "privacyPolicyParaSeven": "আপনার তথ্য আপনার দেশের বাইরে অন্য দেশে স্থানান্তরিত এবং প্রসেস করা হতে পারে, যেখানে ডেটা সুরক্ষা আইন পার্থক্য থাকতে পারে।",
   "privacyPolicyParaEight": "আমরা গোপনীয়তা নীতি যে সময় পরিবর্তন বা আপডেট করতে অধিকার সংরক্ষিত আছে। আমরা আপনাকে আমাদের ওয়েবসাইট বা অ্যাপে আপডেট নীতি পোস্ট করে যেকোনো পরিমাণের পরিবর্তন সার্বিক পরিবর্তনের জন্য বিজ্ঞাপন করব।",
   "privacyPolicyParaNine": "যদি আপনার এই গোপনীয়তা নীতি সম্পর্কে কোনও প্রশ্ন বা চিন্তা থাকে, দয়া করে আমাদেরকে যোগাযোগ করুন support@patiotrack.in.",
-  "bulkActions": "Bulk Actions"
+  "bulkAddDevices": "যন্ত্র সংযুক্ত করুন",
+  "bulkUpdateDevices": "ডিভাইস আপডেট করুন",
+  "bulkDeleteDevices": "ডিভাইস অপসারণ",
+  "bulkDownloadSampleFile": "নমুনা এক্সেল ফাইল ডাউনলোড করুন",
+  "bulkFileUpload": "এখানে এক্সেল ফাইল টেনে আনুন বা আপলোড করতে ক্লিক করুন"
 }

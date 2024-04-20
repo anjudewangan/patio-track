@@ -4,6 +4,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { useRestriction } from "../../common/util/permissions";
+import { useTranslation } from "../../common/components/LocalizationProvider";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -23,6 +24,7 @@ const CollectionFab = ({ editPath, bulkActionPath, disabled }) => {
   const navigate = useNavigate();
   const readonly = useRestriction("readonly");
   const [anchorEl, setAnchorEl] = useState(null);
+  const t = useTranslation();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -65,7 +67,7 @@ const CollectionFab = ({ editPath, bulkActionPath, disabled }) => {
               navigate(editPath);
             }}
           >
-            Single Devices
+            {t("singleDevices")}
           </MenuItem>
           <MenuItem
             onClick={() => {
@@ -73,7 +75,7 @@ const CollectionFab = ({ editPath, bulkActionPath, disabled }) => {
               navigate(bulkActionPath);
             }}
           >
-            Bulk Actions
+            {t("userBulkActions")}
           </MenuItem>
         </Menu>
       </div>

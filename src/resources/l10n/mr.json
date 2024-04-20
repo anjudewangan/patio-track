@@ -172,8 +172,9 @@
     "userDeviceReadonly": "डिव्हाइस केवळ वाचन",
     "userLimitCommands": "कमांड्स सीमा",
     "userDisableReports": "रिपोर्ट्स अक्षम करा",
-    "userFixedEmail": "कोणताही ईमेल बदल",
+    "userFixedEmail": "No Email Change",
     "userBulkActions": "मोठ्या प्रमाणात क्रिया",
+    "singleDevices": "एकल उपकरणे",
     "userToken": "टोकन",
     "userDeleteAccount": "खाते हटवा",
     "loginTitle": "लॉगीन",
@@ -206,7 +207,10 @@
     "deviceStatus": "स्थिती",
     "deviceStatusOnline": "ऑनलाइन",
     "deviceStatusOffline": "ऑफलाइन",
-    "deviceStatusUnknown": "अज्ञात",
+    "deviceStatusUnknown": "सक्रिय नाही",
+    "deviceStatusMoving": "गतिमान",
+    "deviceStatusIdle": "निष्क्रिय",
+    "deviceStatusAll": "सर्व",
     "deviceRegisterFirst": "डिव्हाइस",
     "deviceIdentifierHelp": "IMEI, सीरियल नंबर किंवा इतर ओळख. हे ओळख डिव्हाइस सर्व्हरला अहवाल देते.",
     "deviceShare": "डिव्हाइस सामायिक करा",
@@ -638,5 +642,9 @@
     "privacyPolicyParaSeven": "आपली माहिती आपल्या देशाबाहेर घेतली जाऊ शकते, ज्यात डेटा संरक्षण कायदे विविध असू शकतात.",
     "privacyPolicyParaEight": "आम्ही ही गोपनीयता धोरण कोणत्याही काळात बदलू किंवा अद्यतन करण्याचा हक्क सुरक्षित ठेवतो. आपल्याला कोणत्याही अद्यतनित पॉलिसीबद्दल आमची वेबसाइट किंवा अॅपवर पोस्ट केल्याने सूचित केले जाईल.",
     "privacyPolicyParaNine": "आपल्याकडे ही गोपनीयता धोरणाच्या बारे विचारल्यास किंवा कोणताही समस्या असल्यास, कृपया आमच्याशी संपर्क साधा support@patiotrack.in वर.",
-    "bulkActions": "Bulk Actions"
+    "bulkAddDevices": "डिव्हाइस जोडा",
+    "bulkUpdateDevices": "डिव्हाइस अद्यतनित करा",
+    "bulkDeleteDevices": "डिव्हाइस काढा",
+    "bulkDownloadSampleFile": "नमुना एक्सेल फाइल डाउनलोड करा",
+    "bulkFileUpload": "एक्सेल फाइल येथे ड्रॅग आणि ड्रॉप करा किंवा अपलोड करण्यासाठी क्लिक करा"
 }

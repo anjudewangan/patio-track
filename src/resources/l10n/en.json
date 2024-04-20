@@ -176,6 +176,7 @@
   "userDisableReports": "Disable Reports",
   "userFixedEmail": "No Email Change",
   "userBulkActions": "Bulk Actions",
+  "singleDevices": "Single Devices",
   "userToken": "Token",
   "userDeleteAccount": "Delete Account",
   "userTemporary": "Temporary",
@@ -210,6 +211,9 @@
   "deviceStatusOnline": "Online",
   "deviceStatusOffline": "Offline",
   "deviceStatusUnknown": "Not Activated",
+  "deviceStatusMoving": "Moving",
+  "deviceStatusIdle": "Idle",
+  "deviceStatusAll": "All",
   "deviceRegisterFirst": "Devices",
   "deviceIdentifierHelp": "IMEI, serial number or other id. It has to match the identifier device reports to the server.",
   "deviceShare": "Share Device",
@@ -641,5 +645,9 @@
   "privacyPolicyParaSeven": "Your information may be transferred to and processed in countries other than your own, where data protection laws may be different.",
   "privacyPolicyParaEight": "We reserve the right to modify or update this Privacy Policy at any time. We will notify you of any material changes by posting the updated policy on our website or app.",
   "privacyPolicyParaNine": "If you have any questions or concerns about this Privacy Policy, please contact us at support@patiotrack.in.",
-  "bulkActions": "Bulk Actions"
+  "bulkAddDevices": "Add Devices",
+  "bulkUpdateDevices": "Update Devices",
+  "bulkDeleteDevices": "Delete Devices",
+  "bulkDownloadSampleFile": "Download Sample Excel File",
+  "bulkFileUpload": "Drag and drop an Excel file here or click to upload"
 }
