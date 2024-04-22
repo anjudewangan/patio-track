@@ -649,5 +649,13 @@
     "bulkUpdateDevices": "उपकरणे अद्यतनित करा",
     "bulkDeleteDevices": "उपकरणे काढा",
     "bulkDownloadSampleFile": "नमुना एक्सेल फाइल डाउनलोड करा",
-    "bulkFileUpload": "एक्सेल फाइल येथे ड्रॅग आणि ड्रॉप करा किंवा अपलोड करण्यासाठी क्लिक करा"
+    "bulkFileUpload": "एक्सेल फाइल येथे ड्रॅग आणि ड्रॉप करा किंवा अपलोड करण्यासाठी क्लिक करा",
+    "routePointers": "मार्गसूचक",
+    "trackLine": "ट्रॅक लाइन",
+    "startPoint": "प्रांभ बिंदु",
+    "endPoint": "अंत बिंदु",
+    "alarmPoint": "चेतावनी बिंदु",
+    "parkedPoint": "पार्क केले बिंदू",
+    "stoppedPoint": "रुका हुआ बिंदु",
+    "detailTag": "विवरण टॅग"
 }

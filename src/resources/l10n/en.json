@@ -652,5 +652,13 @@
   "bulkUpdateDevices": "Update Devices",
   "bulkDeleteDevices": "Delete Devices",
   "bulkDownloadSampleFile": "Download Sample Excel File",
-  "bulkFileUpload": "Drag and drop an Excel file here or click to upload"
+  "bulkFileUpload": "Drag and drop an Excel file here or click to upload",
+  "routePointers": "Route Pointers",
+  "trackLine": "Track Line",
+  "startPoint": "Start Point",
+  "endPoint": "End Point",
+  "alarmPoint": "Alarm Point",
+  "parkedPoint": "Parked Point",
+  "stoppedPoint": "Stopped Point",
+  "detailTag": "Detail Tag"
 }

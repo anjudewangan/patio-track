@@ -305,7 +305,7 @@ const ReplayPage = () => {
                       style={{ color: "#D60024" }}
                     />
                   }
-                  label="Route Pointers"
+                  label={t("routePointers")}
                 />
               </div>
               <div style={{ width: "50%", marginBottom: "8px" }}>
@@ -317,7 +317,7 @@ const ReplayPage = () => {
                       style={{ color: "#59EA4F" }}
                     />
                   }
-                  label="Track Line"
+                  label={t("trackLine")}
                 />
               </div>
               <div style={{ width: "50%", marginBottom: "8px" }}>
@@ -329,7 +329,7 @@ const ReplayPage = () => {
                       style={{ color: "#19BE6B" }}
                     />
                   }
-                  label="Start Point"
+                  label={t("startPoint")}
                 />
               </div>
               <div style={{ width: "50%", marginBottom: "8px" }}>
@@ -341,7 +341,7 @@ const ReplayPage = () => {
                       style={{ color: "#FF9900" }}
                     />
                   }
-                  label="End Point"
+                  label={t("endPoint")}
                 />
               </div>
               <div style={{ width: "50%", marginBottom: "8px" }}>
@@ -353,7 +353,7 @@ const ReplayPage = () => {
                       style={{ color: "#FFC107" }}
                     />
                   }
-                  label="Alarm Point"
+                  label={t("alarmPoint")}
                 />
               </div>
               <div style={{ width: "50%", marginBottom: "8px" }}>
@@ -365,7 +365,7 @@ const ReplayPage = () => {
                       style={{ color: "#A949DE" }}
                     />
                   }
-                  label="Parked Point"
+                  label={t("parkedPoint")}
                 />
               </div>
               <div style={{ width: "50%", marginBottom: "8px" }}>
@@ -377,7 +377,7 @@ const ReplayPage = () => {
                       style={{ color: "#2D8CF0" }}
                     />
                   }
-                  label="Stopped Point"
+                  label={t("stoppedPoint")}
                 />
               </div>
               <div style={{ width: "50%", marginBottom: "8px" }}>
@@ -389,7 +389,7 @@ const ReplayPage = () => {
                       style={{ color: "#2DB7F5" }}
                     />
                   }
-                  label="Detail Tag"
+                  label={t("detailTag")}
                 />
               </div>
             </div>
