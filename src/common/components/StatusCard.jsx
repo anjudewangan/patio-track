@@ -215,6 +215,50 @@ const StatusCard = ({
     }
   }, [deviceId, setShared]);
 
+  const deviceTime = position ? position.deviceTime : null;
+  const currentTime = dayjs();
+
+  const timeDifference = position
+    ? currentTime.diff(dayjs(deviceTime), "minute")
+    : null;
+
+  let deviceStatus;
+
+  if (position && position.speed > 0 && device.status === "online") {
+    deviceStatus = t("deviceStatusMoving");
+  } else if (
+    timeDifference !== null &&
+    timeDifference >= 0 &&
+    timeDifference <= 5
+  ) {
+    deviceStatus = t("deviceStatusIdle");
+  } else if (
+    timeDifference !== null &&
+    timeDifference > 5 &&
+    timeDifference <= 15
+  ) {
+    deviceStatus = t("deviceStatusParked");
+  } else if (timeDifference !== null && timeDifference > 30) {
+    deviceStatus = t("deviceStatusStopped");
+  } else {
+    deviceStatus = t("deviceStatusIdle");
+  }
+
+  const getDisplayStatus = () => {
+    switch (deviceStatus) {
+      case t("deviceStatusMoving"):
+        return device.status === "online" ? t("deviceStatusMoving") : "";
+      case t("deviceStatusIdle"):
+        return t("deviceStatusIdle");
+      case t("deviceStatusParked"):
+        return t("deviceStatusParked");
+      case t("deviceStatusStopped"):
+        return t("deviceStatusStopped");
+      default:
+        return "";
+    }
+  };
+
   return (
     <>
       <div className={classes.root}>
@@ -263,9 +307,7 @@ const StatusCard = ({
                         </TableCell>
                         <TableCell className={classes.cell}>
                           <Typography variant="body2" color="textSecondary">
-                            {position.speed > 0 && device.status === "online"
-                              ? t("deviceStatusMoving")
-                              : t("deviceStatusIdle")}
+                            {getDisplayStatus()}
                           </Typography>
                         </TableCell>
                       </TableRow>

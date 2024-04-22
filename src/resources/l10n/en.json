@@ -256,7 +256,7 @@
   "linkAppleMaps": "Apple Maps",
   "linkStreetView": "Street View",
   "positionFixTime": "Fix Time",
-  "positionDeviceTime": "Device Time",
+  "positionDeviceTime": "Last Update",
   "positionServerTime": "Server Time",
   "positionValid": "Valid",
   "positionAccuracy": "Accuracy",

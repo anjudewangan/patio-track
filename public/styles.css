@@ -49,8 +49,8 @@ body {
 
 :root {
   /* --scrollbar-width: 10px; */
-  --scrollbar-track-color: #000;
-  --scrollbar-thumb-color: #888;
+  --scrollbar-track-color: #121212;
+  --scrollbar-thumb-color: #1E1E1E;
 }
 
 ::-webkit-scrollbar {

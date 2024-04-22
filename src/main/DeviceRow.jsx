@@ -73,11 +73,21 @@ const DeviceRow = ({ data, index, style }) => {
   const deviceSecondary = useAttributePreference("deviceSecondary", "");
 
   const displayStatus = () => {
-    if (item.status === "online") {
+    if (item.status === "online" && position && position.speed !== undefined) {
       if (position.speed > 0) {
         return t("deviceStatusMoving");
       } else {
-        return t("deviceStatusIdle");
+        const lastUpdate = dayjs(position.fixTime);
+        const currentTime = dayjs();
+        const timeDifference = currentTime.diff(lastUpdate, "minutes");
+
+        if (timeDifference >= 0 && timeDifference <= 5) {
+          return t("deviceStatusIdle");
+        } else if (timeDifference > 5 && timeDifference <= 15) {
+          return t("deviceStatusParked");
+        } else if (timeDifference > 30) {
+          return t("deviceStatusStopped");
+        }
       }
     }
     return "";
@@ -85,10 +95,23 @@ const DeviceRow = ({ data, index, style }) => {
 
   const secondaryText = () => {
     let status;
+    let backgroundColor;
     if (item.status === "online" || !item.lastUpdate) {
       status = formatStatus(item.status, t);
     } else {
       status = dayjs(item.lastUpdate).fromNow();
+    }
+
+    const deviceStatus = displayStatus();
+
+    if (deviceStatus === t("deviceStatusMoving")) {
+      backgroundColor = "#28a745";
+    } else if (deviceStatus === t("deviceStatusIdle")) {
+      backgroundColor = "#ffc107";
+    } else if (deviceStatus === t("deviceStatusParked")) {
+      backgroundColor = "#007bff";
+    } else if (deviceStatus === t("deviceStatusStopped")) {
+      backgroundColor = "#dc3545";
     }
     return (
       <>
@@ -107,8 +130,7 @@ const DeviceRow = ({ data, index, style }) => {
             style={{
               padding: "0 5px",
               borderRadius: "5px",
-              backgroundColor:
-                position && position.speed > 0 ? "#28a745" : "#ffc107",
+              backgroundColor: backgroundColor || "#ffffff",
               color: "white",
             }}
           >
