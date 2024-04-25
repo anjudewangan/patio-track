@@ -103,7 +103,7 @@ const MainToolbar = ({
             <AddIcon />
           </Tooltip>
         </IconButton>
-        <IconButton
+        {/* <IconButton
           edge="start"
           onClick={toggleSearch}
           style={{ padding: "15px" }}
@@ -117,7 +117,27 @@ const MainToolbar = ({
           >
             <SearchIcon />
           </Badge>
+        </IconButton> */}
+        <IconButton
+          edge="start"
+          onClick={toggleSearch}
+          style={{ padding: "15px" }}
+        >
+          {(filter.statuses.length > 0 || filter.groups.length > 0) && (
+            <Badge
+              edge="start"
+              onClick={toggleSearch}
+              color="primary"
+              variant="dot"
+            >
+              <SearchIcon />
+            </Badge>
+          )}
+          {filter.statuses.length === 0 && filter.groups.length === 0 && (
+            <SearchIcon />
+          )}
         </IconButton>
+
         <IconButton
           edge="start"
           style={{ padding: "15px" }}
@@ -152,8 +172,8 @@ const MainToolbar = ({
                 onClick={() => setFilterAnchorEl(inputRef.current)}
               >
                 <Badge
-                  // color="info"
-                  // variant="dot"
+                  color="primary"
+                  variant="dot"
                   invisible={!filter.statuses.length && !filter.groups.length}
                 >
                   <TuneIcon fontSize="small" />
