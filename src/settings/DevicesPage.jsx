@@ -9,7 +9,7 @@ import { useEffectAsync } from '../reactHelper';
 import { useTranslation } from '../common/components/LocalizationProvider';
 import PageLayout from '../common/components/PageLayout';
 import SettingsMenu from './components/SettingsMenu';
-import CollectionFab from './components/CollectionFab';
+import CollectionFabBulk from './components/CollectionFabBulk';
 import CollectionActions from './components/CollectionActions';
 import TableShimmer from '../common/components/TableShimmer';
 import SearchHeader, { filterByKeyword } from './components/SearchHeader';
@@ -95,7 +95,7 @@ const DevicesPage = () => {
           )) : (<TableShimmer columns={7} endAction />)}
         </TableBody>
       </Table>
-      <CollectionFab editPath="/settings/device" bulkActionPath="/settings/bulk-actions" />
+      <CollectionFabBulk editPath="/settings/device" bulkActionPath="/settings/bulk-actions" />
     </PageLayout>
   );
 };

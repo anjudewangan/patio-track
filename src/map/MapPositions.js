@@ -24,9 +24,10 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
   const hours12 = usePreference('twelveHourFormat');
   const directionType = useAttributePreference('mapDirection', 'selected');
 
-  const createFeature = (devices, position, selectedPositionId) => {
+  const createFeature = (devices, position, selectedPositionId, selectedDeviceId, directionType) => {
     const device = devices[position.deviceId];
-    let showDirection;
+    let showDirection = false;
+
     switch (directionType) {
       case 'none':
         showDirection = false;
@@ -35,9 +36,10 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         showDirection = true;
         break;
       default:
-        showDirection = selectedPositionId === position.id;
+        showDirection = selectedPositionId === position.id && selectedDeviceId === position.deviceId;
         break;
     }
+
     return {
       id: position.id,
       deviceId: position.deviceId,
@@ -49,6 +51,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       direction: showDirection,
     };
   };
+
 
   const onMouseEnter = () => map.getCanvas().style.cursor = 'pointer';
   const onMouseLeave = () => map.getCanvas().style.cursor = '';
@@ -136,7 +139,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
           'icon-image': 'direction',
           'icon-size': iconScale,
           'icon-allow-overlap': true,
-          'icon-rotate': ['get', 'rotation'],
+          // 'icon-rotate': ['get', 'rotation'],
           'icon-rotation-alignment': 'map',
         },
       });
@@ -204,11 +207,11 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
               type: 'Point',
               coordinates: [position.longitude, position.latitude],
             },
-            properties: createFeature(devices, position, selectedPosition && selectedPosition.id),
+            properties: createFeature(devices, position, selectedPosition && selectedPosition.id, selectedDeviceId, directionType),
           })),
       });
     });
-  }, [mapCluster, clusters, onMarkerClick, onClusterClick, devices, positions, selectedPosition]);
+  }, [mapCluster, clusters, onMarkerClick, onClusterClick, devices, positions, selectedPosition, selectedDeviceId, directionType]);
 
   return null;
 };

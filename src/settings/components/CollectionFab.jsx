@@ -1,87 +1,35 @@
-import React, { useState } from "react";
-import { Fab, Menu, MenuItem } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
-import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
-import { useRestriction } from "../../common/util/permissions";
-import { useTranslation } from "../../common/components/LocalizationProvider";
+import React from 'react';
+import { Fab } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
+import { useRestriction } from '../../common/util/permissions';
 
 const useStyles = makeStyles((theme) => ({
   fab: {
-    position: "fixed",
+    position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
-    [theme.breakpoints.down("md")]: {
-      bottom: `calc(${theme.dimensions.bottomBarHeight}px + ${theme.spacing(
-        2
-      )})`,
+    [theme.breakpoints.down('md')]: {
+      bottom: `calc(${theme.dimensions.bottomBarHeight}px + ${theme.spacing(2)})`,
     },
   },
 }));
 
-const CollectionFab = ({ editPath, bulkActionPath, disabled }) => {
+const CollectionFab = ({ editPath, disabled }) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const readonly = useRestriction("readonly");
-  const [anchorEl, setAnchorEl] = useState(null);
-  const t = useTranslation();
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const readonly = useRestriction('readonly');
 
   if (!readonly && !disabled) {
     return (
-      <div>
-        <Fab
-          size="medium"
-          color="primary"
-          className={classes.fab}
-          aria-controls="add-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-        >
-          <AddIcon />
-        </Fab>
-        <Menu
-          id="add-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-        >
-          <MenuItem
-            onClick={() => {
-              handleClose();
-              navigate(editPath);
-            }}
-          >
-            {t("singleDevices")}
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              handleClose();
-              navigate(bulkActionPath);
-            }}
-          >
-            {t("userBulkActions")}
-          </MenuItem>
-        </Menu>
-      </div>
+      <Fab size="medium" color="primary" className={classes.fab} onClick={() => navigate(editPath)}>
+        <AddIcon />
+      </Fab>
     );
   }
-  return "";
+  return '';
 };
 
 export default CollectionFab;
