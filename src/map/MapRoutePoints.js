@@ -1,34 +1,52 @@
-import { useId, useCallback, useEffect } from 'react';
+import { useId, useEffect } from 'react';
 import { map } from './core/MapView';
 
-const MapRoutePoints = ({ positions, onClick }) => {
+const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, showRoutePointers }) => {
   const id = useId();
 
-  const onMouseEnter = () => map.getCanvas().style.cursor = 'pointer';
-  const onMouseLeave = () => map.getCanvas().style.cursor = '';
-
-  const onMarkerClick = useCallback((event) => {
-    event.preventDefault();
-    const feature = event.features[0];
-    if (onClick) {
-      onClick(feature.properties.id, feature.properties.index);
-    }
-  }, [onClick]);
-
   useEffect(() => {
-    map.addSource(id, {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: [],
-      },
-    });
+    const onMouseEnter = () => map.getCanvas().style.cursor = 'pointer';
+    const onMouseLeave = () => map.getCanvas().style.cursor = '';
+
+    const onMarkerClick = (event) => {
+      event.preventDefault();
+      const feature = event.features[0];
+      if (onClick) {
+        onClick(feature.properties.id, feature.properties.index);
+      }
+    };
+
     map.addLayer({
       id,
       type: 'symbol',
-      source: id,
+      source: {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: positions.map((position, index) => ({
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [position.longitude, position.latitude],
+            },
+            properties: {
+              index,
+              id: position.id,
+              rotation: position.course,
+            },
+          })),
+        },
+      },
       layout: {
-        'icon-image': ['match', ['get', 'index'], 0, 'startPoint', positions.length - 1, 'endPoint', 'arrow'],
+        'icon-image': [
+          'match',
+          ['get', 'index'],
+          0,
+          showStartPoint ? 'startPoint' : '',
+          positions.length - 1,
+          showEndPoint ? 'endPoint' : '',
+          showRoutePointers ? 'arrow' : ''
+        ],
         'icon-allow-overlap': true,
         'icon-rotation-alignment': 'map',
       },
@@ -50,25 +68,7 @@ const MapRoutePoints = ({ positions, onClick }) => {
         map.removeSource(id);
       }
     };
-  }, [positions]);
-
-  useEffect(() => {
-    map.getSource(id)?.setData({
-      type: 'FeatureCollection',
-      features: positions.map((position, index) => ({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [position.longitude, position.latitude],
-        },
-        properties: {
-          index,
-          id: position.id,
-          rotation: position.course,
-        },
-      })),
-    });
-  }, [positions]);
+  }, [id, positions, showStartPoint, showEndPoint, showRoutePointers, onClick]);
 
   return null;
 };

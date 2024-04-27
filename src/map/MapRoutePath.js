@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { map } from './core/MapView';
 import { findFonts } from './core/mapUtil';
 
-const MapRoutePath = ({ name, positions, coordinates }) => {
+const MapRoutePath = ({ name, positions, coordinates, showTrackLine }) => {
   const id = useId();
 
   const theme = useTheme();
@@ -81,18 +81,32 @@ const MapRoutePath = ({ name, positions, coordinates }) => {
     if (!coordinates) {
       coordinates = positions.map((item) => [item.longitude, item.latitude]);
     }
-    map.getSource(id)?.setData({
-      type: 'Feature',
-      geometry: {
-        type: 'LineString',
-        coordinates,
-      },
-      properties: {
-        name,
-        color: reportColor,
-      },
-    });
-  }, [theme, positions, coordinates, reportColor]);
+    if (showTrackLine) {
+      map.getSource(id)?.setData({
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates,
+        },
+        properties: {
+          name,
+          color: reportColor,
+        },
+      });
+    } else {
+      map.getSource(id)?.setData({
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates: [],
+        },
+        properties: {
+          name,
+          color: reportColor,
+        },
+      });
+    }
+  }, [theme, positions, coordinates, reportColor, showTrackLine]);
 
   return null;
 };

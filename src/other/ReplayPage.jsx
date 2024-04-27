@@ -190,9 +190,14 @@ const ReplayPage = () => {
     <div className={classes.root}>
       <MapView>
         <MapGeofence />
-        <MapRoutePath positions={positions} show={showTrackLine} />{" "}
-        {/* Pass showTrackLine state to control visibility */}
-        <MapRoutePoints positions={positions} onClick={onPointClick} />
+        <MapRoutePath positions={positions} showTrackLine={showTrackLine} />
+        <MapRoutePoints
+          positions={positions}
+          onClick={onPointClick}
+          showRoutePointers={showRoutePointers}
+          showStartPoint={showStartPoint}
+          showEndPoint={showEndPoint}
+        />
         {index < positions.length && (
           <MapPositions
             positions={[positions[index]]}

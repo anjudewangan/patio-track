@@ -6,6 +6,7 @@ import arrowSvg from '../../resources/images/arrow.svg';
 import startPointSvg from '../../resources/images/start-point.svg';
 import endPointSvg from '../../resources/images/end-point.svg';
 import directionSvg from '../../resources/images/direction.svg';
+import locationSvg from '../../resources/images/location.svg';
 import backgroundSvg from '../../resources/images/background.svg';
 import animalSvg from '../../resources/images/icon/animal.svg';
 import bicycleSvg from '../../resources/images/icon/bicycle.svg';
@@ -66,7 +67,7 @@ const mapPalette = createPalette({
 export default async () => {
   const background = await loadImage(backgroundSvg);
   mapImages.background = await prepareIcon(background);
-  mapImages.direction = await prepareIcon(await loadImage(startPointSvg));
+  mapImages.direction = await prepareIcon(await loadImage(locationSvg));
   mapImages.arrow = await prepareIcon(await loadImage(arrowSvg));
   mapImages.startPoint = await prepareIcon(await loadImage(startPointSvg));
   mapImages.endPoint = await prepareIcon(await loadImage(endPointSvg));
