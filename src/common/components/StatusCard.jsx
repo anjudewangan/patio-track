@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
@@ -157,7 +157,6 @@ const StatusCard = ({
 
   const [removing, setRemoving] = useState(false);
   const [shared, setShared] = useState(null);
-
   const handleRemove = useCatch(async (removed) => {
     if (removed) {
       const response = await fetch("/api/devices");
@@ -259,12 +258,33 @@ const StatusCard = ({
     }
   };
 
+  const cardRef = useRef(null);
+
+  const [isCardOpen, setIsCardOpen] = useState(false)
+  useEffect(()=>{
+    if(device){
+      setIsCardOpen(true)
+    }
+  }, [device])
+  const handleClickOutside = (event) => {
+    if (cardRef.current && !cardRef.current.contains(event.target)) {
+      isCardOpen(false)
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <div className={classes.root}>
-        {device && (
+        {isCardOpen && (
           <Draggable handle={`.${classes.media}, .${classes.header}`}>
-            <Card elevation={3} className={classes.card}>
+            <Card ref={cardRef} elevation={3} className={classes.card}>
               {deviceImage ? (
                 <CardMedia
                   className={classes.media}

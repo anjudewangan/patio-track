@@ -21,11 +21,13 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AddIcon from "@mui/icons-material/Add";
 import { useDeviceReadonly } from "../../common/util/permissions";
 
-import { sessionActions } from "../../store";
+import { sessionActions, devicesActions } from "../../store";
 import { useTranslation } from "./LocalizationProvider";
 import { useRestriction } from "../util/permissions";
 import { nativePostMessage } from "./NativeInterface";
 import logo from "/public/election-commission.png";
+import { map } from '../../map/core/MapView'
+import { usePreference } from '../../common/util/preferences'
 
 const BottomMenu = () => {
   const navigate = useNavigate();
@@ -94,9 +96,18 @@ const BottomMenu = () => {
     dispatch(sessionActions.updateUser(null));
   };
 
+  const defaultLatitude = usePreference('latitude');
+  const defaultLongitude = usePreference('longitude');
+  const defaultZoom = usePreference('zoom', 0);
+
   const handleSelection = (event, value) => {
     switch (value) {
       case "map":
+        dispatch(devicesActions.selectId(null))
+        map.jumpTo({
+          center: [defaultLongitude, defaultLatitude],
+          zoom: defaultZoom,
+        });
         navigate("/");
         break;
       case "reports":
