@@ -5,6 +5,7 @@ import { loadImage, prepareIcon } from './mapUtil';
 import arrowSvg from '../../resources/images/arrow.svg';
 import startPointSvg from '../../resources/images/start-point.svg';
 import endPointSvg from '../../resources/images/end-point.svg';
+import stoppedPointSvg from '../../resources/images/stopped-point.svg';
 import directionSvg from '../../resources/images/direction.svg';
 import locationSvg from '../../resources/images/location.svg';
 import backgroundSvg from '../../resources/images/background.svg';
@@ -71,6 +72,7 @@ export default async () => {
   mapImages.arrow = await prepareIcon(await loadImage(arrowSvg));
   mapImages.startPoint = await prepareIcon(await loadImage(startPointSvg));
   mapImages.endPoint = await prepareIcon(await loadImage(endPointSvg));
+  mapImages.stoppedPoint = await prepareIcon(await loadImage(stoppedPointSvg));
   await Promise.all(Object.keys(mapIcons).map(async (category) => {
     const results = [];
     ['info', 'success', 'error', 'neutral'].forEach((color) => {

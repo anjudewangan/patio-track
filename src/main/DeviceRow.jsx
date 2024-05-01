@@ -81,12 +81,14 @@ const DeviceRow = ({ data, index, style }) => {
         const currentTime = dayjs();
         const timeDifference = currentTime.diff(lastUpdate, "minutes");
 
-        if (timeDifference >= 0 && timeDifference <= 5) {
+        if (timeDifference < 5) {
           return t("deviceStatusIdle");
-        } else if (timeDifference > 5 && timeDifference <= 15) {
+        } else if (timeDifference < 15) {
           return t("deviceStatusParked");
         } else if (timeDifference > 30) {
           return t("deviceStatusStopped");
+        } else {
+          return t("deviceStatusParked");
         }
       }
     }

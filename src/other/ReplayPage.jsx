@@ -197,6 +197,7 @@ const ReplayPage = () => {
           showRoutePointers={showRoutePointers}
           showStartPoint={showStartPoint}
           showEndPoint={showEndPoint}
+          showStoppedPoint={showStoppedPoint}
         />
         {index < positions.length && (
           <MapPositions

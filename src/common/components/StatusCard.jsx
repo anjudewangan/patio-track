@@ -225,22 +225,14 @@ const StatusCard = ({
 
   if (position && position.speed > 0 && device.status === "online") {
     deviceStatus = t("deviceStatusMoving");
-  } else if (
-    timeDifference !== null &&
-    timeDifference >= 0 &&
-    timeDifference <= 5
-  ) {
+  } else if (timeDifference < 5) {
     deviceStatus = t("deviceStatusIdle");
-  } else if (
-    timeDifference !== null &&
-    timeDifference > 5 &&
-    timeDifference <= 15
-  ) {
+  } else if (timeDifference < 15) {
     deviceStatus = t("deviceStatusParked");
-  } else if (timeDifference !== null && timeDifference > 30) {
+  } else if (timeDifference > 30) {
     deviceStatus = t("deviceStatusStopped");
   } else {
-    deviceStatus = t("deviceStatusIdle");
+    deviceStatus = t("deviceStatusParked");
   }
 
   const getDisplayStatus = () => {
@@ -260,15 +252,15 @@ const StatusCard = ({
 
   const cardRef = useRef(null);
 
-  const [isCardOpen, setIsCardOpen] = useState(false)
-  useEffect(()=>{
-    if(device){
-      setIsCardOpen(true)
+  const [isCardOpen, setIsCardOpen] = useState(false);
+  useEffect(() => {
+    if (device) {
+      setIsCardOpen(true);
     }
-  }, [device])
+  }, [device]);
   const handleClickOutside = (event) => {
     if (cardRef.current && !cardRef.current.contains(event.target)) {
-      isCardOpen(false)
+      isCardOpen(false);
     }
   };
 

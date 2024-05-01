@@ -1,7 +1,7 @@
 import { useId, useEffect } from 'react';
 import { map } from './core/MapView';
 
-const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, showRoutePointers }) => {
+const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, showRoutePointers, showStoppedPoint }) => {
   const id = useId();
 
   useEffect(() => {
@@ -45,7 +45,8 @@ const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, show
           showStartPoint ? 'startPoint' : '',
           positions.length - 1,
           showEndPoint ? 'endPoint' : '',
-          showRoutePointers ? 'arrow' : ''
+          showRoutePointers ? 'arrow' : '',
+          // showStoppedPoint ? 'stoppedPoint' : '',
         ],
         'icon-allow-overlap': true,
         'icon-rotation-alignment': 'map',
@@ -68,7 +69,7 @@ const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, show
         map.removeSource(id);
       }
     };
-  }, [id, positions, showStartPoint, showEndPoint, showRoutePointers, onClick]);
+  }, [id, positions, showStartPoint, showEndPoint, showRoutePointers, showStoppedPoint, onClick]);
 
   return null;
 };
