@@ -33,6 +33,7 @@ import MapCamera from "../map/MapCamera";
 import MapGeofence from "../map/MapGeofence";
 import StatusCard from "../common/components/StatusCard";
 import { usePreference } from "../common/util/preferences";
+// import MapRouteStopPoints from "../map/MapRouteStopPoints";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -199,6 +200,14 @@ const ReplayPage = () => {
           showEndPoint={showEndPoint}
           showStoppedPoint={showStoppedPoint}
         />
+        {/* <MapRouteStopPoints
+        positions={positions}
+        onClick={onPointClick}
+        showRoutePointers={showRoutePointers}
+        showStartPoint={showStartPoint}
+        showEndPoint={showEndPoint}
+        showStoppedPoint={showStoppedPoint}
+        /> */}
         {index < positions.length && (
           <MapPositions
             positions={[positions[index]]}

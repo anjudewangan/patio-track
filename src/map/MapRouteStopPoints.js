@@ -1,9 +1,9 @@
 import { useId, useEffect } from 'react';
 import { map } from './core/MapView';
 
-const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, showRoutePointers, showStoppedPoint }) => {
+const MapRouteStopPoints = ({ positions, onClick, showStartPoint, showEndPoint, showRoutePointers, showStoppedPoint }) => {
   const id = useId();
-
+  
   useEffect(() => {
     const onMouseEnter = () => map.getCanvas().style.cursor = 'pointer';
     const onMouseLeave = () => map.getCanvas().style.cursor = '';
@@ -15,9 +15,8 @@ const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, show
         onClick(feature.properties.id, feature.properties.index);
       }
     };
-
     map.addLayer({
-      id,
+      id: id,
       type: 'symbol',
       source: {
         type: 'geojson',
@@ -33,7 +32,7 @@ const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, show
               index,
               id: position.id,
               rotation: position.course,
-              fixTime: position.fixTime
+              speed: position.speed
             },
           })),
         },
@@ -41,18 +40,15 @@ const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, show
       layout: {
         'icon-image': [
           'match',
-          ['get', 'index'],
+          ['get', 'speed'],
           0,
-          showStartPoint ? 'startPoint' : '',
-          positions.length - 1,
-          showEndPoint ? 'endPoint' : '',
-          showRoutePointers ? 'arrow' : '',
+          showStoppedPoint ? 'stoppedPoint' : '',
+         '',
         ],
         'icon-allow-overlap': true,
         'icon-rotation-alignment': 'map',
       },
     });
-
     map.on('mouseenter', id, onMouseEnter);
     map.on('mouseleave', id, onMouseLeave);
     map.on('click', id, onMarkerClick);
@@ -74,4 +70,4 @@ const MapRoutePoints = ({ positions, onClick, showStartPoint, showEndPoint, show
   return null;
 };
 
-export default MapRoutePoints;
+export default MapRouteStopPoints;
