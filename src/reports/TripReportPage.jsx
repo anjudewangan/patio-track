@@ -28,17 +28,17 @@ import scheduleReport from './common/scheduleReport';
 
 const columnsArray = [
   ['startTime', 'reportStartTime'],
-  ['startOdometer', 'reportStartOdometer'],
+  // ['startOdometer', 'reportStartOdometer'],
   ['startAddress', 'reportStartAddress'],
   ['endTime', 'reportEndTime'],
-  ['endOdometer', 'reportEndOdometer'],
+  // ['endOdometer', 'reportEndOdometer'],
   ['endAddress', 'reportEndAddress'],
   ['distance', 'sharedDistance'],
   ['averageSpeed', 'reportAverageSpeed'],
   ['maxSpeed', 'reportMaximumSpeed'],
   ['duration', 'reportDuration'],
-  ['spentFuel', 'reportSpentFuel'],
-  ['driverName', 'sharedDriver'],
+  // ['spentFuel', 'reportSpentFuel'],
+  // ['driverName', 'sharedDriver'],
 ];
 const columnsMap = new Map(columnsArray);
 

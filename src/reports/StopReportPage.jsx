@@ -28,12 +28,12 @@ import scheduleReport from './common/scheduleReport';
 
 const columnsArray = [
   ['startTime', 'reportStartTime'],
-  ['startOdometer', 'positionOdometer'],
+  // ['startOdometer', 'positionOdometer'],
   ['address', 'positionAddress'],
   ['endTime', 'reportEndTime'],
   ['duration', 'reportDuration'],
-  ['engineHours', 'reportEngineHours'],
-  ['spentFuel', 'reportSpentFuel'],
+  // ['engineHours', 'reportEngineHours'],
+  // ['spentFuel', 'reportSpentFuel'],
 ];
 const columnsMap = new Map(columnsArray);
 
