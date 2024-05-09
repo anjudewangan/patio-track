@@ -62,15 +62,17 @@ const MapLiveRoutes = () => {
         .filter((id) => history.hasOwnProperty(id));
 
       map.getSource(id)?.setData({
-        type: 'FeatureCollection',
+        type: "FeatureCollection",
         features: deviceIds.map((deviceId) => ({
-          type: 'Feature',
+          type: "Feature",
           geometry: {
-            type: 'LineString',
+            type: "LineString",
             coordinates: history[deviceId],
           },
           properties: {
-            color: devices[deviceId].attributes['web.reportColor'] || theme.palette.geometry.main,
+            color:
+              devices[deviceId]?.attributes?.["web.reportColor"] ||
+              theme.palette.geometry.main,
           },
         })),
       });
