@@ -76,11 +76,11 @@ export const geofenceToFeature = (theme, item) => {
   }
   return {
     id: item.id,
-    type: 'Feature',
+    type: "Feature",
     geometry,
     properties: {
       name: item.name,
-      color: item.attributes.color || theme.palette.geometry.main,
+      color: item?.attributes?.color || theme.palette.geometry.main,
     },
   };
 };
