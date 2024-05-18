@@ -48,7 +48,7 @@ body {
 }
 
 :root {
-  /* --scrollbar-width: 10px; */
+  --scrollbar-width: 10px;
   --scrollbar-track-color-light: #D3D3D3;
   --scrollbar-thumb-color-light: #D60024;
   --scrollbar-track-color-dark: #121212;
