@@ -47,11 +47,32 @@ body {
   }
 }
 
-
 :root {
   /* --scrollbar-width: 10px; */
-  --scrollbar-track-color: #121212;
-  --scrollbar-thumb-color: #1E1E1E;
+  --scrollbar-track-color-light: #D3D3D3;
+  --scrollbar-thumb-color-light: #D60024;
+  --scrollbar-track-color-dark: #121212;
+  --scrollbar-thumb-color-dark: #D60024;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color-dark);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  ::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color-light);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color-light);
+  }
 }
 
 ::-webkit-scrollbar {
@@ -59,15 +80,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--scrollbar-track-color);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb-color);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
+  background-color: #ff002b;
 }
