@@ -138,7 +138,7 @@ const MainPage = () => {
   };
 
   const getCount = (tabValue) => {
-    const simulatedDevices = simulateOnlineStatus(filteredDevices);
+    const simulatedDevices = simulateOnlineStatus(devices);
 
     switch (tabValue) {
       case "All":
