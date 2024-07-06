@@ -150,7 +150,7 @@ const StatusCard = ({
   const positionAttributes = usePositionAttributes(t);
   const positionItems = useAttributePreference(
     "positionItems",
-    "speed,address,totalDistance,course,status,deviceTime,voltage"
+    "speed,address,totalDistance,course,status,deviceTime,voltage,power"
   );
 
   const [anchorEl, setAnchorEl] = useState(null);
