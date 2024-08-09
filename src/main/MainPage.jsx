@@ -111,7 +111,6 @@ const MainPage = () => {
     setFilteredDevices,
     setFilteredPositions
   );
-
   const devices = useSelector((state) => state.devices.items);
   const [isScrollableLeft, setIsScrollableLeft] = useState(false);
   const [isScrollableRight, setIsScrollableRight] = useState(false);
@@ -124,44 +123,6 @@ const MainPage = () => {
         tabsContainer.scrollLeft <
           tabsContainer.scrollWidth - tabsContainer.clientWidth
       );
-    }
-  };
-  const simulateOnlineStatus = (devices) => {
-    return Object.keys(devices).reduce((acc, key) => {
-      acc[key] = {
-        ...devices[key],
-        status:
-          devices[key].status === "offline" ? "online" : devices[key].status,
-      };
-      return acc;
-    }, {});
-  };
-
-  const getCount = (tabValue) => {
-    const simulatedDevices = simulateOnlineStatus(devices);
-
-    switch (tabValue) {
-      case "All":
-        return Object.keys(simulatedDevices).length;
-      case "Online":
-        return Object.keys(simulatedDevices).filter(
-          (key) => simulatedDevices[key].status === "online"
-        ).length;
-      case "Offline":
-        return Object.keys(simulatedDevices).filter(
-          (key) => simulatedDevices[key].status === "offline"
-        ).length;
-      case "Inactive":
-        return Object.keys(simulatedDevices).filter(
-          (key) => simulatedDevices[key].status === "unknown"
-        ).length;
-      case "Alarm":
-        return Object.values(positions).filter(
-          (position) =>
-            position.attributes && position.attributes.hasOwnProperty("alarm")
-        ).length;
-      default:
-        return 0;
     }
   };
 
@@ -182,6 +143,32 @@ const MainPage = () => {
     if (tabsContainer) {
       tabsContainer.scrollLeft += 100;
       handleTabsScroll();
+    }
+  };
+
+  const getCount = (tabValue) => {
+    switch (tabValue) {
+      case "All":
+        return Object.keys(devices).length;
+      case "Online":
+        return Object.keys(devices).filter(
+          (key) => devices[key].status === "online"
+        ).length;
+      case "Offline":
+        return Object.keys(devices).filter(
+          (key) => devices[key].status === "offline"
+        ).length;
+      case "Inactive":
+        return Object.keys(devices).filter(
+          (key) => devices[key].status === "unknown"
+        ).length;
+      case "Alarm":
+        return Object.values(positions).filter(
+          (position) =>
+            position.attributes && position.attributes.hasOwnProperty("alarm")
+        ).length;
+      default:
+        return 0;
     }
   };
 
@@ -231,24 +218,14 @@ const MainPage = () => {
               </IconButton>
               <Tabs
                 value={filter.statuses}
-                onChange={(e, newValue) => {
-                  let status = [newValue];
-                  if (newValue === "online") {
-                    status.push("offline");
-                  } else if (newValue === "all") {
-                    status.push("online");
-                    status.push("offline");
-                    status.push("unknown");
-                  } else if (newValue === "offline") {
-                    status = ["all"];
-                  }
-                  setFilter({ ...filter, statuses: status });
-                }}
+                onChange={(e, newValue) =>
+                  setFilter({ ...filter, statuses: newValue })
+                }
                 onScroll={handleTabsScroll}
               >
                 <Tab
                   label={`${t("deviceStatusAll")} (${getCount("All")})`}
-                  value="all"
+                  value=""
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />
                 <Tab

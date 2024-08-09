@@ -72,21 +72,8 @@ const DeviceRow = ({ data, index, style }) => {
   const devicePrimary = useAttributePreference("devicePrimary", "name");
   const deviceSecondary = useAttributePreference("deviceSecondary", "");
 
-  const simulateOnlineStatus = (device) => {
-    if (device.status === "offline") {
-      return { ...device, status: "online" };
-    }
-    return device;
-  };
-
-  const simulatedItem = simulateOnlineStatus(item);
-
   const displayStatus = () => {
-    if (
-      simulatedItem.status === "online" &&
-      position &&
-      position.speed !== undefined
-    ) {
+    if (item.status === "online" && position && position.speed !== undefined) {
       if (position.speed > 0) {
         return t("deviceStatusMoving");
       } else {
@@ -111,10 +98,10 @@ const DeviceRow = ({ data, index, style }) => {
   const secondaryText = () => {
     let status;
     let backgroundColor;
-    if (simulatedItem.status === "online" || !simulatedItem.lastUpdate) {
-      status = formatStatus(simulatedItem.status, t);
+    if (item.status === "online" || !item.lastUpdate) {
+      status = formatStatus(item.status, t);
     } else {
-      status = dayjs(simulatedItem.lastUpdate).fromNow();
+      status = dayjs(item.lastUpdate).fromNow();
     }
 
     const deviceStatus = displayStatus();
@@ -138,11 +125,9 @@ const DeviceRow = ({ data, index, style }) => {
           }}
         >
           {deviceSecondary &&
-            simulatedItem[deviceSecondary] &&
-            `${simulatedItem[deviceSecondary]} • `}
-          <span className={classes[getStatusColor(simulatedItem.status)]}>
-            {status}
-          </span>{" "}
+            item[deviceSecondary] &&
+            `${item[deviceSecondary]} • `}
+          <span className={classes[getStatusColor(item.status)]}>{status}</span>{" "}
           <span
             style={{
               padding: "0 5px",
@@ -161,21 +146,21 @@ const DeviceRow = ({ data, index, style }) => {
   return (
     <div style={style}>
       <ListItemButton
-        key={simulatedItem.id}
-        onClick={() => dispatch(devicesActions.selectId(simulatedItem.id))}
-        disabled={!admin && simulatedItem.disabled}
+        key={item.id}
+        onClick={() => dispatch(devicesActions.selectId(item.id))}
+        disabled={!admin && item.disabled}
       >
         <ListItemAvatar>
           <Avatar>
             <img
               className={classes.icon}
-              src={mapIcons[mapIconKey(simulatedItem.category)]}
+              src={mapIcons[mapIconKey(item.category)]}
               alt=""
             />
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary={simulatedItem[devicePrimary]}
+          primary={item[devicePrimary]}
           primaryTypographyProps={{ noWrap: true }}
           secondary={secondaryText()}
           secondaryTypographyProps={{ noWrap: true }}
