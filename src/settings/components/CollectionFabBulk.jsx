@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CollectionFabBulk = ({ editPath, bulkActionPath, disabled }) => {
+const CollectionFabBulk = ({ editPath, bulkActionPath, scanQr, disabled }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const readonly = useRestriction("readonly");
@@ -76,6 +76,14 @@ const CollectionFabBulk = ({ editPath, bulkActionPath, disabled }) => {
             }}
           >
             {t("userBulkActions")}
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              navigate(scanQr);
+            }}
+          >
+            {t("userScanQrActions")}
           </MenuItem>
         </Menu>
       </div>

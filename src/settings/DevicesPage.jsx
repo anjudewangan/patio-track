@@ -56,46 +56,61 @@ const DevicesPage = () => {
   };
 
   return (
-    <PageLayout menu={<SettingsMenu />} breadcrumbs={['settingsTitle', 'deviceTitle']}>
+    <PageLayout
+      menu={<SettingsMenu />}
+      breadcrumbs={["settingsTitle", "deviceTitle"]}
+    >
       <SearchHeader keyword={searchKeyword} setKeyword={setSearchKeyword} />
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('sharedName')}</TableCell>
-            <TableCell>{t('deviceIdentifier')}</TableCell>
-            <TableCell>{t('groupParent')}</TableCell>
-            <TableCell>{t('sharedPhone')}</TableCell>
-            <TableCell>{t('deviceModel')}</TableCell>
-            <TableCell>{t('deviceContact')}</TableCell>
-            <TableCell>{t('userExpirationTime')}</TableCell>
+            <TableCell>{t("sharedName")}</TableCell>
+            <TableCell>{t("deviceIdentifier")}</TableCell>
+            <TableCell>{t("groupParent")}</TableCell>
+            <TableCell>{t("sharedPhone")}</TableCell>
+            <TableCell>{t("deviceModel")}</TableCell>
+            <TableCell>{t("deviceContact")}</TableCell>
+            <TableCell>{t("userExpirationTime")}</TableCell>
             <TableCell className={classes.columnAction} />
           </TableRow>
         </TableHead>
         <TableBody>
-          {!loading ? items.filter(filterByKeyword(searchKeyword)).map((item) => (
-            <TableRow key={item.id}>
-              <TableCell>{item.name}</TableCell>
-              <TableCell>{item.uniqueId}</TableCell>
-              <TableCell>{item.groupId ? groups[item.groupId]?.name : null}</TableCell>
-              <TableCell>{item.phone}</TableCell>
-              <TableCell>{item.model}</TableCell>
-              <TableCell>{item.contact}</TableCell>
-              <TableCell>{formatTime(item.expirationTime, 'date', hours12)}</TableCell>
-              <TableCell className={classes.columnAction} padding="none">
-                <CollectionActions
-                  itemId={item.id}
-                  editPath="/settings/device"
-                  endpoint="devices"
-                  setTimestamp={setTimestamp}
-                  customActions={[actionConnections]}
-                  readonly={deviceReadonly}
-                />
-              </TableCell>
-            </TableRow>
-          )) : (<TableShimmer columns={7} endAction />)}
+          {!loading ? (
+            items.filter(filterByKeyword(searchKeyword)).map((item) => (
+              <TableRow key={item.id}>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.uniqueId}</TableCell>
+                <TableCell>
+                  {item.groupId ? groups[item.groupId]?.name : null}
+                </TableCell>
+                <TableCell>{item.phone}</TableCell>
+                <TableCell>{item.model}</TableCell>
+                <TableCell>{item.contact}</TableCell>
+                <TableCell>
+                  {formatTime(item.expirationTime, "date", hours12)}
+                </TableCell>
+                <TableCell className={classes.columnAction} padding="none">
+                  <CollectionActions
+                    itemId={item.id}
+                    editPath="/settings/device"
+                    endpoint="devices"
+                    setTimestamp={setTimestamp}
+                    customActions={[actionConnections]}
+                    readonly={deviceReadonly}
+                  />
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableShimmer columns={7} endAction />
+          )}
         </TableBody>
       </Table>
-      <CollectionFabBulk editPath="/settings/device" bulkActionPath="/settings/bulk-actions" />
+      <CollectionFabBulk
+        editPath="/settings/device"
+        bulkActionPath="/settings/bulk-actions"
+        scanQr="/settings/scan-qr"
+      />
     </PageLayout>
   );
 };

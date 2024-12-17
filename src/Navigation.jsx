@@ -58,6 +58,7 @@ import LogsPage from './reports/LogsPage';
 import loaderGif from "../public/loader.gif";
 import PrivacyPolicy from './login/PrivacyPolicy';
 import BulkActionsPage from './settings/BulkActionsPage'
+import ScanQRPage from "./settings/ScanQRPage";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -69,12 +70,12 @@ const Navigation = () => {
   const query = useQuery();
 
   useEffectAsync(async () => {
-    if (query.get('token')) {
-      const token = query.get('token');
+    if (query.get("token")) {
+      const token = query.get("token");
       await fetch(`/api/session?token=${encodeURIComponent(token)}`);
       navigate(pathname);
-    } else if (query.get('deviceId')) {
-      const deviceId = query.get('deviceId');
+    } else if (query.get("deviceId")) {
+      const deviceId = query.get("deviceId");
       const response = await fetch(`/api/devices?uniqueId=${deviceId}`);
       if (response.ok) {
         const items = await response.json();
@@ -84,9 +85,9 @@ const Navigation = () => {
       } else {
         throw Error(await response.text());
       }
-      navigate('/');
-    } else if (query.get('eventId')) {
-      const eventId = parseInt(query.get('eventId'), 10);
+      navigate("/");
+    } else if (query.get("eventId")) {
+      const eventId = parseInt(query.get("eventId"), 10);
       navigate(`/event/${eventId}`);
     } else {
       setRedirectsHandled(true);
@@ -94,22 +95,24 @@ const Navigation = () => {
   }, [query]);
 
   if (!redirectsHandled) {
-    return (<>
-      {/* <LinearProgress /> */}
-      <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-            >
-            <img
-              src={loaderGif}
-              alt="Loader"
-              style={{ width: "100%", height: "100vh" }}
-              />
-          </div>
-      </>);
+    return (
+      <>
+        {/* <LinearProgress /> */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <img
+            src={loaderGif}
+            alt="Loader"
+            style={{ width: "100%", height: "100vh" }}
+          />
+        </div>
+      </>
+    );
   }
   return (
     <Routes>
@@ -140,7 +143,10 @@ const Navigation = () => {
           <Route path="attribute/:id" element={<ComputedAttributePage />} />
           <Route path="attribute" element={<ComputedAttributePage />} />
           <Route path="devices" element={<DevicesPage />} />
-          <Route path="device/:id/connections" element={<DeviceConnectionsPage />} />
+          <Route
+            path="device/:id/connections"
+            element={<DeviceConnectionsPage />}
+          />
           <Route path="device/:id/command" element={<CommandDevicePage />} />
           <Route path="device/:id" element={<DevicePage />} />
           <Route path="device" element={<DevicePage />} />
@@ -150,7 +156,10 @@ const Navigation = () => {
           <Route path="geofence/:id" element={<GeofencePage />} />
           <Route path="geofence" element={<GeofencePage />} />
           <Route path="groups" element={<GroupsPage />} />
-          <Route path="group/:id/connections" element={<GroupConnectionsPage />} />
+          <Route
+            path="group/:id/connections"
+            element={<GroupConnectionsPage />}
+          />
           <Route path="group/:id/command" element={<CommandGroupPage />} />
           <Route path="group/:id" element={<GroupPage />} />
           <Route path="group" element={<GroupPage />} />
@@ -163,10 +172,14 @@ const Navigation = () => {
           <Route path="preferences" element={<PreferencesPage />} />
           <Route path="server" element={<ServerPage />} />
           <Route path="users" element={<UsersPage />} />
-          <Route path="user/:id/connections" element={<UserConnectionsPage />} />
+          <Route
+            path="user/:id/connections"
+            element={<UserConnectionsPage />}
+          />
           <Route path="user/:id" element={<UserPage />} />
           <Route path="user" element={<UserPage />} />
           <Route path="bulk-actions" element={<BulkActionsPage />} />
+          <Route path="scan-qr" element={<ScanQRPage />} />
         </Route>
 
         <Route path="reports">
