@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml>
+  <Folder>
+    <name>POI</name>
+    <description>Points of Interest</description>
+    <Folder>
+      <name>Shopping</name>
+      <Style id="style-Shopping">
+        <IconStyle>
+          <scale>0.7</scale>
+          <Icon>
+            <href>https://maps.google.com/mapfiles/kml/pal3/icon18.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Placemark>
+        <name>Apple SoHo</name>
+        <styleUrl>#style-Shopping</styleUrl>
+        <Point>
+          <coordinates>-73.99902999401093,40.72505941202632,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Hotel</name>
+      <Style id="style-Hotel">
+        <IconStyle>
+          <scale>0.7</scale>
+          <Icon>
+            <href>https://maps.google.com/mapfiles/kml/pal2/icon28.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Placemark>
+        <name>Soho Grand Hotel</name>
+        <styleUrl>#style-Hotel</styleUrl>
+        <Point>
+          <coordinates>-74.00445342063904,40.72205499947202,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Cinema</name>
+      <Style id="style-Cinema">
+        <IconStyle>
+          <scale>0.7</scale>
+          <Icon>
+            <href>https://maps.google.com/mapfiles/kml/pal2/icon30.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Placemark>
+        <name>Film Forum</name>
+        <styleUrl>#style-Cinema</styleUrl>
+        <Point>
+          <coordinates>-74.00450706481934,40.72833199396919,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Folder>
+  <Folder>
+    <name>Tracks</name>
+    <Folder>
+      <name>Broadway</name>
+      <Style id="style-Broadway">
+        <LineStyle>
+          <color>8800ff00</color>
+          <width>5</width>
+        </LineStyle>
+      </Style>
+      <Placemark>
+        <name>Broadway</name>
+        <styleUrl>#style-Broadway</styleUrl>
+        <LineString>
+          <altitudeMode>relativeToGround</altitudeMode>
+          <coordinates>-73.9907,40.7347,0 -73.9914,40.7317,0 -74.0132,40.7058,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+  </Folder>
+</kml>

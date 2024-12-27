@@ -11,7 +11,8 @@ const PoiMap = () => {
 
   const theme = useTheme();
 
-  const poiLayer = usePreference('poiLayer');
+  const poiLayer = usePreference("poiLayer", "http://localhost:3000/test.kml");
+  console.log("PoiLayer", poiLayer);
 
   const [data, setData] = useState(null);
 
