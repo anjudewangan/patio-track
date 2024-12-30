@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const { reducer, actions } = createSlice({
-  name: 'devices',
+  name: "devices",
   initialState: {
     items: {},
     selectedId: null,
     selectedIds: [],
+    distanceTraveledLimit: 0,
   },
   reducers: {
     refresh(state, action) {
       state.items = {};
-      action.payload.forEach((item) => state.items[item.id] = item);
+      action.payload.forEach((item) => (state.items[item.id] = item));
     },
     update(state, action) {
-      action.payload.forEach((item) => state.items[item.id] = item);
+      action.payload.forEach((item) => (state.items[item.id] = item));
     },
     select(state, action) {
       state.selectedId = action.payload;
@@ -25,6 +26,9 @@ const { reducer, actions } = createSlice({
     selectIds(state, action) {
       state.selectedIds = action.payload;
       [state.selectedId] = state.selectedIds;
+    },
+    selectNumber(state, action) {
+      state.distanceTraveledLimit = action.payload;
     },
     remove(state, action) {
       delete state.items[action.payload];

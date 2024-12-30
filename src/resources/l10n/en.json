@@ -571,6 +571,8 @@
   "reportSpentFuel": "Spent Fuel",
   "reportStartOdometer": "Odometer Start",
   "reportEndOdometer": "Odometer End",
+  "reportDistanceTraveled": "Distance Traveled (Km)",
+  "reportTargetDistance": "Target Distance",
   "statisticsTitle": "Statistics",
   "statisticsCaptureTime": "Capture Time",
   "statisticsActiveUsers": "Active Users",

@@ -155,7 +155,10 @@ const TripReportPage = () => {
   };
 
   return (
-    <PageLayout menu={<ReportsMenu />} breadcrumbs={['reportTitle', 'reportTrips']}>
+    <PageLayout
+      menu={<ReportsMenu />}
+      breadcrumbs={["reportTitle", "reportTrips"]}
+    >
       <div className={classes.container}>
         {selectedItem && (
           <div className={classes.containerMap}>
@@ -173,38 +176,56 @@ const TripReportPage = () => {
         )}
         <div className={classes.containerMain}>
           <div className={classes.header}>
-            <ReportFilter handleSubmit={handleSubmit} handleSchedule={handleSchedule}>
-              <ColumnSelect columns={columns} setColumns={setColumns} columnsArray={columnsArray} />
+            <ReportFilter
+              handleSubmit={handleSubmit}
+              handleSchedule={handleSchedule}
+              includeGroups
+            >
+              <ColumnSelect
+                columns={columns}
+                setColumns={setColumns}
+                columnsArray={columnsArray}
+              />
             </ReportFilter>
           </div>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell className={classes.columnAction} />
-                {columns.map((key) => (<TableCell key={key}>{t(columnsMap.get(key))}</TableCell>))}
+                {columns.map((key) => (
+                  <TableCell key={key}>{t(columnsMap.get(key))}</TableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {!loading ? items.map((item) => (
-                <TableRow key={item.startPositionId}>
-                  <TableCell className={classes.columnAction} padding="none">
-                    {selectedItem === item ? (
-                      <IconButton size="small" onClick={() => setSelectedItem(null)}>
-                        <GpsFixedIcon fontSize="small" />
-                      </IconButton>
-                    ) : (
-                      <IconButton size="small" onClick={() => setSelectedItem(item)}>
-                        <LocationSearchingIcon fontSize="small" />
-                      </IconButton>
-                    )}
-                  </TableCell>
-                  {columns.map((key) => (
-                    <TableCell key={key}>
-                      {formatValue(item, key)}
+              {!loading ? (
+                items.map((item) => (
+                  <TableRow key={item.startPositionId}>
+                    <TableCell className={classes.columnAction} padding="none">
+                      {selectedItem === item ? (
+                        <IconButton
+                          size="small"
+                          onClick={() => setSelectedItem(null)}
+                        >
+                          <GpsFixedIcon fontSize="small" />
+                        </IconButton>
+                      ) : (
+                        <IconButton
+                          size="small"
+                          onClick={() => setSelectedItem(item)}
+                        >
+                          <LocationSearchingIcon fontSize="small" />
+                        </IconButton>
+                      )}
                     </TableCell>
-                  ))}
-                </TableRow>
-              )) : (<TableShimmer columns={columns.length + 1} startAction />)}
+                    {columns.map((key) => (
+                      <TableCell key={key}>{formatValue(item, key)}</TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableShimmer columns={columns.length + 1} startAction />
+              )}
             </TableBody>
           </Table>
         </div>

@@ -72,12 +72,12 @@ const ReportsMenu = () => {
           icon={<PauseCircleFilledIcon />}
           selected={location.pathname === "/reports/stop"}
         />
-        {/* <MenuItem
+        <MenuItem
           title={t("reportSummary")}
           link="/reports/summary"
           icon={<FormatListBulletedIcon />}
           selected={location.pathname === "/reports/summary"}
-        /> */}
+        />
         <MenuItem
           title={t("reportChart")}
           link="/reports/chart"
