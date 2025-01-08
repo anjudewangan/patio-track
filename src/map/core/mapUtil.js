@@ -1,26 +1,27 @@
 import { parse, stringify } from 'wellknown';
 import circle from '@turf/circle';
 
-export const loadImage = (url) => new Promise((imageLoaded) => {
-  const image = new Image();
-  image.onload = () => imageLoaded(image);
-  image.src = url;
-});
+export const loadImage = (url) =>
+  new Promise((imageLoaded) => {
+    const image = new Image();
+    image.onload = () => imageLoaded(image);
+    image.src = url;
+  });
 
 const canvasTintImage = (image, color) => {
-  const canvas = document.createElement('canvas');
+  const canvas = document.createElement("canvas");
   canvas.width = image.width * devicePixelRatio;
   canvas.height = image.height * devicePixelRatio;
   canvas.style.width = `${image.width}px`;
   canvas.style.height = `${image.height}px`;
 
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext("2d");
 
   context.save();
-  context.fillStyle = 'white';
+  context.fillStyle = "white";
   context.globalAlpha = 1;
   context.fillRect(0, 0, canvas.width, canvas.height);
-  context.globalCompositeOperation = 'destination-atop';
+  context.globalCompositeOperation = "destination-atop";
   context.globalAlpha = 1;
   context.drawImage(image, 0, 0, canvas.width, canvas.height);
   context.restore();
@@ -29,20 +30,26 @@ const canvasTintImage = (image, color) => {
 };
 
 export const prepareIcon = (background, icon, color) => {
-  const canvas = document.createElement('canvas');
+  const canvas = document.createElement("canvas");
   canvas.width = background.width * devicePixelRatio;
   canvas.height = background.height * devicePixelRatio;
   canvas.style.width = `${background.width}px`;
   canvas.style.height = `${background.height}px`;
 
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext("2d");
   context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
   if (icon) {
     const iconRatio = 0.5;
     const imageWidth = canvas.width * iconRatio;
     const imageHeight = canvas.height * iconRatio;
-    context.drawImage(canvasTintImage(icon, color), (canvas.width - imageWidth) / 2, (canvas.height - imageHeight) / 2, imageWidth, imageHeight);
+    context.drawImage(
+      canvasTintImage(icon, color),
+      (canvas.width - imageWidth) / 2,
+      (canvas.height - imageHeight) / 2,
+      imageWidth,
+      imageHeight
+    );
   }
 
   return context.getImageData(0, 0, canvas.width, canvas.height);
@@ -51,8 +58,13 @@ export const prepareIcon = (background, icon, color) => {
 export const reverseCoordinates = (it) => {
   if (!it) {
     return it;
-  } if (Array.isArray(it)) {
-    if (it.length === 2 && typeof it[0] === 'number' && typeof it[1] === 'number') {
+  }
+  if (Array.isArray(it)) {
+    if (
+      it.length === 2 &&
+      typeof it[0] === "number" &&
+      typeof it[1] === "number"
+    ) {
       return [it[1], it[0]];
     }
     return it.map((it) => reverseCoordinates(it));
@@ -63,13 +75,20 @@ export const reverseCoordinates = (it) => {
   };
 };
 
-
 export const geofenceToFeature = (theme, item) => {
   let geometry;
-  if (item.area.indexOf('CIRCLE') > -1) {
-    const coordinates = item.area.replace(/CIRCLE|\(|\)|,/g, ' ').trim().split(/ +/);
-    const options = { steps: 32, units: 'meters' };
-    const polygon = circle([Number(coordinates[1]), Number(coordinates[0])], Number(coordinates[2]), options);
+  console.log(item);
+  if (item.area.indexOf("CIRCLE") > -1) {
+    const coordinates = item.area
+      .replace(/CIRCLE|\(|\)|,/g, " ")
+      .trim()
+      .split(/ +/);
+    const options = { steps: 32, units: "meters" };
+    const polygon = circle(
+      [Number(coordinates[1]), Number(coordinates[0])],
+      Number(coordinates[2]),
+      options
+    );
     geometry = polygon.geometry;
   } else {
     geometry = reverseCoordinates(parse(item.area));
@@ -85,16 +104,17 @@ export const geofenceToFeature = (theme, item) => {
   };
 };
 
-export const geometryToArea = (geometry) => stringify(reverseCoordinates(geometry));
+export const geometryToArea = (geometry) =>
+  stringify(reverseCoordinates(geometry));
 
 export const findFonts = (map) => {
   const fontSet = new Set();
   const { layers } = map.getStyle();
   layers?.forEach?.((layer) => {
-    layer.layout?.['text-font']?.forEach?.(fontSet.add, fontSet);
+    layer.layout?.["text-font"]?.forEach?.(fontSet.add, fontSet);
   });
   const availableFonts = [...fontSet];
-  const regularFont = availableFonts.find((it) => it.includes('Regular'));
+  const regularFont = availableFonts.find((it) => it.includes("Regular"));
   if (regularFont) {
     return [regularFont];
   }
@@ -102,5 +122,33 @@ export const findFonts = (map) => {
   if (anyFont) {
     return [anyFont];
   }
-  return ['Roboto Regular'];
+  return ["Roboto Regular"];
+};
+
+export const startEndPointsForLineStringGeofence = (features) => {
+  const points = [];
+  features.forEach((line) => {
+    if (line.geometry?.type === "LineString") {
+      points.push({
+        id: window.crypto.randomUUID(),
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: line.geometry?.coordinates?.slice(0)?.[0],
+        },
+        properties: { type: "start", color: "#00ff00" },
+      });
+      points.push({
+        id: window.crypto.randomUUID(),
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: line.geometry?.coordinates?.slice(-1)?.[0],
+        },
+        properties: { type: "end", color: "#ff0000" },
+      });
+    }
+  });
+  console.log(points);
+  return points;
 };
