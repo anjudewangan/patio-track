@@ -139,6 +139,7 @@ const SummaryReportPage = () => {
           handleSchedule={handleSchedule}
           includeGroups
           ignoreDevice
+          distanceTraveled
         >
           <div className={classes.filterItem}>
             <FormControl fullWidth>

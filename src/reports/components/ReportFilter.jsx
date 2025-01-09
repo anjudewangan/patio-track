@@ -26,6 +26,7 @@ const ReportFilter = ({
   ignoreDevice,
   multiDevice,
   includeGroups,
+  distanceTraveled,
 }) => {
   const classes = useReportStyles();
   const dispatch = useDispatch();
@@ -141,27 +142,29 @@ const ReportFilter = ({
           </FormControl>
         </div>
       )}
-      <div className={classes.filterItem}>
-        <FormControl fullWidth>
-          <InputLabel>{t("reportDistanceTraveled")}</InputLabel>
-          <OutlinedInput
-            label={t("reportDistanceTraveled")}
-            value={distanceTraveledLimit}
-            type="number"
-            onChange={(e) =>
-              dispatch(devicesActions.selectNumber(e.target.value))
-            }
-          >
-            {Object.values(devices)
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .map((device) => (
-                <MenuItem key={device.id} value={device.id}>
-                  {device.name}
-                </MenuItem>
-              ))}
-          </OutlinedInput>
-        </FormControl>
-      </div>
+      {distanceTraveled && (
+        <div className={classes.filterItem}>
+          <FormControl fullWidth>
+            <InputLabel>{t("reportDistanceTraveled")}</InputLabel>
+            <OutlinedInput
+              label={t("reportDistanceTraveled")}
+              value={distanceTraveledLimit}
+              type="number"
+              onChange={(e) =>
+                dispatch(devicesActions.selectNumber(e.target.value))
+              }
+            >
+              {Object.values(devices)
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((device) => (
+                  <MenuItem key={device.id} value={device.id}>
+                    {device.name}
+                  </MenuItem>
+                ))}
+            </OutlinedInput>
+          </FormControl>
+        </div>
+      )}
       {includeGroups && (
         <div className={classes.filterItem}>
           <FormControl fullWidth>
