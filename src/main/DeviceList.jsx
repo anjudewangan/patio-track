@@ -9,10 +9,11 @@ import DeviceRow from './DeviceRow';
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    maxHeight: '100%',
+    height: "50%",
+    maxHeight: "50%",
   },
   listInner: {
-    position: 'relative',
+    position: "relative",
     margin: theme.spacing(1.5, 0),
   },
 }));
@@ -36,7 +37,7 @@ const DeviceList = ({ devices }) => {
   }, []);
 
   useEffectAsync(async () => {
-    const response = await fetch('/api/devices');
+    const response = await fetch("/api/devices");
     if (response.ok) {
       dispatch(devicesActions.refresh(await response.json()));
     } else {
@@ -45,11 +46,11 @@ const DeviceList = ({ devices }) => {
   }, []);
 
   return (
-    <AutoSizer className={classes.list}>
+    <AutoSizer className={classes.list} disableHeight>
       {({ height, width }) => (
         <FixedSizeList
           width={width}
-          height={height}
+          height={270}
           itemCount={devices.length}
           itemData={devices}
           itemSize={72}

@@ -16,6 +16,7 @@ import MainToolbar from "./MainToolbar";
 import MainMap from "./MainMap";
 import { useAttributePreference } from "../common/util/preferences";
 import { useTranslation } from "../common/components/LocalizationProvider";
+import { GroupFilter } from "../common/components/GroupFilter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 4,
     paddingBottom: "45px",
     width: "400px",
+    height: "590px",
   },
 }));
 
@@ -212,6 +214,7 @@ const MainPage = () => {
             className={classes.contentList}
             style={devicesOpen ? {} : { visibility: "hidden" }}
           >
+            <GroupFilter />
             <div style={{ display: "flex", alignItems: "center" }}>
               <IconButton onClick={scrollTabsLeft}>
                 <KeyboardArrowLeft />
