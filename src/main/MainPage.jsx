@@ -84,14 +84,21 @@ const MainPage = () => {
   );
 
   const [filteredDevices, setFilteredDevices] = useState([]);
+  const [filteredDevicesByGroup, setFilteredDevicesByGroup] = useState([]);
 
   const [keyword, setKeyword] = useState("");
   const [filter, setFilter] = usePersistedState("filter", {
     statuses: [],
     groups: [],
   });
+  const [filterByGroup, setFilterByGroup] = usePersistedState("groupFilter", {
+    statuses: [],
+    groups: [],
+  });
+
+  console.log("filterGroups", filterByGroup, filter);
   const [filterSort, setFilterSort] = usePersistedState("filterSort", "");
-  const [filterMap, setFilterMap] = usePersistedState("filterMap", false);
+  const [filterMap, setFilterMap] = usePersistedState("filterMap", true);
 
   const [devicesOpen, setDevicesOpen] = useState(desktop);
   const [eventsOpen, setEventsOpen] = useState(false);
@@ -113,6 +120,17 @@ const MainPage = () => {
     setFilteredDevices,
     setFilteredPositions
   );
+
+  useFilter(
+    keyword,
+    filterByGroup,
+    filterSort,
+    filterMap,
+    positions,
+    setFilteredDevicesByGroup,
+    setFilteredPositions
+  );
+
   const devices = useSelector((state) => state.devices.items);
   const [isScrollableLeft, setIsScrollableLeft] = useState(false);
   const [isScrollableRight, setIsScrollableRight] = useState(false);
@@ -148,27 +166,24 @@ const MainPage = () => {
     }
   };
 
+  const handleFilter = (value) => {
+    setFilter(value);
+    setFilterByGroup({ groups: value.groups || [], statuses: [] });
+  };
+
   const getCount = (tabValue) => {
     switch (tabValue) {
       case "All":
-        return Object.keys(devices).length;
+        return filteredDevicesByGroup.length;
       case "Online":
-        return Object.keys(devices).filter(
-          (key) => devices[key].status === "online"
-        ).length;
+        return filteredDevicesByGroup.filter((key) => key.status === "online")
+          .length;
       case "Offline":
-        return Object.keys(devices).filter(
-          (key) => devices[key].status === "offline"
-        ).length;
+        return filteredDevicesByGroup.filter((key) => key.status === "offline")
+          .length;
       case "Inactive":
-        return Object.keys(devices).filter(
-          (key) => devices[key].status === "unknown"
-        ).length;
-      case "Alarm":
-        return Object.values(positions).filter(
-          (position) =>
-            position.attributes && position.attributes.hasOwnProperty("alarm")
-        ).length;
+        return filteredDevicesByGroup.filter((key) => key.status === "unknown")
+          .length;
       default:
         return 0;
     }
@@ -214,7 +229,7 @@ const MainPage = () => {
             className={classes.contentList}
             style={devicesOpen ? {} : { visibility: "hidden" }}
           >
-            <GroupFilter />
+            <GroupFilter filter={filter} setFilter={handleFilter} />
             <div style={{ display: "flex", alignItems: "center" }}>
               <IconButton onClick={scrollTabsLeft}>
                 <KeyboardArrowLeft />

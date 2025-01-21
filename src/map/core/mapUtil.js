@@ -77,7 +77,6 @@ export const reverseCoordinates = (it) => {
 
 export const geofenceToFeature = (theme, item) => {
   let geometry;
-  console.log(item);
   if (item.area.indexOf("CIRCLE") > -1) {
     const coordinates = item.area
       .replace(/CIRCLE|\(|\)|,/g, " ")
@@ -149,6 +148,5 @@ export const startEndPointsForLineStringGeofence = (features) => {
       });
     }
   });
-  console.log(points);
   return points;
 };

@@ -164,23 +164,23 @@ const MainToolbar = ({
           placeholder={t("sharedSearchDevices")}
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                size="small"
-                edge="end"
-                onClick={() => setFilterAnchorEl(inputRef.current)}
-              >
-                <Badge
-                  color="primary"
-                  variant="dot"
-                  invisible={!filter.statuses.length && !filter.groups.length}
-                >
-                  <TuneIcon fontSize="small" />
-                </Badge>
-              </IconButton>
-            </InputAdornment>
-          }
+          // endAdornment={
+          //   <InputAdornment position="end">
+          //     <IconButton
+          //       size="small"
+          //       edge="end"
+          //       onClick={() => setFilterAnchorEl(inputRef.current)}
+          //     >
+          //       <Badge
+          //         color="primary"
+          //         variant="dot"
+          //         invisible={!filter.statuses.length && !filter.groups.length}
+          //       >
+          //         <TuneIcon fontSize="small" />
+          //       </Badge>
+          //     </IconButton>
+          //   </InputAdornment>
+          // }
           size="small"
           fullWidth
         />
@@ -224,7 +224,7 @@ const MainToolbar = ({
           </ListItemButton>
         )}
       </Popover>
-      <Popover
+      {/* <Popover
         open={!!filterAnchorEl}
         anchorEl={filterAnchorEl}
         onClose={() => setFilterAnchorEl(null)}
@@ -234,7 +234,7 @@ const MainToolbar = ({
         }}
       >
         <div className={classes.filterPanel}>
-          {/* <FormControl>
+          <FormControl>
             <InputLabel>{t("deviceStatus")}</InputLabel>
             <Select
               label={t("deviceStatus")}
@@ -254,7 +254,7 @@ const MainToolbar = ({
                 "deviceStatusUnknown"
               )} (${deviceStatusCount("unknown")})`}</MenuItem>
             </Select>
-          </FormControl> */}
+          </FormControl>
           <FormControl>
             <InputLabel>{t("settingsGroups")}</InputLabel>
             <Select
@@ -297,7 +297,7 @@ const MainToolbar = ({
             />
           </FormGroup>
         </div>
-      </Popover>
+      </Popover> */}
     </Toolbar>
   );
 };
