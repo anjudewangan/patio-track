@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
       position: "fixed",
       left: 0,
       top: 0,
-      height: `calc(100% - ${theme.spacing(3)})`,
+      height: `calc(100% - ${theme.spacing(10)})`,
       width: theme.dimensions.drawerWidthDesktop,
       margin: theme.spacing(1.5),
       zIndex: 3,
@@ -60,9 +60,9 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "auto",
     gridArea: "1 / 1",
     zIndex: 4,
-    paddingBottom: "45px",
+    paddingBottom: "15px",
     width: "400px",
-    height: "590px",
+    height: "79vh",
   },
 }));
 

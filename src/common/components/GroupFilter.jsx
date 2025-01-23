@@ -99,6 +99,6 @@ export const GroupFilter = ({ filter, setFilter }) => {
   );
 
   return (
-    <div style={{ height: "50%", overflow: "auto" }}>{renderedComponent}</div>
+    <div style={{ height: "40%", overflow: "auto" }}>{renderedComponent}</div>
   );
 };
