@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   FormControl,
   InputLabel,
@@ -27,6 +27,7 @@ const ReportFilter = ({
   multiDevice,
   includeGroups,
   distanceTraveled,
+  reportPreferences,
 }) => {
   const classes = useReportStyles();
   const dispatch = useDispatch();
@@ -46,6 +47,8 @@ const ReportFilter = ({
   const distanceTraveledLimit = useSelector(
     (state) => state.devices.distanceTraveledLimit
   );
+
+  const deviceTypeState = useSelector((state) => state.reports.deviceType);
   const [button, setButton] = useState("json");
 
   const [description, setDescription] = useState();
@@ -56,6 +59,22 @@ const ReportFilter = ({
   const disabled =
     (!ignoreDevice && !deviceId && !deviceIds.length && !groupIds.length) ||
     scheduleDisabled;
+
+  const [deviceType, setDeviceType] = useState(new Set());
+
+  useEffect(() => {
+    const tmpList = [];
+    Object.values(devices).forEach((device) => {
+      if (device?.attributes?.deviceType)
+        tmpList.push(device.attributes.deviceType);
+    });
+
+    setDeviceType((previousSet) => {
+      const newSet = new Set(previousSet);
+      tmpList.forEach((item) => newSet.add(item));
+      return newSet;
+    });
+  }, [devices]);
 
   const handleClick = (type) => {
     if (type === "schedule") {
@@ -107,6 +126,7 @@ const ReportFilter = ({
         calendarId,
         type,
         distanceTraveledLimit,
+        deviceType: deviceTypeState,
       });
     }
   };
@@ -153,15 +173,30 @@ const ReportFilter = ({
               onChange={(e) =>
                 dispatch(devicesActions.selectNumber(e.target.value))
               }
+            ></OutlinedInput>
+          </FormControl>
+        </div>
+      )}
+      {reportPreferences?.includes("userFilter") && (
+        <div className={classes.filterItem}>
+          <FormControl fullWidth>
+            <InputLabel>{t("DeviceTypeFilter")}</InputLabel>
+            <Select
+              label={t("DeviceTypeFilter")}
+              value={deviceTypeState}
+              onChange={(e) =>
+                dispatch(reportsActions.updateDeviceType(e.target.value))
+              }
+              multiple
             >
-              {Object.values(devices)
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((device) => (
-                  <MenuItem key={device.id} value={device.id}>
-                    {device.name}
+              {Array.from(deviceType)
+                .sort((a, b) => a.localeCompare(b))
+                .map((type, idx) => (
+                  <MenuItem key={idx} value={type}>
+                    {type}
                   </MenuItem>
                 ))}
-            </OutlinedInput>
+            </Select>
           </FormControl>
         </div>
       )}
@@ -172,9 +207,11 @@ const ReportFilter = ({
             <Select
               label={t("settingsGroups")}
               value={groupIds}
-              onChange={(e) =>
-                dispatch(reportsActions.updateGroupIds(e.target.value))
-              }
+              onChange={(e) => {
+                dispatch(devicesActions.selectIds([]));
+                dispatch(devicesActions.selectId(null));
+                dispatch(reportsActions.updateGroupIds(e.target.value));
+              }}
               multiple
             >
               {Object.values(groups)

@@ -96,7 +96,6 @@ const MainPage = () => {
     groups: [],
   });
 
-  console.log("filterGroups", filterByGroup, filter);
   const [filterSort, setFilterSort] = usePersistedState("filterSort", "");
   const [filterMap, setFilterMap] = usePersistedState("filterMap", true);
 

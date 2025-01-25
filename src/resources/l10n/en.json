@@ -572,6 +572,7 @@
   "reportStartOdometer": "Odometer Start",
   "reportEndOdometer": "Odometer End",
   "reportDistanceTraveled": "Distance Traveled (Km)",
+  "DeviceTypeFilter": "Device Type Filter",
   "reportTargetDistance": "Target Distance",
   "statisticsTitle": "Statistics",
   "statisticsCaptureTime": "Capture Time",

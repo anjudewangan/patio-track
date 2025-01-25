@@ -43,6 +43,10 @@ const SummaryReportPage = () => {
   const distanceUnit = useAttributePreference("distanceUnit");
   const speedUnit = useAttributePreference("speedUnit");
   const volumeUnit = useAttributePreference("volumeUnit");
+  const filterReportOptions = useAttributePreference(
+    "filterReportOptions",
+    ""
+  ).split(",");
   const hours12 = usePreference("twelveHourFormat");
 
   const [columns, setColumns] = usePersistedState("summaryColumns", [
@@ -55,7 +59,15 @@ const SummaryReportPage = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = useCatch(
-    async ({ deviceIds, groupIds, from, to, type, distanceTraveledLimit }) => {
+    async ({
+      deviceIds,
+      groupIds,
+      from,
+      to,
+      type,
+      distanceTraveledLimit,
+      deviceType,
+    }) => {
       const query = new URLSearchParams({
         from,
         to,
@@ -64,6 +76,7 @@ const SummaryReportPage = () => {
       });
       deviceIds.forEach((deviceId) => query.append("deviceId", deviceId));
       groupIds.forEach((groupId) => query.append("groupId", groupId));
+      deviceType.forEach((item) => query.append("deviceType", item));
       if (type === "export") {
         window.location.assign(`/api/reports/summary/xlsx?${query.toString()}`);
       } else if (type === "mail") {
@@ -140,6 +153,7 @@ const SummaryReportPage = () => {
           includeGroups
           ignoreDevice
           distanceTraveled
+          reportPreferences={filterReportOptions}
         >
           <div className={classes.filterItem}>
             <FormControl fullWidth>

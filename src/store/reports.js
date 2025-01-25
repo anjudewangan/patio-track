@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 
 const { reducer, actions } = createSlice({
-  name: 'reports',
+  name: "reports",
   initialState: {
+    deviceType: [],
     groupIds: [],
-    period: 'today',
-    from: dayjs().subtract(1, 'hour').locale('en').format('YYYY-MM-DDTHH:mm'),
-    to: dayjs().locale('en').format('YYYY-MM-DDTHH:mm'),
+    period: "today",
+    from: dayjs().subtract(1, "hour").locale("en").format("YYYY-MM-DDTHH:mm"),
+    to: dayjs().locale("en").format("YYYY-MM-DDTHH:mm"),
   },
   reducers: {
     updateGroupIds(state, action) {
@@ -21,6 +22,9 @@ const { reducer, actions } = createSlice({
     },
     updateTo(state, action) {
       state.to = action.payload;
+    },
+    updateDeviceType(state, action) {
+      state.deviceType = action.payload;
     },
   },
 });
