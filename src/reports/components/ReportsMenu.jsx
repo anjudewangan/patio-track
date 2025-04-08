@@ -90,7 +90,7 @@ const ReportsMenu = () => {
           icon={<RouteIcon />}
         />
       </List>
-      <Divider />
+      {/* <Divider />
       <List>
         <MenuItem
           title={t("sharedLogs")}
@@ -114,7 +114,7 @@ const ReportsMenu = () => {
             selected={location.pathname === "/reports/statistics"}
           />
         )}
-      </List>
+      </List> */}
       <>
         <Divider />
         <BottomMenu />
