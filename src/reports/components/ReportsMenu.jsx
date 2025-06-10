@@ -24,6 +24,7 @@ import {
   useRestriction,
 } from "../../common/util/permissions";
 import BottomMenu from "../../common/components/BottomMenu";
+import { useAttributePreference } from "../../common/util/preferences";
 
 const MenuItem = ({ title, link, icon, selected }) => (
   <ListItemButton key={link} component={Link} to={link} selected={selected}>
@@ -38,6 +39,7 @@ const ReportsMenu = () => {
 
   const admin = useAdministrator();
   const readonly = useRestriction("readonly");
+  const exception = useAttributePreference("exceptionReport", false);
 
   return (
     <>
@@ -78,6 +80,14 @@ const ReportsMenu = () => {
           icon={<FormatListBulletedIcon />}
           selected={location.pathname === "/reports/summary"}
         />
+        {exception && (
+          <MenuItem
+            title={t("reportException")}
+            link="/reports/exception"
+            icon={<FormatListBulletedIcon />}
+            selected={location.pathname === "/reports/exception"}
+          />
+        )}
         <MenuItem
           title={t("reportChart")}
           link="/reports/chart"

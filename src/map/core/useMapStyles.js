@@ -50,16 +50,17 @@ export default () => {
     //   style: `https://tiles.locationiq.com/v3/dark/vector.json?key=${locationIqKey}`,
     //   available: true,
     // },
-    // {
-    //   id: 'osm',
-    //   title: t('mapOsm'),
-    //   style: styleCustom({
-    //     tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-    //     maxZoom: 19,
-    //     attribution: '© <a target="_top" rel="noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    //   }),
-    //   available: true,
-    // },
+    {
+      id: "osm",
+      title: t("mapOsm"),
+      style: styleCustom({
+        tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+        maxZoom: 19,
+        attribution:
+          '© <a target="_top" rel="noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }),
+      available: true,
+    },
     // {
     //   id: 'openTopoMap',
     //   title: t('mapOpenTopoMap'),
@@ -80,39 +81,48 @@ export default () => {
     //   available: true,
     // },
     {
-      id: 'indiaMap',
-      title: t('mapIndiaMap'),
+      id: "indiaMap",
+      title: t("mapIndiaMap"),
       style: `https://api.maptiler.com/maps/basic/style.json?key=${mapTilerKey}`,
-        available: !!mapTilerKey,
-        attribute: 'mapTilerKey',
+      available: !!mapTilerKey,
+      attribute: "mapTilerKey",
     },
     {
-      id: 'googleRoad',
-      title: t('mapGoogleRoad'),
+      id: "googleRoad",
+      title: t("mapGoogleRoad"),
       style: styleCustom({
-        tiles: [0, 1, 2, 3].map((i) => `https://mt${i}.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga`),
+        tiles: [0, 1, 2, 3].map(
+          (i) =>
+            `https://mt${i}.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga`
+        ),
         maxZoom: 20,
-        attribution: '© Google',
+        attribution: "© Google",
       }),
       available: true,
     },
     {
-      id: 'googleSatellite',
-      title: t('mapGoogleSatellite'),
+      id: "googleSatellite",
+      title: t("mapGoogleSatellite"),
       style: styleCustom({
-        tiles: [0, 1, 2, 3].map((i) => `https://mt${i}.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga`),
+        tiles: [0, 1, 2, 3].map(
+          (i) =>
+            `https://mt${i}.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga`
+        ),
         maxZoom: 20,
-        attribution: '© Google',
+        attribution: "© Google",
       }),
       available: true,
     },
     {
-      id: 'googleHybrid',
-      title: t('mapGoogleHybrid'),
+      id: "googleHybrid",
+      title: t("mapGoogleHybrid"),
       style: styleCustom({
-        tiles: [0, 1, 2, 3].map((i) => `https://mt${i}.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga`),
+        tiles: [0, 1, 2, 3].map(
+          (i) =>
+            `https://mt${i}.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga`
+        ),
         maxZoom: 20,
-        attribution: '© Google',
+        attribution: "© Google",
       }),
       available: true,
     },

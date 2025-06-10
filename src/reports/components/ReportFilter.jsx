@@ -9,6 +9,7 @@ import {
   Typography,
   OutlinedInput,
 } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { useTranslation } from "../../common/components/LocalizationProvider";
@@ -17,7 +18,13 @@ import { devicesActions, reportsActions } from "../../store";
 import SplitButton from "../../common/components/SplitButton";
 import SelectField from "../../common/components/SelectField";
 import { useRestriction } from "../../common/util/permissions";
-
+const options = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Cherry", value: "cherry" },
+  { label: "Date", value: "date" },
+  { label: "Elderberry", value: "elderberry" },
+];
 const ReportFilter = ({
   children,
   handleSubmit,
@@ -130,25 +137,31 @@ const ReportFilter = ({
       });
     }
   };
+  const deviceList = Object.values(devices)
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((device) => ({ label: device.name, value: device.id }));
+
+  const [selected, setSelected] = useState([]);
 
   return (
     <div className={classes.filter}>
       {!ignoreDevice && (
         <div className={classes.filterItem}>
           <FormControl fullWidth>
-            <InputLabel>
+            {/* <InputLabel>
               {t(multiDevice ? "deviceTitle" : "reportDevice")}
             </InputLabel>
             <Select
               label={t(multiDevice ? "deviceTitle" : "reportDevice")}
               value={multiDevice ? deviceIds : deviceId || ""}
-              onChange={(e) =>
+              onChange={(e) => {
+                console.log("value default", e.target.value);
                 dispatch(
                   multiDevice
                     ? devicesActions.selectIds(e.target.value)
                     : devicesActions.selectId(e.target.value)
-                )
-              }
+                );
+              }}
               multiple={multiDevice}
             >
               {Object.values(devices)
@@ -158,7 +171,39 @@ const ReportFilter = ({
                     {device.name}
                   </MenuItem>
                 ))}
-            </Select>
+            </Select> */}
+            <Autocomplete
+              multiple
+              options={Object.values(devices)
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((device) => ({ label: device.name, value: device.id }))}
+              getOptionLabel={(option) => option.label}
+              onChange={(event, value) => {
+                console.log("value", value);
+                dispatch(
+                  multiDevice
+                    ? devicesActions.selectIds(value.map((item) => item.value))
+                    : devicesActions.selectId(value.map((item) => item.value))
+                );
+              }}
+              isOptionEqualToValue={(option, value) => {
+                // console.log(option, value);
+                return option.value === value.value;
+              }}
+              value={
+                multiDevice
+                  ? deviceList.filter((opt) => deviceIds?.includes(opt.value))
+                  : deviceList.filter((opt) => {
+                      return deviceId?.includes(opt.value);
+                    }) || ""
+              }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={t(multiDevice ? "deviceTitle" : "reportDevice")}
+                />
+              )}
+            />
           </FormControl>
         </div>
       )}
@@ -211,6 +256,7 @@ const ReportFilter = ({
                 dispatch(devicesActions.selectIds([]));
                 dispatch(devicesActions.selectId(null));
                 dispatch(reportsActions.updateGroupIds(e.target.value));
+                console.log(groupIds);
               }}
               multiple
             >

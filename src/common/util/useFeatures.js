@@ -27,6 +27,7 @@ const featureSelector = createSelector(
     const disableComputedAttributes = get(server, user, 'ui.disableComputedAttributes');
     const disableCalendars = get(server, user, 'ui.disableCalendars');
     const disableSavedCommands = get(server, user, "ui.disableSavedCommands");
+    const enableExceptionReport = get(server, user, "ui.enableExceptionReport");
 
     return {
       disableAttributes,
@@ -37,6 +38,7 @@ const featureSelector = createSelector(
       disableComputedAttributes,
       disableCalendars,
       disableSavedCommands,
+      enableExceptionReport,
     };
   },
 );
