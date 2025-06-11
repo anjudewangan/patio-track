@@ -44,9 +44,12 @@ const columnsArray = [
   ["expectedBeat", "reportExpectedBeat"],
   ["actualBeat", "reportActualBeat"],
   ["expectedShiftTime", "reportExpectedShiftTime"],
-  ['actualShiftTime', "reportActualShiftTime"],
+  ["actualShiftTime", "reportActualShiftTime"],
   ["distance", "sharedDistance"],
   ["averageSpeed", "reportAverageSpeed"],
+  ["expectedDistance", "reportExpectedDistance"],
+  ["expectedTrip", "reportExpectedTrip"],
+  ["actualTrip", "reportActualTrip"],
   ["remarks", "reportRemarks"],
 ];
 const columnsMap = new Map(columnsArray);
@@ -68,9 +71,12 @@ const ExceptionReportPage = () => {
     "actualBeat",
     "expectedShiftTime",
     "actualShiftTime",
+    "expectedDistance",
     "distance",
+    "expectedTrip",
+    "actualTrip",
     "averageSpeed",
-    "remarks"
+    "remarks",
   ]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -109,7 +115,9 @@ const ExceptionReportPage = () => {
         to,
       });
       if (type === "export") {
-        window.location.assign(`/api/reports/exception-report/xlsx?${query.toString()}`);
+        window.location.assign(
+          `/api/reports/exception-report/xlsx?${query.toString()}`
+        );
       } else if (type === "mail") {
         const response = await fetch(
           `/api/reports/trips/mail?${query.toString()}`
@@ -127,6 +135,7 @@ const ExceptionReportPage = () => {
             }
           );
           if (response.ok) {
+            // console.log("items", await response.json());
             setItems(await response.json());
           } else {
             throw Error(await response.text());
@@ -156,6 +165,7 @@ const ExceptionReportPage = () => {
       // case 'startOdometer':
       // case 'endOdometer':
       case "distance":
+      case "expectedDistance":
         return formatDistance(item[key], distanceUnit, t);
       case "averageSpeed":
       case "maxSpeed":
