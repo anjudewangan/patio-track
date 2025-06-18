@@ -90,10 +90,12 @@ const MainPage = () => {
   const [filter, setFilter] = usePersistedState("filter", {
     statuses: [],
     groups: [],
+    moving: "",
   });
   const [filterByGroup, setFilterByGroup] = usePersistedState("groupFilter", {
     statuses: [],
     groups: [],
+    moving: "",
   });
 
   const [filterSort, setFilterSort] = usePersistedState("filterSort", "");
@@ -183,6 +185,11 @@ const MainPage = () => {
       case "Inactive":
         return filteredDevicesByGroup.filter((key) => key.status === "unknown")
           .length;
+      case "Moving":
+        return filteredDevicesByGroup.filter((key) => {
+          // console.log("speed", positions[key.id]?.speed);
+          return positions[key.id]?.speed > 0 && key.status === "online";
+        }).length;
       default:
         return 0;
     }
@@ -248,6 +255,11 @@ const MainPage = () => {
                 <Tab
                   label={`${t("deviceStatusOnline")} (${getCount("Online")})`}
                   value="online"
+                  style={{ textTransform: "capitalize", minWidth: "auto" }}
+                />
+                <Tab
+                  label={`${t("deviceStatusMoving")} (${getCount("Moving")})`}
+                  value="moving"
                   style={{ textTransform: "capitalize", minWidth: "auto" }}
                 />
                 <Tab

@@ -294,6 +294,7 @@
   "positionHeartRate": "Heart Rate",
   "positionOutput": "Output",
   "positionBatteryLevel": "Battery Level",
+  "positionSignalStrength": "Signal Strength",
   "positionFuelConsumption": "Fuel Consumption",
   "positionRfid": "RFID",
   "positionVersionFw": "Firmware Version",

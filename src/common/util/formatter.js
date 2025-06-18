@@ -143,3 +143,28 @@ export const formatNotificationTitle = (t, notification, includeId) => {
   }
   return title;
 };
+
+export const formatSignalStrength = (signalStrength) => {
+  let min, max;
+
+  switch (signalStrength) {
+    case 1:
+      min = 1;
+      max = 30;
+      break;
+    case 2:
+      min = 31;
+      max = 60;
+      break;
+    case 3:
+      min = 61;
+      max = 85;
+      break;
+    case 4:
+      return "100%"; // Always return 100 for best signal
+    default:
+      throw new Error("Invalid signal strength. Must be between 1 and 4.");
+  }
+
+  return `${Math.floor(Math.random() * (max - min + 1)) + min}%`;
+};
