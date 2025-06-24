@@ -45,7 +45,7 @@ const columnsArray = [
   ["actualBeat", "reportActualBeat"],
   ["expectedShiftTime", "reportExpectedShiftTime"],
   ["actualShiftTime", "reportActualShiftTime"],
-  ["distance", "sharedDistance"],
+  ["actualDistance", "sharedDistance"],
   ["averageSpeed", "reportAverageSpeed"],
   ["expectedDistance", "reportExpectedDistance"],
   ["expectedTrip", "reportExpectedTrip"],
@@ -72,7 +72,7 @@ const ExceptionReportPage = () => {
     "expectedShiftTime",
     "actualShiftTime",
     "expectedDistance",
-    "distance",
+    "actualDistance",
     "expectedTrip",
     "actualTrip",
     "averageSpeed",
@@ -158,6 +158,7 @@ const ExceptionReportPage = () => {
   });
 
   const formatValue = (item, key) => {
+    console.log(key, item);
     switch (key) {
       case "startTime":
       case "endTime":
@@ -165,6 +166,7 @@ const ExceptionReportPage = () => {
       // case 'startOdometer':
       // case 'endOdometer':
       case "distance":
+      case "actualDistance":
       case "expectedDistance":
         return formatDistance(item[key], distanceUnit, t);
       case "averageSpeed":
