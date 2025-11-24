@@ -45,6 +45,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       deviceId: position.deviceId,
       name: device.name,
       fixTime: formatTime(position.fixTime, 'seconds', hours12),
+      speed: position.speed * 1.852 || 0,
       category: mapIconKey(device.category),
       color: showStatus ? position.attributes.color || getStatusColor(device.status) : 'success',
       rotation: position.course,
@@ -114,7 +115,12 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
           "icon-image": "{category}-{color}",
           "icon-size": iconScale,
           "icon-allow-overlap": true,
-          "text-field": `{${titleField || "name"}}`,
+          "text-field": `${titleField ? titleField.split(",").map((field) => {
+            if (field === 'speed') {
+              return `{${field}} km/h`;
+            }
+            return `{${field}}`;
+          }).join(' - ') : "{name}"}`,
           "text-allow-overlap": true,
           "text-anchor": "bottom",
           "text-offset": [0, -2 * iconScale],

@@ -21,6 +21,7 @@ import EventReportPage from './reports/EventReportPage';
 import ReplayPage from './other/ReplayPage';
 import TripReportPage from './reports/TripReportPage';
 import ExceptionReportPage from "./reports/ExceptionReportPage";
+import DeviceStatusReportPage from './reports/DeviceStatusReport';
 import StopReportPage from "./reports/StopReportPage";
 import SummaryReportPage from "./reports/SummaryReportPage";
 import ChartReportPage from "./reports/ChartReportPage";
@@ -190,6 +191,7 @@ const Navigation = () => {
           <Route path="summary" element={<SummaryReportPage />} />
           <Route path="trip" element={<TripReportPage />} />
           <Route path="exception" element={<ExceptionReportPage />} />
+          <Route path="device-status" element={<DeviceStatusReportPage />} />
           <Route path="scheduled" element={<ScheduledPage />} />
           <Route path="statistics" element={<StatisticsPage />} />
           <Route path="logs" element={<LogsPage />} />

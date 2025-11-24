@@ -40,17 +40,43 @@ export const GroupFilter = ({ filter, setFilter }) => {
   };
 
   // Helper function to transform flat data into a nested structure
-  const buildNestedList = (data, parentId = undefined) => {
-    return data
-      .filter((item) => {
-        return item.groupId === parentId;
-      })
-      .map((item) => {
-        return {
-          ...item,
-          children: buildNestedList(data, item.id),
-        };
-      });
+  // const buildNestedList = (data, parentId = undefined) => {
+  //   console.log("data", data, parentId, data.groupId);
+  //   return data
+  //     .filter((item) => {
+  //       console.log("item", item, item.groupId, parentId, item.groupId === parentId);
+  //       return item.groupId === parentId || parentId === undefined;
+  //     })
+  //     .map((item) => {
+  //       return {
+  //         ...item,
+  //         children: buildNestedList(data, item.id),
+  //       };
+  //     });
+  // };
+
+  const buildNestedList = (data) => {
+    const map = new Map();
+    const roots = [];
+
+    // First pass: add all items to a lookup map
+    data.forEach((item) => {
+      map.set(item.id, { ...item, children: [] });
+    });
+
+    // Second pass: assign children
+    data.forEach((item) => {
+      const node = map.get(item.id);
+      if (item.groupId && map.has(item.groupId)) {
+        // Parent exists → attach to parent
+        map.get(item.groupId).children.push(node);
+      } else {
+        // Parent missing / not accessible → treat as root
+        roots.push(node);
+      }
+    });
+
+    return roots;
   };
 
   const renderList = (items) => {

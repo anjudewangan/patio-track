@@ -212,7 +212,7 @@ const ReplayPage = () => {
           <MapPositions
             positions={[positions[index]]}
             onClick={onMarkerClick}
-            titleField="fixTime"
+            titleField="fixTime,speed"
           />
         )}
       </MapView>

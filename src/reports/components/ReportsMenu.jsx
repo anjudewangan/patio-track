@@ -40,6 +40,7 @@ const ReportsMenu = () => {
   const admin = useAdministrator();
   const readonly = useRestriction("readonly");
   const exception = useAttributePreference("exceptionReport", false);
+  const deviceStatus = useAttributePreference("deviceStatusReport", false);
 
   return (
     <>
@@ -86,6 +87,14 @@ const ReportsMenu = () => {
             link="/reports/exception"
             icon={<FormatListBulletedIcon />}
             selected={location.pathname === "/reports/exception"}
+          />
+        )}
+        {deviceStatus && (
+          <MenuItem
+            title={t("deviceStatusReport")}
+            link="/reports/device-status"
+            icon={<FormatListBulletedIcon />}
+            selected={location.pathname === "/reports/device-status"}
           />
         )}
         <MenuItem
