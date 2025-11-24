@@ -20,7 +20,8 @@ import TableShimmer from '../common/components/TableShimmer';
 import scheduleReport from './common/scheduleReport';
 
 const columnsArray = [
-  ["startTime", "reportStartDate"],
+  ["startTime", "reportStartTime"],
+  ["endTime", "reportEndTime"],
   ["distance", "sharedDistance"],
   ["startOdometer", "reportStartOdometer"],
   ["endOdometer", "reportEndOdometer"],
@@ -123,7 +124,9 @@ const SummaryReportPage = () => {
       case "deviceId":
         return devices[item[key]].name;
       case "startTime":
-        return formatTime(item[key], "date", hours12);
+        return formatTime(item[key], "minutes", hours12);
+      case "endTime":
+        return formatTime(item[key], "minutes", hours12);
       case "startOdometer":
       case "endOdometer":
       case "distance":

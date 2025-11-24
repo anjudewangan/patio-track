@@ -1,16 +1,25 @@
+import { useMemo } from "react";
 import Chart from "react-apexcharts";
 
+
 const GroupChart = ({ data }) => {
+    const dynamicHeight = useMemo(() => data.length * 35, [data.length]);
+
+    const series = useMemo(() => ([
+        { name: "Online", data: data.map(g => g.online_count) },
+        { name: "Offline", data: data.map(g => g.offline_count) },
+        { name: "Unknown", data: data.map(g => g.unknown_count) },
+    ]), [data]);
     const options = {
         chart: {
             type: "bar",
-            height: 500,
+            height: dynamicHeight,   // <-- dynamic height
             toolbar: { show: false },
         },
         plotOptions: {
             bar: {
                 horizontal: true,
-                barHeight: "60%",
+                // barHeight: "60%",
             },
         },
         colors: ["#42A5F5", "#26A69A", "#FB8C00"],  // 🔥 UPDATED COLORS
@@ -48,22 +57,7 @@ const GroupChart = ({ data }) => {
         },
     };
 
-    const series = [
-        {
-            name: "Online",
-            data: data.map((g) => g.online_count),
-        },
-        {
-            name: "Offline",
-            data: data.map((g) => g.offline_count),
-        },
-        {
-            name: "Unknown",
-            data: data.map((g) => g.unknown_count),
-        },
-    ];
-
-    return <Chart options={options} series={series} type="bar" height={600} />;
+    return <Chart options={options} series={series} type="bar" height={dynamicHeight} />;
 };
 
 export default GroupChart;

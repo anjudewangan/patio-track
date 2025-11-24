@@ -19,6 +19,7 @@ import useReportStyles from './common/useReportStyles';
 import TableShimmer from '../common/components/TableShimmer';
 import scheduleReport from './common/scheduleReport';
 import GroupChart from './components/GroupChart';
+import GroupTable from './components/GroupTable';
 
 const columnsArray = [
   ["startTime", "reportStartDate"],
@@ -213,7 +214,8 @@ const DeviceStatusReportPage = () => {
           )}
         </TableBody>
       </Table> */}
-      <GroupChart data={chartData || []} />
+      <GroupTable data={chartData || []} />
+      {/* <GroupChart data={chartData || []} /> */}
     </PageLayout>
   );
 };
