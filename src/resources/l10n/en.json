@@ -676,5 +676,9 @@
   "alarmPoint": "Alarm Point",
   "parkedPoint": "Parked Point",
   "stoppedPoint": "Stopped Point",
-  "detailTag": "Detail Tag"
+  "detailTag": "Detail Tag",
+  "PoiLayer": "POI Layer",
+  "reportStartBattery": "Start Battery",
+  "reportEndBattery": "End Battery",
+  "reportReplayButton": "Replay Button"
 }

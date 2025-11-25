@@ -33,6 +33,9 @@ import MapCamera from "../map/MapCamera";
 import MapGeofence from "../map/MapGeofence";
 import StatusCard from "../common/components/StatusCard";
 import { usePreference } from "../common/util/preferences";
+import { useLocation } from "react-router-dom";
+import PoiMap from "../map/main/PoiMap";
+import { map } from "../map/core/MapView";
 // import MapRouteStopPoints from "../map/MapRouteStopPoints";
 
 const useStyles = makeStyles((theme) => ({
@@ -110,8 +113,32 @@ const ReplayPage = () => {
   const [showParkedPoint, setShowParkedPoint] = useState(true);
   const [showStoppedPoint, setShowStoppedPoint] = useState(true);
   const [showDetailPoint, setShowDetailPoint] = useState(true);
+  const [showPoiLayer, setShowPoiLayer] = useState(true);
 
   const [bar, setBar] = useState({ isHidden: false });
+
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+
+  const queryDeviceId = queryParams.get("deviceId");
+  const queryFrom = queryParams.get("from");
+  const queryTo = queryParams.get("to");
+
+  useEffect(() => {
+    if (queryDeviceId && queryFrom && queryTo) {
+      console.log("Auto submit replay report with query params", {
+        queryDeviceId,
+        queryFrom,
+        queryTo,
+      });
+      handleSubmit({
+        deviceId: queryDeviceId,
+        from: queryFrom,
+        to: queryTo,
+      });
+      setExpanded(false);
+    }
+  }, [queryDeviceId, queryFrom, queryTo]);
 
   function toggleHidden() {
     setBar({ isHidden: !bar.isHidden });
@@ -283,7 +310,7 @@ const ReplayPage = () => {
                 >
                   <FastForwardIcon />
                 </IconButton>
-                {formatTime(positions[index].fixTime, "seconds", hours12)}
+                {formatTime(positions[index]?.fixTime, "seconds", hours12)}
               </div>
             </>
           ) : (
@@ -407,6 +434,18 @@ const ReplayPage = () => {
                   label={t("detailTag")}
                 />
               </div>
+              {/* <div style={{ width: "50%", marginBottom: "8px" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showDetailPoint}
+                      onChange={() => showPoiLayer(!showPoiLayer)}
+                      style={{ color: "#2df587ff" }}
+                    />
+                  }
+                  label={t("PoiLayer")}
+                />
+              </div> */}
             </div>
           </div>
         </Paper>

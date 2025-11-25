@@ -34,6 +34,11 @@ const App = () => {
 
   useEffectAsync(async () => {
     if (!initialized) {
+      const allowedPublicRoutes = ["/replay"]; // allow direct load
+
+      if (allowedPublicRoutes.includes(window.location.pathname)) {
+        return; // stop redirection
+      }
       const response = await fetch('/api/session');
       if (response.ok) {
         dispatch(sessionActions.updateUser(await response.json()));
@@ -47,22 +52,22 @@ const App = () => {
   }, [initialized]);
 
   return !initialized ? (
-  <>
-  {/* <LinearProgress /> */}
-  <div
+    <>
+      {/* <LinearProgress /> */}
+      <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignContent: "center",
         }}
-        >
+      >
         <img
           src={loaderGif}
           alt="Loader"
           style={{ width: "100%", height: "100vh" }}
-          />
+        />
       </div>
-  </>
+    </>
   ) : (
     <>
       <SocketController />

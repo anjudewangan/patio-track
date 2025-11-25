@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
-  FormControl, InputLabel, Select, MenuItem, Table, TableHead, TableRow, TableBody, TableCell,
+  FormControl, InputLabel, Select, MenuItem, Table, TableHead, TableRow, TableBody, TableCell, Button, Typography,
 } from '@mui/material';
 import {
   formatDistance, formatHours, formatSpeed, formatVolume, formatTime,
+  formatPercentage,
 } from '../common/util/formatter';
+import dayjs from "dayjs";
 import ReportFilter from './components/ReportFilter';
 import { useAttributePreference, usePreference } from '../common/util/preferences';
 import { useTranslation } from '../common/components/LocalizationProvider';
@@ -18,10 +20,14 @@ import { useCatch } from '../reactHelper';
 import useReportStyles from './common/useReportStyles';
 import TableShimmer from '../common/components/TableShimmer';
 import scheduleReport from './common/scheduleReport';
+import { reportsActions, devicesActions } from "../store";
 
 const columnsArray = [
   ["startTime", "reportStartTime"],
   ["endTime", "reportEndTime"],
+  ['startBattery', 'reportStartBattery'],
+  ['endBattery', 'reportEndBattery'],
+  ['replayButton', 'reportReplayButton'],
   ["distance", "sharedDistance"],
   ["startOdometer", "reportStartOdometer"],
   ["endOdometer", "reportEndOdometer"],
@@ -38,6 +44,7 @@ const SummaryReportPage = () => {
   const navigate = useNavigate();
   const classes = useReportStyles();
   const t = useTranslation();
+  const dispatch = useDispatch();
 
   const devices = useSelector((state) => state.devices.items);
 
@@ -58,6 +65,9 @@ const SummaryReportPage = () => {
   const [daily, setDaily] = useState(false);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
+  const timePeriod = useSelector((state) => state.reports.period);
+  const timeFrom = useSelector((state) => state.reports.from);
+  const timeTo = useSelector((state) => state.reports.to);
 
   const handleSubmit = useCatch(
     async ({
@@ -119,6 +129,44 @@ const SummaryReportPage = () => {
     }
   });
 
+  const getTimePeriod = () => {
+    let selectedFrom;
+    let selectedTo;
+    switch (timePeriod) {
+      case "today":
+        selectedFrom = dayjs().startOf("day");
+        selectedTo = dayjs().endOf("day");
+        break;
+      case "yesterday":
+        selectedFrom = dayjs().subtract(1, "day").startOf("day");
+        selectedTo = dayjs().subtract(1, "day").endOf("day");
+        break;
+      case "thisWeek":
+        selectedFrom = dayjs().startOf("week");
+        selectedTo = dayjs().endOf("week");
+        break;
+      case "previousWeek":
+        selectedFrom = dayjs().subtract(1, "week").startOf("week");
+        selectedTo = dayjs().subtract(1, "week").endOf("week");
+        break;
+      case "thisMonth":
+        selectedFrom = dayjs().startOf("month");
+        selectedTo = dayjs().endOf("month");
+        break;
+      case "previousMonth":
+        selectedFrom = dayjs().subtract(1, "month").startOf("month");
+        selectedTo = dayjs().subtract(1, "month").endOf("month");
+        break;
+      default:
+        selectedFrom = dayjs(timeFrom, "YYYY-MM-DDTHH:mm");
+        selectedTo = dayjs(timeTo, "YYYY-MM-DDTHH:mm");
+        break;
+    }
+    selectedFrom = selectedFrom.format("YYYY-MM-DDTHH:mm");
+    selectedTo = selectedTo.format("YYYY-MM-DDTHH:mm");
+    return { selectedFrom, selectedTo };
+  }
+
   const formatValue = (item, key) => {
     switch (key) {
       case "deviceId":
@@ -139,6 +187,29 @@ const SummaryReportPage = () => {
         return formatHours(item[key]);
       case "spentFuel":
         return formatVolume(item[key], volumeUnit, t);
+      case "startBattery":
+      case "endBattery":
+        return formatPercentage(item[key]);
+      case "replayButton":
+        const { selectedFrom, selectedTo } = getTimePeriod();
+        console.log("item:", item, selectedFrom, selectedTo);
+        return (
+          <Button
+            fullWidth
+            variant="outlined"
+            color="secondary"
+            onClick={() => {
+              dispatch(devicesActions.selectId(item.deviceId));
+              dispatch(reportsActions.updateFrom(selectedFrom));
+              dispatch(reportsActions.updateTo(selectedTo));
+              navigate("/replay");
+            }}
+          >
+            <Typography variant="button" noWrap>
+              {t("reportReplay")}
+            </Typography>
+          </Button>
+        )
       default:
         return item[key];
     }
