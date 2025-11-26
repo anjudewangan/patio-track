@@ -7,6 +7,7 @@ import {
   Typography,
   FormControlLabel,
   Checkbox,
+  FormControl, InputLabel, MenuItem, Select
 } from "@mui/material"; // Added FormControlLabel and Checkbox
 import makeStyles from "@mui/styles/makeStyles";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -114,6 +115,7 @@ const ReplayPage = () => {
   const [showStoppedPoint, setShowStoppedPoint] = useState(true);
   const [showDetailPoint, setShowDetailPoint] = useState(true);
   const [showPoiLayer, setShowPoiLayer] = useState(true);
+  const [speed, setSpeed] = useState(1); // 1x speed by default
 
   const [bar, setBar] = useState({ isHidden: false });
 
@@ -123,6 +125,10 @@ const ReplayPage = () => {
   const queryDeviceId = queryParams.get("deviceId");
   const queryFrom = queryParams.get("from");
   const queryTo = queryParams.get("to");
+
+  const getIntervalDelay = () => {
+    return 500 / speed;
+  };
 
   useEffect(() => {
     if (queryDeviceId && queryFrom && queryTo) {
@@ -160,13 +166,13 @@ const ReplayPage = () => {
     if (playing && positions.length > 0) {
       timerRef.current = setInterval(() => {
         setIndex((index) => index + 1);
-      }, 500);
+      }, getIntervalDelay());
     } else {
       clearInterval(timerRef.current);
     }
 
     return () => clearInterval(timerRef.current);
-  }, [playing, positions]);
+  }, [playing, positions, speed]);
 
   useEffect(() => {
     if (index >= positions.length - 1) {
@@ -313,6 +319,7 @@ const ReplayPage = () => {
                 </IconButton>
                 {formatTime(positions[index]?.fixTime, "seconds", hours12)}
               </div>
+
             </>
           ) : (
             <ReportFilter handleSubmit={handleSubmit} fullScreen showOnly />
@@ -339,6 +346,21 @@ const ReplayPage = () => {
                 padding: "24px 16px 16px",
               }}
             >
+              <div style={{ width: "100%", marginBottom: "8px" }}>
+                <FormControl fullWidth>
+                  <InputLabel>Replay Speed</InputLabel>
+                  <Select
+                    label="Replay Speed"
+                    value={speed}
+                    onChange={(e) => setSpeed(Number(e.target.value))}
+                  >
+                    <MenuItem value={1} selected>1x (Slow)</MenuItem>
+                    <MenuItem value={2}>2x (Normal)</MenuItem>
+                    <MenuItem value={4}>4x (Fast)</MenuItem>
+                    <MenuItem value={10}>10x (Very Fast)</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
               <div style={{ width: "50%", marginBottom: "8px" }}>
                 <FormControlLabel
                   control={

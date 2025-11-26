@@ -192,7 +192,6 @@ const SummaryReportPage = () => {
         return formatPercentage(item[key]);
       case "replayButton":
         const { selectedFrom, selectedTo } = getTimePeriod();
-        console.log("item:", item, selectedFrom, selectedTo);
         return (
           <Button
             fullWidth
