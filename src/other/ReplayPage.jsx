@@ -218,6 +218,7 @@ const ReplayPage = () => {
     <div className={classes.root}>
       <MapView>
         <MapGeofence />
+        <PoiMap />
         <MapRoutePath positions={positions} showTrackLine={showTrackLine} />
         <MapRoutePoints
           positions={positions}
