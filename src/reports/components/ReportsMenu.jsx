@@ -41,6 +41,7 @@ const ReportsMenu = () => {
   const readonly = useRestriction("readonly");
   const exception = useAttributePreference("exceptionReport", false);
   const deviceStatus = useAttributePreference("deviceStatusReport", false);
+  const eventReport = useAttributePreference("eventReport", false);
 
   return (
     <>
@@ -57,12 +58,15 @@ const ReportsMenu = () => {
           icon={<TimelineIcon />}
           selected={location.pathname === "/reports/route"}
         />
-        {/* <MenuItem
-          title={t("reportEvents")}
-          link="/reports/event"
-          icon={<NotificationsActiveIcon />}
-          selected={location.pathname === "/reports/event"}
-        /> */}
+        {eventReport && (
+          <MenuItem
+            title={t("reportEvents")}
+            link="/reports/event"
+            icon={<NotificationsActiveIcon />}
+            selected={location.pathname === "/reports/event"}
+          />
+        )}
+
         <MenuItem
           title={t("reportTrips")}
           link="/reports/trip"
