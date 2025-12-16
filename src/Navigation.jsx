@@ -88,7 +88,7 @@ const Navigation = () => {
       }
       navigate("/");
     } else if (query.get("eventId")) {
-      const eventId = parseInt(query.get("eventId"), 10);
+      const eventId = query.get("eventId");
       navigate(`/event/${eventId}`);
     } else {
       setRedirectsHandled(true);

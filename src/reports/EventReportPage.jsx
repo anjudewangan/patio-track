@@ -127,7 +127,7 @@ const EventReportPage = () => {
       case 'type':
         return t(prefixString('event', item[key]));
       case 'geofenceId':
-        if (item[key] > 0) {
+        if (item[key]) {
           const geofence = geofences[item[key]];
           return geofence && geofence.name;
         }
@@ -198,6 +198,7 @@ const EventReportPage = () => {
             <TableHead>
               <TableRow>
                 <TableCell className={classes.columnAction} />
+                <TableCell>{t("sharedDevice")}</TableCell>
                 {columns.map((key) => (<TableCell key={key}>{t(columnsMap.get(key))}</TableCell>))}
               </TableRow>
             </TableHead>
@@ -215,6 +216,7 @@ const EventReportPage = () => {
                       </IconButton>
                     ) : ''}
                   </TableCell>
+                  <TableCell>{devices[item.deviceId].name}</TableCell>
                   {columns.map((key) => (
                     <TableCell key={key}>
                       {formatValue(item, key)}
