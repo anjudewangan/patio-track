@@ -147,3 +147,10 @@ export const formatNotificationTitle = (t, notification, includeId) => {
 export const formatSignalStrength = (signalStrength) => {
   return signalStrength;
 };
+
+export const formatBeat = (value) => {
+  if (!value) {
+    return ""
+  }
+  return `${parseInt(parseFloat(value) / 1000)}/${(parseInt(value) % 1000).toString().padStart(3, '0')}`;
+}

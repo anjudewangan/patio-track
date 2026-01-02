@@ -7,6 +7,7 @@ import {
 import {
   formatDistance, formatHours, formatSpeed, formatVolume, formatTime,
   formatPercentage,
+  formatBeat
 } from '../common/util/formatter';
 import dayjs from "dayjs";
 import ReportFilter from './components/ReportFilter';
@@ -37,6 +38,8 @@ const columnsArray = [
   ["spentFuel", "reportSpentFuel"],
   ["group", "reportGroup"],
   ["targetDistance", "reportTargetDistance"],
+  ['startLabel', 'reportStartLabel'],
+  ['endLabel', 'reportEndLabel'],
 ];
 const columnsMap = new Map(columnsArray);
 
@@ -209,6 +212,9 @@ const SummaryReportPage = () => {
             </Typography>
           </Button>
         )
+      case "startLabel":
+      case "endLabel":
+        return formatBeat(item[key]);
       default:
         return item[key];
     }

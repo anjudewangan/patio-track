@@ -680,5 +680,7 @@
   "PoiLayer": "POI Layer",
   "reportStartBattery": "Start Battery",
   "reportEndBattery": "End Battery",
-  "reportReplayButton": "Replay Button"
+  "reportReplayButton": "Replay Button",
+  "reportStartLabel": "Start Beat",
+  "reportEndLabel": "End Beat"
 }
